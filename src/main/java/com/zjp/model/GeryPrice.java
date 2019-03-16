@@ -5,8 +5,8 @@ package com.zjp.model;
  */
 public class GeryPrice {
 
-    private Integer orderID;
-    private Integer userID;
+    private String orderID;
+    private String userID;
     private String roomID;
     private String Source;
     private String UpdateDate;
@@ -26,19 +26,19 @@ public class GeryPrice {
                 '}';
     }
 
-    public Integer getOrderID() {
+    public String getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(Integer orderID) {
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
 
-    public Integer getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(Integer userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

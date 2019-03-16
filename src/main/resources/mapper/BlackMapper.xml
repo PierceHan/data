@@ -6,7 +6,11 @@
 <mapper namespace="com.zjp.mapper.PriceMapper">
 
     <select id="getGeryList" resultType="com.zjp.model.GeryPrice">
-        SELECT source FROM t_black WHERE domain=#{domain} GROUP BY source;
+        SELECT * FROM warnprice
+    </select>
+
+    <select id="countGeryList" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM warnprice
     </select>
 
 </mapper>

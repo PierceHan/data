@@ -10,10 +10,7 @@ import com.zjp.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by hanguoan on 2019/3/16.
@@ -40,10 +37,12 @@ public class PriceServiceImpl implements PriceService {
         ApiResponse apiResponse = new ApiResponse();
         apiResponse.setCode(CodeEnum.A0001.getCode());
         apiResponse.setMsg("success");
-        Data<FinanceFollow> data = new Data<>();
+        Map<String,Object> map = new HashMap();
         List<GeryPrice> geryPrices = priceMapper.getGeryList();
-        data.setTotal(String.valueOf(Math.random()*1000));
-        apiResponse.setResult(new Data<FinanceFollow>());
+        map.put("GetFollowTotal",geryPrices);
+        Random random = new Random();
+        map.put("total",priceMapper.countGeryList());
+        apiResponse.setResult(map);
         return apiResponse;
     }
 }
