@@ -1,0 +1,12 @@
+CREATE TABLE `WarnPrice` (
+  `orderID` int(11) DEFAULT NULL,
+  `userID` int(11) DEFAULT NULL,
+  `roomID` varchar(45) DEFAULT NULL,
+  `Source` varchar(45) DEFAULT NULL,
+  `UpdateDate` varchar(45) DEFAULT NULL,
+  `MinPrice` varchar(45) DEFAULT NULL,
+  `MaxPrice` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
