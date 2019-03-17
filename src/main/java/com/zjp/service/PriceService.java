@@ -1,5 +1,6 @@
 package com.zjp.service;
 
+import com.zjp.model.GeryPrice;
 import com.zjp.model.web.ApiResponse;
 
 /**
@@ -8,5 +9,5 @@ import com.zjp.model.web.ApiResponse;
 public interface PriceService {
     ApiResponse getPrice();
 
-    ApiResponse getGeryList();
+    ApiResponse getGeryList(GeryPrice geryPrice);
 }

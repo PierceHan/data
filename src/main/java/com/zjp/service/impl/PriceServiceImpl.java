@@ -5,7 +5,6 @@ import com.zjp.model.FinanceFollow;
 import com.zjp.model.GeryPrice;
 import com.zjp.model.en.CodeEnum;
 import com.zjp.model.web.ApiResponse;
-import com.zjp.model.web.Data;
 import com.zjp.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,15 +32,15 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public ApiResponse getGeryList() {
+    public ApiResponse getGeryList(GeryPrice geryPrice) {
         ApiResponse apiResponse = new ApiResponse();
         apiResponse.setCode(CodeEnum.A0001.getCode());
         apiResponse.setMsg("success");
         Map<String,Object> map = new HashMap();
-        List<GeryPrice> geryPrices = priceMapper.getGeryList();
+        List<GeryPrice> geryPrices = priceMapper.getGeryListDynamic(geryPrice);
         map.put("GetFollowTotal",geryPrices);
         Random random = new Random();
-        map.put("total",priceMapper.countGeryList());
+        map.put("total",priceMapper.countGeryListDynamic(geryPrice));
         apiResponse.setResult(map);
         return apiResponse;
     }

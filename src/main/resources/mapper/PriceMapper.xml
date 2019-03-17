@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjp.mapper.PriceMapper">
+
+    <select id="getGeryList" resultType="com.zjp.model.GeryPrice">
+        SELECT * FROM warnprice
+    </select>
+
+    <select id="countGeryList" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM warnprice
+    </select>
+    
+    <select id="getGeryListDynamic" resultType="com.zjp.model.GeryPrice">
+        SELECT * FROM warnprice
+        <where>
+            <if test="orderID!=null and orderID!=''">orderID = #{orderID}</if>
+            <if test="userID!=null and userID!=''">and userID = #{userID}</if>
+            <if test="roomID!=null and roomID!=''">and roomID=#{roomID}</if>
+            <if test="Source!=null and Source!=''">and Source = #{Source} </if>
+        </where>
+    </select>
+
+    <select id="countGeryListDynamic" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM warnprice
+        <where>
+            <if test="orderID!=null and orderID!=''">orderID = #{orderID}</if>
+            <if test="userID!=null and userID!=''">and userID = #{userID}</if>
+            <if test="roomID!=null and roomID!=''">and roomID=#{roomID}</if>
+            <if test="Source!=null and Source!=''">and Source = #{Source} </if>
+        </where>
+    </select>
+
+</mapper>
