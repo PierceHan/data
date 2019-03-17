@@ -13,7 +13,7 @@ public interface PriceMapper {
 
     int countGeryList();
 
-    int countGeryListDynamic(GeryPrice geryPrice);
+    int countGeryListDynamic( );
 
-    List<GeryPrice> getGeryListDynamic(GeryPrice geryPrice);
+    List<GeryPrice> getGeryListDynamic( );
 }

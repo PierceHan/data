@@ -22,15 +22,31 @@ public class PriceController {
     private PriceService priceService;
 
     @ApiOperation(value = "获得")
-    @RequestMapping(value = "/warnPrice/warnpricegreylist/detaillist",method = RequestMethod.GET)
+    @RequestMapping(value = "/warnPrice/warnpricegreylist/detaillist",method = RequestMethod.POST)
     public ApiResponse getPrice(){
         return priceService.getPrice();
     }
 
-    @ApiOperation(value = "获得")
+   /* @ApiOperation(value = "获得")
     @RequestMapping(value = "/finance/FinanceHtl/GetFollowTotal",method = RequestMethod.POST)
     public ApiResponse getGeryList(@RequestBody GeryPrice geryPrice){
         return priceService.getGeryList(geryPrice);
+    }*/
+
+
+//    @ApiOperation(value = "获得")
+//    @RequestMapping(value = "/finance/FinanceHtl/GetFollowTotal",method = RequestMethod.POST)
+//    public ApiResponse getGeryList(){
+//        return priceService.getGeryList();
+//    }
+
+
+
+    @RequestMapping("/finance/FinanceHtl/GetFollowTotal")
+    public ApiResponse reg() throws Exception {
+        //其他业务
+        return priceService.getGeryList();
     }
+
 
 }

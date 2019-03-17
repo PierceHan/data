@@ -9,5 +9,5 @@ import com.zjp.model.web.ApiResponse;
 public interface PriceService {
     ApiResponse getPrice();
 
-    ApiResponse getGeryList(GeryPrice geryPrice);
+    ApiResponse getGeryList();
 }

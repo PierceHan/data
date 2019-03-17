@@ -165,7 +165,7 @@ var pageVar = {
         var self = this,
             $ = jQuery,
             ret;
-        chart = new Chart();
+//        chart = new Chart();
         $('#last_debt').html("-");
         $('#hist_debt').html("-");
 
@@ -189,7 +189,7 @@ var pageVar = {
         var self = this,
             $ = jQuery,
             ret;
-        chart = new Chart();
+//        chart = new Chart();
         $('#last_debt').html("-");
         $('#hist_debt').html("-");
 
@@ -211,7 +211,7 @@ var pageVar = {
     initdebttabledate: function (a, b, c, d) {
         var $ = jQuery,
             self = this,
-            chart = new Chart(),
+//            chart = new Chart(),
             tool = new Tool(),
             res;
         $('#debtpager').empty();
@@ -287,7 +287,7 @@ var pageVar = {
     initAdjustTable: function (a, b, c, d) {
         var $ = jQuery,
             self = this,
-            chart = new Chart(),
+//            chart = new Chart(),
             tool = new Tool(),
             res;
         $('#adjustpager').empty();
@@ -758,7 +758,7 @@ var pageVar = {
         var self = this,
             $ = jQuery,
             ret;
-        chart = new Chart();
+//        chart = new Chart();
 
         $('#OrderOutOfSystem').find('p').html("-");
         $('#HotelNoticeUnfinished').find('p').html("-");
@@ -777,21 +777,36 @@ var pageVar = {
         self.request({ op: 'GetFollowTotal' }, function (data) {
             ret = data.result[0];
 
-            $('#OrderOutOfSystem').find('p').html(ret["orderOutOfSystem"]);
-            $('#HotelNoticeUnfinished').find('p').html(ret["hotelNoticeUnfinished"]);
-            $('#CSPMessageUnRead').find('p').html(ret["cspmessageUnRead"]);
-            $('#RefundProcessingDetail').find('p').html(ret["refundProcessingDetail"]);
-            $('#HotelInvoiceChanges').find('p').html(ret["hotelInvoiceChanges"]);
-            $('#HotelAdvances').find('p').html(ret["hotelAdvances"]);
+//            $('#OrderOutOfSystem').find('p').html(ret["orderOutOfSystem"]);
+                                                                                       //            $('#HotelNoticeUnfinished').find('p').html(ret["hotelNoticeUnfinished"]);
+                                                                                       //            $('#CSPMessageUnRead').find('p').html(ret["cspmessageUnRead"]);
+                                                                                       //            $('#RefundProcessingDetail').find('p').html(ret["refundProcessingDetail"]);
+                                                                                       //            $('#HotelInvoiceChanges').find('p').html(ret["hotelInvoiceChanges"]);
+                                                                                       //            $('#HotelAdvances').find('p').html(ret["hotelAdvances"]);
+                                                                                       //
+                                                                                       //            $('#OrderOutOfBatch').find('p').html(ret["orderOutOfBatch"]);
+                                                                                       //            $('#HotelBatchNotClosed').find('p').html(ret["hotelBatchNotClosed"]);
+                                                                                       //
+                                                                                       //            $('#HotelInvoiceNotSubmitted').find('p').html(ret["hotelInvoiceNotSubmitted"]);
+                                                                                       //            $('#HotelSystemUneven').find('p').html(ret["hotelSystemUneven"]);
+                                                                                       //            $('#HotelAmountUnclaimed').find('p').html(ret["hotelAmountUnclaimed"]);
+                                                                                       //            $('#CommissionBatchDetail').find('p').html(ret["commissionBatchDetail"]);
 
-            $('#OrderOutOfBatch').find('p').html(ret["orderOutOfBatch"]);
+
+$('#OrderOutOfSystem').find('p').html(5);
+            $('#HotelNoticeUnfinished').find('p').html(6);
+            $('#CSPMessageUnRead').find('p').html(24);
+            $('#RefundProcessingDetail').find('p').html(28);
+            $('#HotelInvoiceChanges').find('p').html(3306);
+            $('#HotelAdvances').find('p').html(259);
+
+            $('#OrderOutOfBatch').find('p').html(298);
             $('#HotelBatchNotClosed').find('p').html(ret["hotelBatchNotClosed"]);
 
             $('#HotelInvoiceNotSubmitted').find('p').html(ret["hotelInvoiceNotSubmitted"]);
             $('#HotelSystemUneven').find('p').html(ret["hotelSystemUneven"]);
             $('#HotelAmountUnclaimed').find('p').html(ret["hotelAmountUnclaimed"]);
             $('#CommissionBatchDetail').find('p').html(ret["commissionBatchDetail"]);
-
             //Ctrip.getWatermarkUrl($('#HotelNoticeUnfinished'), '', "#b2bcca", '实时', "30px 20px", "auto 300px");
             //Ctrip.getWatermarkUrl($('#CSPMessageUnRead'), '', "#b2bcca", '实时', "30px 20px", "auto 300px");
 
@@ -860,7 +875,7 @@ var pageVar = {
 
         $.ajax({
             type: "post",
-            dataType: "json",
+            dataType: "application/json;charset=UTF-8",
             url: '/finance/FinanceHtl/'+data.op,
             data: data,
             success: function (data) {
