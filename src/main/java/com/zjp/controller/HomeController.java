@@ -27,5 +27,16 @@ public class HomeController {
         return "warnpricegreylist";
     }
 
+    @RequestMapping(path = {"/mainframe"}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String indes(Model model, @RequestParam(value = "pop", defaultValue = "0") int pop){
+        return "mainFrame";
+    }
+
+
+    @RequestMapping(path = {"/home"}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String indess(Model model, @RequestParam(value = "pop", defaultValue = "0") int pop){
+        return "index";
+    }
+
 
 }
