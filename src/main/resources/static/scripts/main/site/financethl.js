@@ -50,49 +50,49 @@ var pageVar = {
 
     },
 
-    ReconciliationTotal: function () {
-        var self = this,
-            $ = jQuery,
-            ret;
-        chart = new Chart();
-        $('#day_pre').html("-");
-        $('#now_date').html("-");
-        $('#end_date').html("-");
-
-        $('#last_pre').html("-");
-        $('#confirmcounts_last').html("-");
-        $('#totalcounts_last').html("-");
-
-        $('#now_pre').html("-");
-        $('#confirmcounts').html("-");
-        $('#totalcounts').html("-");
-        self.request({ op: 'GetReconciliationTotal' }, function (data) {
-
-            ret = data.result[0];
-
-            $('#day_pre').html(ret.day_pre);
-            $('#now_date').html(ret.now_date);
-            $('#end_date').html(ret.end_date);
-
-            $('#last_pre').html(ret.last_pre);
-            $('#confirmcounts_last').html(ret.confirmcounts_last);
-            $('#totalcounts_last').html(ret.totalcounts_last);
-
-            $('#now_pre').html(ret.now_pre);
-            $('#confirmcounts').html(ret.confirmcounts);
-            $('#totalcounts').html(ret.totalcounts);
-            $('#ebkTotal').html(ret.ebkTotal);
-            $('#ebkHighStar').html(ret.ebkHighStar);
-            $('#ebkLowStar').html(ret.ebkLowStar);
-            //Ctrip.getWatermarkUrl($('#confirmcounts_last').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-            //Ctrip.getWatermarkUrl($('#last_pre').parents(".percentage"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-            //Ctrip.getWatermarkUrl($('#now_pre').parents(".percentage"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-            //Ctrip.getWatermarkUrl($('#confirmcounts').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-            //Ctrip.getWatermarkUrl($('#totalcounts').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-        }, function () {
-            new Tool().showStatus($('[id=Acount_total]'), 'error');
-        });
-    },
+//    ReconciliationTotal: function () {
+//        var self = this,
+//            $ = jQuery,
+//            ret;
+//        chart = new Chart();
+////        $('#day_pre').html("83%");
+////        $('#now_date').html("3-26");
+////        $('#end_date').html("3-31");
+////
+////        $('#last_pre').html("91%");
+////        $('#confirmcounts_last').html("6355");
+////        $('#totalcounts_last').html("6897");
+////
+////        $('#now_pre').html("7510");
+////        $('#confirmcounts').html("8966");
+////        $('#totalcounts').html("9067");
+//        self.request({ op: 'GetReconciliationTotal' }, function (data) {
+//
+//            ret = data.result[0];
+//
+//            $('#day_pre').html(ret.day_pre);
+//            $('#now_date').html(ret.now_date);
+//            $('#end_date').html(ret.end_date);
+//
+//            $('#last_pre').html(ret.last_pre);
+//            $('#confirmcounts_last').html(ret.confirmcounts_last);
+//            $('#totalcounts_last').html(ret.totalcounts_last);
+//
+//            $('#now_pre').html(ret.now_pre);
+//            $('#confirmcounts').html(ret.confirmcounts);
+//            $('#totalcounts').html(ret.totalcounts);
+//            $('#ebkTotal').html(ret.ebkTotal);
+//            $('#ebkHighStar').html(ret.ebkHighStar);
+//            $('#ebkLowStar').html(ret.ebkLowStar);
+//            //Ctrip.getWatermarkUrl($('#confirmcounts_last').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//            //Ctrip.getWatermarkUrl($('#last_pre').parents(".percentage"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//            //Ctrip.getWatermarkUrl($('#now_pre').parents(".percentage"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//            //Ctrip.getWatermarkUrl($('#confirmcounts').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//            //Ctrip.getWatermarkUrl($('#totalcounts').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//        }, function () {
+//            new Tool().showStatus($('[id=Acount_total]'), 'error');
+//        });
+//    },
     //加载酒店列表
     inittabledate: function (a, b, c, d) {
         var $ = jQuery,
@@ -161,50 +161,50 @@ var pageVar = {
 
     },
 
-    DebtTotal: function () {
-        var self = this,
-            $ = jQuery,
-            ret;
-//        chart = new Chart();
-        $('#last_debt').html("-");
-        $('#hist_debt').html("-");
-
-        $('#debthotelcounts').html("-");
-        $('#debtAcountTotal').html("-");
-
-        self.request({ op: 'GetDebtTotal' }, function (data) {
-            ret = data.data;
-            $('#last_debt').html(Ctrip.parseNumber(ret["当月欠款金额"] * 1.0));
-            $('#hist_debt').html(Ctrip.parseNumber(ret["历史欠款金额"] * 1.0));
-
-            $('#three_debt').html(Ctrip.parseNumber(ret["3个月内欠款金额"] * 1.0));
-
-        }, function () {
-            new Tool().showStatus($('[id=Debt_total]'), 'error');
-        });
-    },
+//    DebtTotal: function () {
+//        var self = this,
+//            $ = jQuery,
+//            ret;
+////        chart = new Chart();
+//        $('#last_debt').html("567218");
+//        $('#hist_debt').html("674207");
+//
+//        $('#debthotelcounts').html("3450");
+//        $('#debtAcountTotal').html("4532");
+//
+//        self.request({ op: 'GetDebtTotal' }, function (data) {
+//            ret = data.data;
+//            $('#last_debt').html(Ctrip.parseNumber(ret["当月欠款金额"] * 1.0));
+//            $('#hist_debt').html(Ctrip.parseNumber(ret["历史欠款金额"] * 1.0));
+//
+//            $('#three_debt').html(Ctrip.parseNumber(ret["3个月内欠款金额"] * 1.0));
+//
+//        }, function () {
+//            new Tool().showStatus($('[id=Debt_total]'), 'error');
+//        });
+//    },
 
     //应收调整页头表格
-    AdjustTotal: function () {
-        var self = this,
-            $ = jQuery,
-            ret;
-//        chart = new Chart();
-        $('#last_debt').html("-");
-        $('#hist_debt').html("-");
-
-        $('#debthotelcounts').html("-");
-        $('#debtAcountTotal').html("-");
-
-        self.request({ op: 'GetAdjustTotal' }, function (data) {
-            ret = data.data;
-            $('#adjustHotel').html(Ctrip.parseNumber(ret["调整酒店家数"] * 1.0));
-            $('#adjustMoney').html(Ctrip.parseNumber(ret["调整金额（人民币）"] * 1.0));
-
-        }, function () {
-            new Tool().showStatus($('[id=Adjust_total]'), 'error');
-        });
-    },
+//    AdjustTotal: function () {
+//        var self = this,
+//            $ = jQuery,
+//            ret;
+////        chart = new Chart();
+//        $('#last_debt').html("673932.98");
+//        $('#hist_debt').html("4595205");
+//
+//        $('#debthotelcounts').html("145920");
+//        $('#debtAcountTotal').html("458031");
+//
+//        self.request({ op: 'GetAdjustTotal' }, function (data) {
+//            ret = data.data;
+//            $('#adjustHotel').html(Ctrip.parseNumber(ret["调整酒店家数"] * 1.0));
+//            $('#adjustMoney').html(Ctrip.parseNumber(ret["调整金额（人民币）"] * 1.0));
+//
+//        }, function () {
+//            new Tool().showStatus($('[id=Adjust_total]'), 'error');
+//        });
+//    },
 
 
     //加载催款酒店列表
@@ -538,7 +538,7 @@ var pageVar = {
             pageVar.followtag_page = d
         new Tool().showStatus($('[id=FollowTable]'), 'loading');
         self.request({ op: opname, pageno: a || 1, tagpage: pageVar.followtag_page }, function (data) {
-
+debugger;
             var ret = data.result.hotelNoticeUnfinisheds;
             if (!ret) return;
             $('#FollowTable').html('');
@@ -760,21 +760,22 @@ var pageVar = {
             ret;
 //        chart = new Chart();
 
-        $('#OrderOutOfSystem').find('p').html("-");
-        $('#HotelNoticeUnfinished').find('p').html("-");
-        $('#CSPMessageUnRead').find('p').html("-");
-        $('#RefundProcessingDetail').find('p').html("-");
-        $('#HotelInvoiceChanges').find('p').html("-");
-        $('#HotelAdvances').find('p').html("-");
+        $('#OrderOutOfSystem').find('p').html("1258");
+        $('#HotelNoticeUnfinished').find('p').html("259");
+        $('#CSPMessageUnRead').find('p').html("39");
+        $('#RefundProcessingDetail').find('p').html("258");
+        $('#HotelInvoiceChanges').find('p').html("589");
+        $('#HotelAdvances').find('p').html("240");
 
-        $('#OrderOutOfBatch').find('p').html("-");
-        $('#HotelBatchNotClosed').find('p').html("-");
-        $('#HotelInvoiceNotSubmitted').find('p').html("-");
-        $('#HotelSystemUneven').find('p').html("-");
-        $('#HotelAmountUnclaimed').find('p').html("-");
-        $('#CommissionBatchDetail').find('p').html("-");
+        $('#OrderOutOfBatch').find('p').html("5932");
+        $('#HotelBatchNotClosed').find('p').html("235");
+        $('#HotelInvoiceNotSubmitted').find('p').html("366");
+        $('#HotelSystemUneven').find('p').html("350");
+        $('#HotelAmountUnclaimed').find('p').html("129");
+        $('#CommissionBatchDetail').find('p').html("789");
 
         self.request({ op: 'GetFollowTotal' }, function (data) {
+        debugger;
             ret = data.result[0];
 
 //            $('#OrderOutOfSystem').find('p').html(ret["orderOutOfSystem"]);
@@ -879,7 +880,7 @@ $('#OrderOutOfSystem').find('p').html(5);
             url: '/finance/FinanceHtl/'+data.op,
             data: data,
             success: function (data) {
-
+debugger;
                 if (data.code == 'A0001') {
 
                     success && success(data);

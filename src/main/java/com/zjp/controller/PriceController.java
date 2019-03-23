@@ -22,7 +22,7 @@ public class PriceController {
     private PriceService priceService;
 
     @ApiOperation(value = "获得")
-    @RequestMapping(value = "/warnPrice/warnpricegreylist/detaillist",method = RequestMethod.POST)
+    @RequestMapping(value = "/finance/FinanceHtl/GetFollowTotal",method = RequestMethod.POST)
     public ApiResponse getPrice(){
         return priceService.getPrice();
     }
@@ -42,7 +42,7 @@ public class PriceController {
 
 
 
-    @RequestMapping("/finance/FinanceHtl/GetFollowTotal")
+    @RequestMapping("/warnPrice/warnpricegreylist/detaillist")
     public ApiResponse reg() throws Exception {
         //其他业务
         return priceService.getGeryList();

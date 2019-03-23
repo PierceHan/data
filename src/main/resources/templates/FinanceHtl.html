@@ -93,12 +93,13 @@
 
 <link rel="stylesheet" href="../styles/base.css">
 <div class="devoops_tabsa" id="tabsa">
-    <a href="javascript: void(0);" js-click="changeTab" data-id="1" _ping_back_="changeTab" _ping_back_time_btn_="需跟进" class="current">需跟进</a>
-    <a href="javascript: void(0);" js-click="changeTab" data-id="2" _ping_back_="changeTab" _ping_back_time_btn_="对账">对账</a>
-    <a href="javascript: void(0);" js-click="changeTab" data-id="3" _ping_back_="changeTab" _ping_back_time_btn_="误差">误差</a>
-    <a href="javascript: void(0);" js-click="changeTab" data-id="4" _ping_back_="changeTab" _ping_back_time_btn_="催款">催款</a>
-    <a href="javascript: void(0);" js-click="changeTab" data-id="5" _ping_back_="changeTab" _ping_back_time_btn_="应收调整">应收调整</a>
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="1" _ping_back_="changeTab" _ping_back_time_btn_="需跟进" class="current">用户评价</a>-->
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="2" _ping_back_="changeTab" _ping_back_time_btn_="对账">对账</a>-->
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="3" _ping_back_="changeTab" _ping_back_time_btn_="误差">误差</a>-->
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="4" _ping_back_="changeTab" _ping_back_time_btn_="催款">催款</a>-->
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="5" _ping_back_="changeTab" _ping_back_time_btn_="应收调整">应收调整</a>-->
 </div>
+<div></div>
 <div js-text="tab1">
     <div class="data-box">
         <div style="padding: 10px;">
@@ -108,40 +109,40 @@
                 <tr>
                     <td class="followchoose" js-click="changeFollowTab" id="HotelNoticeUnfinished" ping_back_="changeTab" _ping_back_time_btn_="预订通知未完成">
                         <div>
-                            <h4>预订通知未完成 <span class="shishiBtn">实时</span></h4>
+                            <h4>预定无房 <span class="shishiBtn">实时</span></h4>
                             <p>-</p>
                         </div>
                     </td>
                     <td js-click="changeFollowTab" id="HotelSystemUneven" ping_back_="changeTab" _ping_back_time_btn_="系统不平">
                         <div>
 
-                            <h4>系统不平 <span class="shishiBtn">实时</span></h4>
-                            <p id="">-</p>
+                            <h4>到店满房 <span class="shishiBtn">实时</span></h4>
+                            <p >-</p>
                         </div>
                     </td>
                     <td js-click="changeFollowTab" id="HotelInvoiceChanges" ping_back_="changeTab" _ping_back_time_btn_="发票修改申请">
                         <div>
-                            <h4>发票修改申请</h4>
-                            <p id="">-</p>
+                            <h4>到店无预定</h4>
+                            <p >-</p>
                         </div>
                     </td>
                     <td js-click="changeFollowTab" id="CSPMessageUnRead" ping_back_="changeTab" _ping_back_time_btn_="EBK留言">
                         <div>
-                            <h4>EBK留言 <span class="shishiBtn">实时</span></h4>
-                            <p id="">-</p>
+                            <h4>到店前涨价 <span class="shishiBtn">实时</span></h4>
+                            <p >-</p>
                         </div>
                     </td>
                     <td js-click="changeFollowTab" id="HotelInvoiceNotSubmitted" ping_back_="changeTab" _ping_back_time_btn_="发票未提交">
                         <div>
-                            <h4>发票未提交</h4>
-                            <p id="">-</p>
+                            <h4>到店后涨价</h4>
+                            <p >-</p>
                         </div>
                     </td>
                     <td js-click="changeFollowTab" id="HotelBatchNotClosed" ping_back_="changeTab" _ping_back_time_btn_="批次未关闭">
                         <div>
 
                             <h4>批次未关闭 <span class="shishiBtn">实时</span></h4>
-                            <p id="">-</p>
+                            <p >-</p>
                         </div>
                     </td>
                 </tr>
@@ -155,32 +156,32 @@
                     <td js-click="changeFollowTab" id="OrderOutOfBatch" ping_back_="changeTab" _ping_back_time_btn_="批次外订单">
                         <div>
                             <h4>批次外订单</h4>
-                            <p id="">-</p>
+                            <p >-</p>
                         </div>
                     </td>
                     <td js-click="changeFollowTab" id="CommissionBatchDetail" ping_back_="changeTab" _ping_back_time_btn_="账单未发送成功数">
                         <div>
                             <h4>账单未发送成功数</h4>
-                            <p id="">-</p>
+                            <p i>-</p>
                         </div>
                     </td>
 
                     <td js-click="changeFollowTab" id="RefundProcessingDetail" ping_back_="changeTab" _ping_back_time_btn_="退票未处理">
                         <div>
                             <h4>退票未处理 <span class="shishiBtn">实时</span></h4>
-                            <p id="">-</p>
+                            <p >-</p>
                         </div>
                     </td>
                     <td js-click="changeFollowTab" id="HotelAdvances" ping_back_="changeTab" _ping_back_time_btn_="垫款未收回单数">
                         <div>
                             <h4>垫款未收回单数</h4>
-                            <p id="">-</p>
+                            <p >-</p>
                         </div>
                     </td>
                     <td js-click="changeFollowTab" id="HotelAmountUnclaimed" ping_back_="changeTab" _ping_back_time_btn_="明款未领用金额">
                         <div>
                             <h4>明款未领用酒店数</h4>
-                            <p id="">-</p>
+                            <p >-</p>
                         </div>
                     </td>
                 </tr>
@@ -210,7 +211,12 @@
                         <th>序号</th>
                         <th>酒店ID</th>
                         <th style="width: 250px">酒店名称</th>
-                        <th>预订通知未完成条数</th>
+                        <th>星级</th>
+                        <th>好评数量</th>
+                        <th>差评数量</th>
+                        <th>中评数量</th>
+                        <th>服务质量总分</th>
+                        <th>酒店评级</th>
                     </tr>
                     <tbody id="FollowTable">
                     </tbody>
@@ -234,16 +240,17 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="percentage"><i class="ico-time"></i><strong id="day_pre">-</strong>%</div>
+                                    <!--<div class="percentage"><i class="ico-time"></i><strong id="day_pre">-</strong>%</div>-->
+                                    <div class="percentage"><img src="../images/ico-time.png" alt=""><strong id="day_pre">89</strong>%</div>
                                 </td>
                                 <td>
                                     <div class="progress">
                                         <p>至今</p>
-                                        <p><strong id="now_date">-</strong></p>
+                                        <p><strong id="now_date">03-26-</strong></p>
                                     </div>
                                     <div class="progress">
                                         <p>结束</p>
-                                        <p><strong id="end_date">-</strong></p>
+                                        <p><strong id="end_date">03-31</strong></p>
                                     </div>
                                 </td>
                             </tr>
@@ -259,18 +266,18 @@
                             <tr>
                                 <td>
                                     <div class="percentage" style="color: #00b588;">
-                                        <%--<i class="ico-good"></i>--%>
-                                        <strong id="last_pre">-</strong>%
+                                        <img src="../images/ico-good.png" alt="">
+                                        <strong id="last_pre">92</strong>%
                                     </div>
                                 </td>
                                 <td>
                                     <div class="progress">
                                         <p>完成家数</p>
-                                        <p><strong id="confirmcounts_last">-</strong></p>
+                                        <p><strong id="confirmcounts_last">5797</strong></p>
                                     </div>
                                     <div class="progress">
                                         <p>总家数</p>
-                                        <p><strong id="totalcounts_last">-</strong></p>
+                                        <p><strong id="totalcounts_last">7810</strong></p>
                                     </div>
                                 </td>
                             </tr>
@@ -286,18 +293,19 @@
                             <tr>
                                 <td>
                                     <div class="percentage" style="color: #d81e06;">
-                                        <%--<i class="ico-bad"></i>--%>
-                                        <strong id="now_pre">-</strong>%
+                                        <img src="../images/ico-bad.png" alt="">
+
+                                        <strong id="now_pre">87.43-</strong>%
                                     </div>
                                 </td>
                                 <td>
                                     <div class="progress">
                                         <p>完成家数</p>
-                                        <p><strong id="confirmcounts">-</strong></p>
+                                        <p><strong id="confirmcounts">5629</strong></p>
                                     </div>
                                     <div class="progress">
                                         <p>总家数</p>
-                                        <p><strong id="totalcounts">-</strong></p>
+                                        <p><strong id="totalcounts">8937</strong></p>
                                     </div>
                                 </td>
                             </tr>
@@ -308,22 +316,22 @@
                         <table>
                             <tbody>
                             <tr>
-                                <th colspan="2">当月EBK确认率</th>
+                                <th colspan="2">当月确认率</th>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="percentage" style="color: #d81e06;">
-                                        <strong id="ebkTotal">-</strong>%
+                                        <strong id="ebkTotal">45782</strong>%
                                     </div>
                                 </td>
                                 <td>
                                     <div class="progress">
                                         <p>高星确认家数</p>
-                                        <p><strong id="ebkHighStar">-</strong></p>
+                                        <p><strong id="ebkHighStar">34871</strong></p>
                                     </div>
                                     <div class="progress">
                                         <p>低星确认家数</p>
-                                        <p><strong id="ebkLowStar">-</strong></p>
+                                        <p><strong id="ebkLowStar">17583</strong></p>
                                     </div>
                                 </td>
                             </tr>
@@ -482,13 +490,13 @@
                                 <td>
                                     <div class="percentage"><strong id="errhotel_current">-</strong></div>
                                 </td>
-                                <%--<td>
+                                <td>
                                     <div class="progress">
                                         <p>总家数</p>
                                         <p><strong id="errhotel_total">-</strong></p>
                                     </div>
 
-                                </td>--%>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -540,7 +548,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="percentage" style="color: #00b588;"><strong id="last_debt">-</strong></div>
+                                    <div class="percentage" style="color: #00b588;"><strong id="last_debt">452931</strong></div>
                                 </td>
                             </tr>
                             </tbody>
@@ -554,7 +562,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="percentage" style="color: #00b588;"><strong id="hist_debt">-</strong></div>
+                                    <div class="percentage" style="color: #00b588;"><strong id="hist_debt">729253</strong></div>
                                 </td>
                             </tr>
                             </tbody>
@@ -569,7 +577,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="percentage" style="color: #00b588;"><strong id="three_debt">-</strong></div>
+                                    <div class="percentage" style="color: #00b588;"><strong id="three_debt">63524</strong></div>
                                 </td>
                             </tr>
                             </tbody>
@@ -752,7 +760,7 @@
                                 <e js-t="tabMoreTitle">应收调整是否删除</e>
 
                             </label>
-                            <input name="isdelete" type="radio" value="0" <%--checked="checked"--%> /><label>全部</label>
+                            <input name="isdelete" type="radio" value="0"/><label>全部</label>
                             <input name="isdelete" type="radio" value="1" /><label>刪除</label>
                             <input name="isdelete" type="radio" value="2" /><label>新增</label>
 

@@ -1,0 +1,121 @@
+<!doctype html>
+
+<html>
+<style>
+.menu_list {
+width: 200px;
+margin: 0;
+margin-left:0px;
+margin-top:0px
+padding-left:0px;
+padding-top:0px;
+}
+
+.menu_head {
+height: 47px;
+line-height: 47px;
+padding-left: 38px;
+font-size: 14px;
+color: #525252;
+cursor: pointer;
+border: 1px solid #f1f1f1;
+position: relative;
+margin: 0px;
+font-weight: bold;
+background:#3c8dbc;
+}
+
+.menu_list .current {
+background: #3c8dbc;
+}
+
+.menu_nva {
+line-height: 38px;
+border-left: 1px solid #3c8dbc;
+backguound: #fff;
+border-right: 1px solid #3c8dbc;
+}
+
+.menu_nva a {
+display: block;
+height: 38px;
+line-height: 38px;
+padding-left: 38px;
+color: #777777;
+background: #fff;
+text-decoration: none;
+border-bottom: 1px solid #3c8dbc;
+}
+
+.menu_nva a:hover {
+text-decoration: none;
+}
+
+.sidebar-toggle {
+    /* height: 30px; */
+    line-height: 30px;
+    color: #aeb9c2;
+    background-color: #4a5064;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+</style>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title></title>
+
+    <script type="text/javascript" src="/scripts/main/jquery.js"></script>
+
+</head>
+<body>
+
+
+<div id="firstpaneDiv"   class="menu_list">
+    <h3 class="menu_head current">服务缺陷</h3>
+    <div style="display:block" class="menu_nva">
+        <a href="financeHtl.html" target="iframeContent">用户评价</a>
+        <a href="CuiKuan.html" target="iframeContent">催款进度</a>
+        <a href="warnpricegreylist.html" target="iframeContent">异常价格拦截</a>
+
+    </div>
+    <h3 class="menu_head">平台收益</h3>
+    <div style="display:none" class="menu_nva">
+        <a href="ChanLiang.html" target="iframeContent">产量分析</a>
+        <a href="YongJin.html" target="iframeContent">佣金分析</a>
+        <a href="#">酒店收益分析</a>
+
+    </div>
+    <h3 class="menu_head">用户行为</h3>
+    <div style="display:none" class="menu_nva">
+        <a href="#">用户浏览分析</a>
+        <a href="#">用户搜索分析</a>
+        <a href="#">用户行为分析</a>
+
+    </div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+$("#firstpaneDiv .menu_nva:eq(0)").show();
+$("#firstpaneDiv h3.menu_head").click(function(){
+$(this).addClass("current").next("div.menu_nva").slideToggle(200).siblings("div.menu_nva").slideUp("slow");
+$(this).siblings().removeClass("current");
+});
+$("#secondpane .menu_nva:eq(0)").show();
+$("#secondpane h3.menu_head").mouseover(function(){
+$(this).addClass("current").next("div.menu_nva").slideDown(400).siblings("div.menu_nva").slideUp("slow");
+$(this).siblings().removeClass("current");
+});
+});
+
+</script>
+
+
+</body>
+</html>
+

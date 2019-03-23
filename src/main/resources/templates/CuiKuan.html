@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .more-condition {
+            padding: 8px 0;
+            text-align: left;
+        }
+
+        .more-condition span.input-msg {
+            margin-left: -80px;
+            right: auto;
+            top: -10px;
+        }
+
+        .more-condition .clearBtn {
+            color: #fff;
+        }
+
+        .adv-query {
+            background-color: #eaf0ff;
+            border: 1px solid #d7d7d7;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .adv-query > a {
+            color: #1984b6;
+            font-size: 14px;
+        }
+
+        .sort {
+            cursor: pointer;
+        }
+
+        .more-condition:hover .clearBtn {
+            color: #7c7c7c;
+        }
+
+        .row {
+            margin-bottom: 0;
+        }
+
+        .condition-box {
+            color: #1984b6;
+            margin: 0;
+            border: none;
+            background-color: #fff;
+            padding-bottom: 0;
+            padding-top: 6px;
+        }
+
+        .more-condition .title {
+            float: left;
+            width: 116px;
+            text-align: right;
+        }
+
+        td.followchoose {
+            /*display:block;*/
+            /*border-color:#6BC3FE;*/
+            background-color: #EAF3FF;
+        }
+
+        .radar-list td:hover {
+            background-color: #EAF3FF;
+        }
+
+        .shishiBtn {
+            border: 1px solid red;
+            border-radius: 4px;
+            color: red;
+            font-size: 12px;
+            font-weight: normal;
+            display: inline-block;
+            height: 16px;
+            line-height: 15px;
+            vertical-align: middle;
+        }
+
+        element.style {
+            display: block;
+            overflow: hidden;
+            text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+<link rel="stylesheet" href="../styles/base.css">
+<div class="devoops_tabsa" id="tabsa">
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="1" _ping_back_="changeTab" _ping_back_time_btn_="需跟进" class="current">需跟进</a>-->
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="2" _ping_back_="changeTab" _ping_back_time_btn_="对账"class="current">对账</a>-->
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="3" _ping_back_="changeTab" _ping_back_time_btn_="误差">误差</a>-->
+    <!--<a href="javascript: void(0);" js-click="changeTab" data-id="4" _ping_back_="changeTab" _ping_back_time_btn_="催款" class="current">催款进度</a>-->
+
+</div>
+
+<div js-text="tab4">
+    <div class="data-box">
+        <div style="padding: 10px;">
+            <table class="radar-list2" id="Debt_total" style="width: 90%">
+                <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th colspan="2">当月欠款金额</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="percentage" style="color: #00b588;"><strong id="last_debt">-</strong></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th colspan="2">历史欠款金额</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="percentage" style="color: #00b588;"><strong id="hist_debt">-</strong></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th colspan="2">3个月内欠款金额</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="percentage" style="color: #00b588;"><strong id="three_debt">-</strong></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="adv-query">
+            <a js-click="showAdvancedOpts" href="javascript:;" class="up">高级筛选</a>
+            <div class="charts_box condition-box">
+                <div>
+                    <div class="one-part" style="width: 33%">
+                        <div class="more-condition">
+                            <label class="title" style="width: 180px;">
+                                <e js-t="tabMoreTitle">未结清金额（人民币）</e>
+                                ：
+                            </label>
+                            <input type="text" name="condtion_ta_outstandingamount" />
+                            -
+                            <input type="text" name="condtion_tb_outstandingamount" />
+                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
+                        </div>
+                    </div>
+                    <div class="one-part" style="width: 33%">
+                        <div class="more-condition">
+                            <label class="title">
+                                <e js-t="tabMoreTitle">欠款批次数</e>
+                                ：
+                            </label>
+                            <input type="text" name="condtion_na_outstandingbatchenum" />
+                            -
+                            <input type="text" name="condtion_nb_outstandingbatchenum" />
+                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+                <div class="more-condition" style="padding: 0px;"></div>
+                <div class="more-condition" style="text-align: center;">
+                    <span class="btn" js-click="conditionOk" style="width: 50px; line-height: 22px;" _ping_back_="serachBtn" _ping_back_time_btn_="">确定</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="float: left; margin-bottom: -1px; border: 0px solid #afc4ff; font-size: 16px; color: black; font-weight: 600; border-radius: 3px 3px 0px 0px; padding: 0px 20px;">
+                <span>共 <span id="debthotelcounts" style="font-size: 19px;">-</span>家酒店<span>，<span style="font-size: 19px;" id="debtAcountTotal">-</span>条数据</span></span>
+            </div>
+            <div class="divcolor" style="position: relative; bottom: -5px;">
+                <a class="func-point-d" style="float: right;" href="javascript:;" title="下载" js-click="pdfBtn4" _ping_back_="download" _ping_back_time_btn_="">
+                    <i class="ico-download-d"></i><span>下载</span>
+                </a>
+            </div>
+        </div>
+        <div class="charts_box" style="margin-top: -1px;">
+            <div class="box-content" style="height: auto;">
+                <table class="tb off-table-rank">
+                    <tr>
+                        <th>序号</th>
+                        <th>酒店ID</th>
+                        <th style="width: 150px">酒店名称</th>
+                        <th class="sort">佣金年月<i data-value="1"></i></th>
+                        <th class="sort">未结清金额(人民币)<i data-value="3"></i></th>
+                        <th class="sort abroadGroup">未结清金额(原币)<i data-value="9"></i></th>
+                        <th class="sort">预付可提交金额(人民币)<i data-value="10"></i></th>
+                        <th class="sort abroadGroup">预付可提交金额(原币)<i data-value="4"></i></th>
+                        <th class="sort abroadGroup">币种</th>
+                        <th class="sort">欠款批次数<i data-value="5"></i></th>
+                        <th class="sort">预付是否抵扣<i data-value="6"></i></th>
+                        <th class="sort">明款未领用金额<i data-value="7"></i></th>
+                        <th class="sort">最近一次跟进时间<i data-value="8"></i></th>
+                    </tr>
+                    <tbody id="DebtTable">
+                    </tbody>
+                </table>
+            </div>
+            <div id="debtpager" style="float: right; height: 35px; margin-top: -8px;"></div>
+        </div>
+    </div>
+</div>
+<div js-text="tab5" style="display: none;">
+    <div class="data-box">
+        <div style="padding: 10px;">
+            <table class="radar-list2" id="Adjust_total" style="width: 90%">
+                <tbody>
+                <tr>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th colspan="2">调整酒店家数</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="percentage" style="color: #00b588;"><strong id="adjustHotel">-</strong></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th colspan="2">调整金额（人民币）</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="percentage" style="color: #00b588;"><strong id="adjustMoney">-</strong></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="adv-query">
+            <a js-click="showAdvancedOpts" href="javascript:;" class="up">高级筛选</a>
+            <div class="charts_box condition-box">
+                <div>
+                    <div class="one-part" style="width: 33%">
+                        <div class="more-condition">
+                            <label class="title" style="width: 180px;">
+                                <e js-t="tabMoreTitle">调整日期</e>
+                                ：
+                            </label>
+
+                            <input type="text" style="width: 100px" js-time="begin" id="begindate" placeholder="" />
+                            -
+                            <input type="text" style="width: 100px" js-time="end" id="enddate" placeholder="" />
+
+                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
+                        </div>
+                    </div>
+                    <div class="one-part" style="width: 33%">
+                        <div class="more-condition">
+                            <label class="title">
+                                <e js-t="employeename">结算员</e>
+                                ：
+                            </label>
+                            <input type="text" style="width: 180px;" name="employeename" id="employeename" />
+
+                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
+                        </div>
+                    </div>
+                    <div class="one-part" style="width: 33%">
+                        <div class="more-condition">
+                            <label class="title">
+                                <e js-t="groupname">组别</e>
+                                ：
+                            </label>
+                            <input type="text" type="text" style="width: 180px;" name="groupname" id="groupname" />
+
+                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="one-part" style="width: 80%">
+                        <div class="more-condition">
+                            <label class="title" style="width: 180px;">
+                                <e js-t="adjustname">调整项目</e>
+                                ：
+                            </label>
+                            <input type="text" type="text" style="width: 230px;" name="adjustname" id="adjustname" />
+
+
+                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
+                        </div>
+                    </div>
+                    <div class="one-part" style="width: 80%;">
+                        <div class="more-condition">
+                            <label class="title" style="width: 180px;">
+                                <e js-t="tabMoreTitle">应收调整是否删除</e>
+
+                            </label>
+                            <input name="isdelete" type="radio" value="0"/><label>全部</label>
+                            <input name="isdelete" type="radio" value="1" /><label>刪除</label>
+                            <input name="isdelete" type="radio" value="2" /><label>新增</label>
+
+                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="clear: both;"></div>
+                <div class="more-condition" style="padding: 0px;"></div>
+                <div class="more-condition" style="text-align: center;">
+                    <span class="btn" js-click="conditionOk" style="width: 50px; line-height: 22px;" _ping_back_="serachBtn" _ping_back_time_btn_="">确定</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="float: left; margin-bottom: -1px; border: 0px solid #afc4ff; font-size: 16px; color: black; font-weight: 600; border-radius: 3px 3px 0px 0px; padding: 0px 20px;">
+                <span>共 <span id="adjusthotelcounts" style="font-size: 19px;">-</span>家酒店<span>，<span style="font-size: 19px;" id="adjustAcountTotal">-</span>条数据</span></span>
+            </div>
+            <div class="divcolor" style="position: relative; bottom: -5px;">
+                <a class="func-point-d" style="float: right;" href="javascript:;" title="下载" js-click="pdfBtn5" _ping_back_="download" _ping_back_time_btn_="">
+                    <i class="ico-download-d"></i><span>下载</span>
+                </a>
+            </div>
+        </div>
+        <div class="charts_box" style="margin-top: -1px;">
+            <div class="box-content" style="height: auto;">
+                <table class="tb off-table-rank">
+                    <tr>
+                        <th>序号</th>
+                        <th class="sort">佣金年<i data-value="1"></i></th>
+                        <th style="width: 50px">佣金月</th>
+                        <th>调整日期</th>
+                        <th>酒店名称</th>
+                        <th>酒店ID</th>
+                        <th>结算员</th>
+                        <th>组别</th>
+                        <th>调整项目</th>
+                        <th class="sort">调整金额(人民币)<i data-value="3"></i></th>
+                        <th class="sort">调整间夜<i data-value="4"></i></th>
+                        <th >应收调整是否删除</th>
+                        <th >是否直通车</th>
+                        <th >批次号</th>
+
+                    </tr>
+                    <tbody id="AdjustTable">
+                    </tbody>
+                </table>
+            </div>
+            <div id="adjustpager" style="float: right; height: 35px; margin-top: -8px;"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/scripts/main/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/scripts/main/C.Chart.js"></script>
+<script type="text/javascript" src="/scripts/main/C.base.js"></script>
+<script type="text/javascript" src="/scripts/main/site/CuiKuan.js"></script>
+</body>
+</html>

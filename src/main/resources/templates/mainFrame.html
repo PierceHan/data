@@ -1,7 +1,64 @@
 ﻿<!doctype html>
 
 <html>
-<head>    
+<style>
+.menu_list {
+width: 268px;
+margin: 0;
+}
+
+.menu_head {
+height: 47px;
+line-height: 47px;
+padding-left: 38px;
+font-size: 14px;
+color: #525252;
+cursor: pointer;
+border: 1px solid #f1f1f1;
+position: relative;
+margin: 0px;
+font-weight: bold;
+background:#3c8dbc;
+}
+
+.menu_list .current {
+background: #3c8dbc;
+}
+
+.menu_nva {
+line-height: 38px;
+border-left: 1px solid #3c8dbc;
+backguound: #fff;
+border-right: 1px solid #3c8dbc;
+}
+
+.menu_nva a {
+display: block;
+height: 38px;
+line-height: 38px;
+padding-left: 38px;
+color: #777777;
+background: #fff;
+text-decoration: none;
+border-bottom: 1px solid #3c8dbc;
+}
+
+.menu_nva a:hover {
+text-decoration: none;
+}
+
+.sidebar-toggle {
+    /* height: 30px; */
+    line-height: 30px;
+    color: #aeb9c2;
+    background-color: #4a5064;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+</style>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
@@ -14,13 +71,13 @@
     <link rel="stylesheet" href="../styles/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="../styles/menu.css">
     <script type="text/javascript" src="/scripts/main/jquery.js"></script>
-    <script type="text/javascript" src="/scripts/main/base/boot.js"></script>
+    <script type="text/javascript" src="/scripts/main/boot.js"></script>
 </head>
 <body>
-    
+
 <div class="navbar">
     <div class="navbar-header">
-        <div class="navbar-brand">MiniUI</div>
+        <div class="navbar-brand">Data View</div>
         <div class="navbar-brand navbar-brand-compact">M</div>
     </div>
     <ul class="nav navbar-nav">
@@ -35,7 +92,7 @@
         <li><a href="#"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
         <li class="dropdown">
             <a class="dropdown-toggle userinfo">
-                <img class="user-img" src="images/img/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
+                <img class="user-img" src="../static/images/user.jpg"  height="62px"/>个人资料<i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu pull-right">
                 <li ><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li>
@@ -46,17 +103,42 @@
 </div>
 
 <div class="container">
-    
+
     <div class="sidebar">
-        <div class="sidebar-toggle"><i class = "fa fa-fw fa-dedent" ></i></div>
-        <div id="mainMenu"></div>
+        <!--<div class="sidebar-toggle"><i class = "fa fa-fw fa-dedent" ></i></div>-->
+        <!--<div id="mainMenu"></div>-->
+
+        <div id="firstpaneDiv" class="menu_list">
+            <h3 class="menu_head current">服务缺陷</h3>
+            <div style="display:block" class="menu_nva">
+                <a href="#"></a>
+                <a href="#">酒店服务</a>
+
+            </div>
+            <h3 class="menu_head">平台收益</h3>
+            <div style="display:none" class="menu_nva">
+                <a href="#">产量分析</a>
+                <a href="#">佣金分析</a>
+                <a href="#">酒店收益分析</a>
+
+            </div>
+            <h3 class="menu_head">用户行为</h3>
+            <div style="display:none" class="menu_nva">
+                <a href="#">用户浏览分析</a>
+                <a href="#">用户搜索分析</a>
+                <a href="#">用户行为分析</a>
+
+            </div>
+        </div>
+
+
     </div>
 
     <div class="main">
         <div id="mainTabs" class="mini-tabs main-tabs" activeIndex="0" style="height:100%;" plain="false"
              buttons="#tabsButtons" arrowPosition="side" >
             <div name="index" iconCls="fa-android" title="控制台">
-                MiniUI导航框架
+                Data View
             </div>
         </div>
         <div id="tabsButtons">
@@ -64,67 +146,82 @@
             <a class="tabsBtn"><i class="fa fa-refresh"></i></a>
             <a class="tabsBtn"><i class="fa fa-remove"></i></a>
             <a class="tabsBtn"><i class="fa fa-arrows-alt"></i></a>
-        </div>   
+        </div>
     </div>
-   
+
 </div>
 
-
 <script>
-
-    function activeTab(item) {
-        var tabs = mini.get("mainTabs");
-        var tab = tabs.getTab(item.id);
-        if (!tab) {
-            tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
-            tab = tabs.addTab(tab);
-        }
-        tabs.activeTab(tab);
-    }
-
-    $(function () {
-debugger;
-        //menu
-        var menu = new Menu("#mainMenu", {
-            itemclick: function (item) {
-                if (!item.children) {
-                    activeTab(item);
-                }
-            }
-        });
-
-        $(".sidebar").mCustomScrollbar({ autoHideScrollbar: true });
-
-        new MenuTip(menu);
-
-        $.ajax({
-            url: "data/menu.txt",
-            success: function (text) {
-                var data = mini.decode(text);
-                menu.loadData(data);
-            }
-        })
-
-        //toggle
-        $("#toggle, .sidebar-toggle").click(function () {
-            $('body').toggleClass('compact');
-            mini.layout();
-        });
-
-        //dropdown
-        $(".dropdown-toggle").click(function (event) {
-            $(this).parent().addClass("open");
-            return false;
-        });
-
-        $(document).click(function (event) {
-            $(".dropdown").removeClass("open");
-        });
-    });
-
+$(document).ready(function(){
+$("#firstpaneDiv .menu_nva:eq(0)").show();
+$("#firstpaneDiv h3.menu_head").click(function(){
+$(this).addClass("current").next("div.menu_nva").slideToggle(200).siblings("div.menu_nva").slideUp("slow");
+$(this).siblings().removeClass("current");
+});
+$("#secondpane .menu_nva:eq(0)").show();
+$("#secondpane h3.menu_head").mouseover(function(){
+$(this).addClass("current").next("div.menu_nva").slideDown(400).siblings("div.menu_nva").slideUp("slow");
+$(this).siblings().removeClass("current");
+});
+});
 </script>
 
-#parse("js.html")
+
+<!--<script>-->
+
+    <!--function activeTab(item) {-->
+        <!--var tabs = mini.get("mainTabs");-->
+        <!--var tab = tabs.getTab(item.id);-->
+        <!--if (!tab) {-->
+            <!--tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };-->
+            <!--tab = tabs.addTab(tab);-->
+        <!--}-->
+        <!--tabs.activeTab(tab);-->
+    <!--}-->
+
+    <!--$(function () {-->
+<!--debugger;-->
+        <!--//menu-->
+        <!--var menu = new Menu("#mainMenu", {-->
+            <!--itemclick: function (item) {-->
+                <!--if (!item.children) {-->
+                    <!--activeTab(item);-->
+                <!--}-->
+            <!--}-->
+        <!--});-->
+
+        <!--$(".sidebar").mCustomScrollbar({ autoHideScrollbar: true });-->
+
+        <!--new MenuTip(menu);-->
+
+        <!--$.ajax({-->
+            <!--url: "data/menu.txt",-->
+            <!--success: function (text) {-->
+                <!--var data = mini.decode(text);-->
+                <!--menu.loadData(data);-->
+            <!--}-->
+        <!--})-->
+
+        <!--//toggle-->
+        <!--$("#toggle, .sidebar-toggle").click(function () {-->
+            <!--$('body').toggleClass('compact');-->
+            <!--mini.layout();-->
+        <!--});-->
+
+        <!--//dropdown-->
+        <!--$(".dropdown-toggle").click(function (event) {-->
+            <!--$(this).parent().addClass("open");-->
+            <!--return false;-->
+        <!--});-->
+
+        <!--$(document).click(function (event) {-->
+            <!--$(".dropdown").removeClass("open");-->
+        <!--});-->
+    <!--});-->
+
+<!--</script>-->
+
+<!--#parse("js.html")-->
 </body>
 </html>
 
