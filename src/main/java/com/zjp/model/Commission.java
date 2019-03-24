@@ -5,12 +5,39 @@ package com.zjp.model;
  */
 public class Commission {
 
+    private String rownum;
+    private String hotelId;
+    private String hotelName;
     private String commissionYearMonth;
     private String debt;
     private String debtBatch;
     private String deduction;
     private String notRecipients;
     private String recentFollow;
+
+    public String getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public String getRownum() {
+        return rownum;
+    }
+
+    public void setRownum(String rownum) {
+        this.rownum = rownum;
+    }
 
     public String getCommissionYearMonth() {
         return commissionYearMonth;
