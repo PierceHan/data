@@ -16,10 +16,9 @@
     <select id="getGeryListDynamic" resultType="com.zjp.model.GeryPrice">
         SELECT * FROM warnprice
         <where>
-            <if test="orderID!=null and orderID!=''">orderID = #{orderID}</if>
-            <if test="userID!=null and userID!=''">and userID = #{userID}</if>
-            <if test="roomID!=null and roomID!=''">and roomID=#{roomID}</if>
-            <if test="Source!=null and Source!=''">and Source = #{Source} </if>
+            <if test="id!=null and id!=''">orderID = #{id}</if>
+            <if test="id!=null and id!=''">and userID = #{id}</if>
+            <if test="id!=null and id!=''">and roomID=#{id}</if>
         </where>
     </select>
 

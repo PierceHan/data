@@ -15,5 +15,5 @@ public interface PriceMapper {
 
     int countGeryListDynamic( );
 
-    List<GeryPrice> getGeryListDynamic( );
+    List<GeryPrice> getGeryListDynamic(String id);
 }

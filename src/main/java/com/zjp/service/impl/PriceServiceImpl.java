@@ -32,12 +32,12 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public ApiResponse getGeryList( ) {
+    public ApiResponse getGeryList(String id_search) {
         ApiResponse apiResponse = new ApiResponse();
         apiResponse.setCode(CodeEnum.A0001.getCode());
         apiResponse.setMsg("success");
         Map<String,Object> map = new HashMap();
-        List<GeryPrice> geryPrices = priceMapper.getGeryListDynamic();
+        List<GeryPrice> geryPrices = priceMapper.getGeryListDynamic(id_search);
         map.put("GetFollowTotal",geryPrices);
         Random random = new Random();
         map.put("total",priceMapper.countGeryListDynamic());

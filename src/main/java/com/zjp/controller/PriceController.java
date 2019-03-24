@@ -6,10 +6,7 @@ import com.zjp.service.PriceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by hanguoan on 2019/3/16.
@@ -42,10 +39,10 @@ public class PriceController {
 
 
 
-    @RequestMapping("/warnPrice/warnpricegreylist/detaillist")
-    public ApiResponse reg() throws Exception {
+    @RequestMapping(value = "/warnPrice/warnpricegreylist/detaillist", method = RequestMethod.POST)
+    public ApiResponse reg(@RequestParam(value = "id_search",required = false) String id_search) throws Exception {
         //其他业务
-        return priceService.getGeryList();
+        return priceService.getGeryList(id_search);
     }
 
 
