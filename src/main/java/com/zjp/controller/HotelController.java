@@ -25,11 +25,24 @@ public class HotelController {
     @Autowired
     private HotelService hotelService;
 
-    @ApiOperation(value = "获得")
+    @ApiOperation(value = "获得酒店信息")
     @RequestMapping(value = "/finance/FinanceHtl/FollowTable",method = RequestMethod.GET)
     public ApiResponse getHotelScore(@RequestParam(value = "pageno") String pageno){
 
         Map hotelScores = hotelService.getHotelScore(pageno);
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setCode(CodeEnum.A0001.getCode());
+        apiResponse.setMsg("success");
+        apiResponse.setResult(hotelScores);
+        return apiResponse;
+    }
+
+    @ApiOperation(value = "获得佣金数据")
+    @RequestMapping(value = "/finance/FinanceHtl/GetDebtTable",method = RequestMethod.GET)
+    public ApiResponse getCommissionScore(@RequestParam(value = "descrow",required = false) String descrow,
+                                          @RequestParam(value = "outstandingamount",required = false) String outstandingamount,
+                                          @RequestParam(value = "outstandingbatchenum",required = false) String outstandingbatchenum){
+        Map hotelScores = hotelService.getCommissionScore(descrow,outstandingamount,outstandingbatchenum);
         ApiResponse apiResponse = new ApiResponse();
         apiResponse.setCode(CodeEnum.A0001.getCode());
         apiResponse.setMsg("success");

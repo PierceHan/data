@@ -13,4 +13,21 @@
         SELECT COUNT(0) FROM hotel_score
     </select>
 
+    <select id="getCommissionScore" resultType="com.zjp.model.Commission">
+        SELECT * FROM commission_follow
+        <where>
+            <if test="amount!=null and amount!=''">not_recipients = #{amount}</if>
+            <if test="num!=null and num!=''">and debt_batch = #{num}</if>
+        </where>
+        ORDER BY <if test="sort!=null and sort!=''">#{sort}</if> DESC
+    </select>
+
+    <select id="countCommissionScore" resultType="java.lang.Integer">
+        SELECT COUNT(0) FROM commission_follow
+        <where>
+            <if test="amount!=null and amount!=''">not_recipients = #{amount}</if>
+            <if test="num!=null and num!=''">and debt_batch = #{num}</if>
+        </where>
+    </select>
+
 </mapper>

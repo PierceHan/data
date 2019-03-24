@@ -1,7 +1,9 @@
 package com.zjp.service.impl;
 
+import com.alibaba.druid.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.zjp.mapper.HotelMapper;
+import com.zjp.model.Commission;
 import com.zjp.model.HotelScore;
 import com.zjp.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +37,25 @@ public class HotelServiceImpl implements HotelService {
         result.put("result",hotelScores);
         return result;
     }
+
+    @Override
+    public Map getCommissionScore(String descrow, String outstandingamount, String outstandingbatchenum) {
+        String sort = null;
+        if (descrow==null || "".equals(descrow)){
+            sort = "recent_follow";
+        }else if (descrow.equals("1")){
+            sort = "commission_year_month";
+        }else if (descrow.equals("2")){
+            sort = "not_recipients";
+        }else {
+            sort = "recent_follow";
+        }
+        int total = hotelMapper.countCommissionScore(sort,outstandingamount,outstandingbatchenum);
+        List<Commission> commissions = hotelMapper.getCommissionScore(sort,outstandingamount,outstandingbatchenum);
+        Map result = new HashMap();
+        result.put("total",total);
+        result.put("result",commissions);
+        return result;
+    }
+
 }

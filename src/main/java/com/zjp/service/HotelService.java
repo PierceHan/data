@@ -7,4 +7,6 @@ import java.util.Map;
  */
 public interface HotelService {
     Map getHotelScore(String pageno);
+
+    Map getCommissionScore(String descrow, String outstandingamount, String outstandingbatchenum);
 }
