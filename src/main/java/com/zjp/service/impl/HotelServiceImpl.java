@@ -53,6 +53,11 @@ public class HotelServiceImpl implements HotelService {
         }
         int total = hotelMapper.countCommissionScore(sort,outstandingamount,outstandingbatchenum);
         List<Commission> commissions = hotelMapper.getCommissionScore(sort,outstandingamount,outstandingbatchenum);
+        int i = 1;
+        for (Commission hotelScore : commissions) {
+            hotelScore.setRownum(String.valueOf(i));
+            i++;
+        }
         Map result = new HashMap();
         result.put("total",total);
         result.put("result",commissions);
