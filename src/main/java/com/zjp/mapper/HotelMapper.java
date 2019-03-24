@@ -1,6 +1,8 @@
 package com.zjp.mapper;
 
+import com.zjp.model.Commission;
 import com.zjp.model.HotelScore;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,4 +13,12 @@ public interface HotelMapper {
     List<HotelScore> getHotelScore();
 
     int countHotelScore();
+
+    int countCommissionScore(@Param(value = "sort") String sort,
+                             @Param(value = "amount") String amount,
+                             @Param(value = "num") String num);
+
+    List<Commission> getCommissionScore(@Param(value = "sort") String sort,
+                                        @Param(value = "amount") String amount,
+                                        @Param(value = "num") String num);
 }
