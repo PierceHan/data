@@ -33,6 +33,7 @@ public class HotelServiceImpl implements HotelService {
         Map result = new HashMap();
         result.put("total",total);
         result.put("result",hotelScores);
+        result.put("pageno",pageno);
         return result;
     }
 }

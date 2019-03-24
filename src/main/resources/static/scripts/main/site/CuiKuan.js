@@ -35,7 +35,7 @@ var pageVar = {
             this.initerrortabledate();
         }
         else if ($('[js-click="changeTab"].current').data('id') == "4") {
-            this.DebtTotal();
+//            this.DebtTotal();
             this.initdebttabledate();
         }
         else if ($('[js-click="changeTab"].current').data('id') == "1") {
@@ -50,36 +50,26 @@ var pageVar = {
 
     },
 
-    ReconciliationTotal: function () {
-        var self = this,
-            $ = jQuery,
-            ret;
-        chart = new Chart();
-        $('#day_pre').html("83%");
-        $('#now_date').html("3-26");
-        $('#end_date').html("3-31");
-
-        $('#last_pre').html("91%");
-        $('#confirmcounts_last').html("6355");
-        $('#totalcounts_last').html("6897");
-
-        $('#now_pre').html("7510");
-        $('#confirmcounts').html("8966");
-        $('#totalcounts').html("9067");
-        self.request({ op: 'GetReconciliationTotal' }, function (data) {
-
-            ret = data.result[0];
-        $('#day_pre').html("83%");
-        $('#now_date').html("3-26");
-        $('#end_date').html("3-31");
-
-        $('#last_pre').html("91%");
-        $('#confirmcounts_last').html("6355");
-        $('#totalcounts_last').html("6897");
-
-        $('#now_pre').html("7510");
-        $('#confirmcounts').html("8966");
-        $('#totalcounts').html("9067");
+//    ReconciliationTotal: function () {
+//        var self = this,
+//            $ = jQuery,
+//            ret;
+//        chart = new Chart();
+////        $('#day_pre').html("83%");
+////        $('#now_date').html("3-26");
+////        $('#end_date').html("3-31");
+////
+////        $('#last_pre').html("91%");
+////        $('#confirmcounts_last').html("6355");
+////        $('#totalcounts_last').html("6897");
+////
+////        $('#now_pre').html("7510");
+////        $('#confirmcounts').html("8966");
+////        $('#totalcounts').html("9067");
+//        self.request({ op: 'GetReconciliationTotal' }, function (data) {
+//
+//            ret = data.result[0];
+//
 //            $('#day_pre').html(ret.day_pre);
 //            $('#now_date').html(ret.now_date);
 //            $('#end_date').html(ret.end_date);
@@ -94,15 +84,15 @@ var pageVar = {
 //            $('#ebkTotal').html(ret.ebkTotal);
 //            $('#ebkHighStar').html(ret.ebkHighStar);
 //            $('#ebkLowStar').html(ret.ebkLowStar);
-            //Ctrip.getWatermarkUrl($('#confirmcounts_last').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-            //Ctrip.getWatermarkUrl($('#last_pre').parents(".percentage"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-            //Ctrip.getWatermarkUrl($('#now_pre').parents(".percentage"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-            //Ctrip.getWatermarkUrl($('#confirmcounts').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-            //Ctrip.getWatermarkUrl($('#totalcounts').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
-        }, function () {
-            new Tool().showStatus($('[id=Acount_total]'), 'error');
-        });
-    },
+//            //Ctrip.getWatermarkUrl($('#confirmcounts_last').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//            //Ctrip.getWatermarkUrl($('#last_pre').parents(".percentage"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//            //Ctrip.getWatermarkUrl($('#now_pre').parents(".percentage"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//            //Ctrip.getWatermarkUrl($('#confirmcounts').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//            //Ctrip.getWatermarkUrl($('#totalcounts').parents(".progress"), '', "#b2bcca", '实时', "0 10px", "auto 200px");
+//        }, function () {
+//            new Tool().showStatus($('[id=Acount_total]'), 'error');
+//        });
+//    },
     //加载酒店列表
     inittabledate: function (a, b, c, d) {
         var $ = jQuery,
@@ -171,17 +161,17 @@ var pageVar = {
 
     },
 
-//    DebtTotal: function () {
-//        var self = this,
-//            $ = jQuery,
-//            ret;
-////        chart = new Chart();
-//        $('#last_debt').html("567218");
-//        $('#hist_debt').html("674207");
-//
-//        $('#debthotelcounts').html("3450");
-//        $('#debtAcountTotal').html("4532");
-//
+    DebtTotal: function () {
+        var self = this,
+            $ = jQuery,
+            ret;
+//        chart = new Chart();
+        $('#last_debt').html("567218");
+        $('#hist_debt').html("74207");
+        $('#three_debt').html("89901");
+        $('#debthotelcounts').html("3450");
+        $('#debtAcountTotal').html("4532");
+
 //        self.request({ op: 'GetDebtTotal' }, function (data) {
 //            ret = data.data;
 //            $('#last_debt').html(Ctrip.parseNumber(ret["当月欠款金额"] * 1.0));
@@ -192,29 +182,9 @@ var pageVar = {
 //        }, function () {
 //            new Tool().showStatus($('[id=Debt_total]'), 'error');
 //        });
-//    },
+    },
 
-    //应收调整页头表格
-//    AdjustTotal: function () {
-//        var self = this,
-//            $ = jQuery,
-//            ret;
-////        chart = new Chart();
-//        $('#last_debt').html("673932.98");
-//        $('#hist_debt').html("4595205");
-//
-//        $('#debthotelcounts').html("145920");
-//        $('#debtAcountTotal').html("458031");
-//
-//        self.request({ op: 'GetAdjustTotal' }, function (data) {
-//            ret = data.data;
-//            $('#adjustHotel').html(Ctrip.parseNumber(ret["调整酒店家数"] * 1.0));
-//            $('#adjustMoney').html(Ctrip.parseNumber(ret["调整金额（人民币）"] * 1.0));
-//
-//        }, function () {
-//            new Tool().showStatus($('[id=Adjust_total]'), 'error');
-//        });
-//    },
+
 
 
     //加载催款酒店列表
@@ -222,8 +192,9 @@ var pageVar = {
         var $ = jQuery,
             self = this,
 //            chart = new Chart(),
-            tool = new Tool(),
+//            tool = new Tool(),
             res;
+            debugger;
         $('#debtpager').empty();
         //$('#hotelcounts').html("...");
 
@@ -233,8 +204,10 @@ var pageVar = {
             pageVar.debtpx = c
         if (d != undefined)
             pageVar.debttag_page = d
-        new Tool().showStatus($('[id=DebtTable]'), 'loading');
+//        new Tool().showStatus($('[id=DebtTable]'), 'loading');
+
         self.request({ op: "GetDebtTable", pageno: a || 1, descrow: pageVar.debtdescrow, px: pageVar.debtpx, tagpage: pageVar.debttag_page }, function (data) {
+
             var ret = data.data;
             if (!ret) return;
             $('#DebtTable').html('');
@@ -787,6 +760,19 @@ debugger;
         self.request({ op: 'GetFollowTotal' }, function (data) {
         debugger;
             ret = data.result[0];
+               $('#OrderOutOfSystem').find('p').html("1258");
+                    $('#HotelNoticeUnfinished').find('p').html("259");
+                    $('#CSPMessageUnRead').find('p').html("39");
+                    $('#RefundProcessingDetail').find('p').html("258");
+                    $('#HotelInvoiceChanges').find('p').html("589");
+                    $('#HotelAdvances').find('p').html("240");
+
+                    $('#OrderOutOfBatch').find('p').html("5932");
+                    $('#HotelBatchNotClosed').find('p').html("235");
+                    $('#HotelInvoiceNotSubmitted').find('p').html("366");
+                    $('#HotelSystemUneven').find('p').html("350");
+                    $('#HotelAmountUnclaimed').find('p').html("129");
+                    $('#CommissionBatchDetail').find('p').html("789");
 
 //            $('#OrderOutOfSystem').find('p').html(ret["orderOutOfSystem"]);
                                                                                        //            $('#HotelNoticeUnfinished').find('p').html(ret["hotelNoticeUnfinished"]);
@@ -890,7 +876,7 @@ $('#OrderOutOfSystem').find('p').html(5);
             url: '/finance/FinanceHtl/'+data.op,
             data: data,
             success: function (data) {
-debugger;
+
                 if (data.code == 'A0001') {
 
                     success && success(data);
@@ -1082,6 +1068,7 @@ jQuery(document).ready(function () {
     })
 
     $('#ajax-content table .sort').click(function () {
+    $('[js-click="changeTab"].current').data('id') =1
         if ($('[js-click="changeTab"].current').data('id') == "2") {
             var $target = $(this).find('i');
             $target.hasClass("sort-down") ? pageVar.inittabledate(1, $target.data('value'), 2, 1) : pageVar.inittabledate(1, $target.data('value'), 1, 1);

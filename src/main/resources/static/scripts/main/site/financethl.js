@@ -208,343 +208,48 @@ var pageVar = {
 
 
     //加载催款酒店列表
-    initdebttabledate: function (a, b, c, d) {
-        var $ = jQuery,
-            self = this,
-//            chart = new Chart(),
-            tool = new Tool(),
-            res;
-        $('#debtpager').empty();
-        //$('#hotelcounts').html("...");
-
-        if (b != undefined)
-            pageVar.debtdescrow = b
-        if (c != undefined)
-            pageVar.debtpx = c
-        if (d != undefined)
-            pageVar.debttag_page = d
-        new Tool().showStatus($('[id=DebtTable]'), 'loading');
-        self.request({ op: "GetDebtTable", pageno: a || 1, descrow: pageVar.debtdescrow, px: pageVar.debtpx, tagpage: pageVar.debttag_page }, function (data) {
-            var ret = data.data;
-            if (!ret) return;
-            $('#DebtTable').html('');
-            if (ret.AbroadGroup == "True") {
-                $('.abroadGroup').show();
-            } else {
-                $('.abroadGroup').hide();
-            }
-            $.each(ret["tabledate"], function (k, v) {
-                $('#DebtTable').append(tool.initTable(v,
-                    [{
-                        index: [1],
-                        callback: function (str) {
-                            return '<span>' + str + '</span>';
-                        }
-                    },
-                        {
-                            index: [2],
-                            callback: function (str) {
-                                return '<span style="display: block;overflow: hidden;text-align: left;text-overflow: ellipsis;white-space: nowrap;width: 200px;" title="' + str + '" >' + str + '</span>';
-                            }
-                        },
-                        {
-                            index: [3],
-                            callback: function (str) {
-                                return '<span>' + str + '</span>';
-                            }
-                        },
-                        {
-                            index: [10],
-                            callback: function (str) {
-                                if (str != 0)
-                                    return '<span>' + str + '</span>';
-                                else {
-                                    return '<span>-</span>';
-                                }
-                            }
-                        }]));
-
-            })
-            if (pageVar.debttag_page == 0) {
-                pageVar.debttotal = ret["totalcounts"];
-                pageVar.debthotelcount = ret["hotelcounts"];
-            }
-            $('#debthotelcounts').html(pageVar.debthotelcount);
-            $('#debtAcountTotal').html(pageVar.debttotal);
-            //$('#hotelcounts').html(pageVar.Get12Lenghotelcount_leave);
-            Ctrip.Pager('#debtpager', { total: pageVar.debttotal, current: ret["pageno"], perpage: 20 }, function (p) {
-                self.initdebttabledate(p, pageVar.debtdescrow, pageVar.debtpx, pageVar.debttag_page);
-            })
-            $('#DebtTable .loading').hide();
-            pageVar.debttag_page = 0;
-        }, function (data) {
-            new Tool().showStatus($('[id=DebtTable]'), 'error');
-        })
-
-    },
-
-
-    initAdjustTable: function (a, b, c, d) {
-        var $ = jQuery,
-            self = this,
-//            chart = new Chart(),
-            tool = new Tool(),
-            res;
-        $('#adjustpager').empty();
-        //$('#hotelcounts').html("...");
-
-        if (b != undefined)
-            pageVar.debtdescrow = b
-        if (c != undefined)
-            pageVar.debtpx = c
-        if (d != undefined)
-            pageVar.debttag_page = d
-        new Tool().showStatus($('[id=AdjustTable]'), 'loading');
-        self.request({
-            op: "GetAdjustTable", pageno: a || 1,
-            descrow: pageVar.debtdescrow,
-            px: pageVar.debtpx,
-            tagpage: pageVar.debttag_page,
-
-            isdelete: $('[name="isdelete"]:checked').val() || '',
-            adjustname: $('[id="adjustname"]').val() || '',
-            groupname: $('[id="groupname"]').val() || '',
-            employeename: $('[id="employeename"]').val() || '',
-            begindate: $('[js-time="begin"]').val() || '',
-            enddate: $('[js-time="end"]').val() || '',
-
-        }, function (data) {
-
-
-            var ret = data.data;
-            if (!ret) return;
-            $('#AdjustTable').html('');
-            //if (ret.AbroadGroup == "True") {
-            //    $('.abroadGroup').show();
-            //} else {
-            //    $('.abroadGroup').hide();
-            //}
-            $.each(ret["tabledate"], function (k, v) {
-
-                var CommissionBatchId, hotelid;
-                if (v["批次号"] != null) {
-
-
-                    CommissionBatchId = v["批次号"];
 
 
 
-                }
-
-                $('#AdjustTable').append(tool.initTable(v,
-                    [{
-                        index: [1],
-                        callback: function (str) {
-                            return '<span>' + str + '</span>';
-                        }
-                    },
-                        {
-                            index: [2],
-                            callback: function (str) {
-                                return '<span style="display: block;overflow: hidden;text-align: center;text-overflow: ellipsis;white-space: nowrap;" title="' + str + '" >' + str + '</span>';
-                            }
-                        },
-                        {
-                            index: [3],
-                            callback: function (str) {
-                                return '<span>' + str + '</span>';
-                            }
-                        },
-                        {
-                            index: [5],
-                            callback: function (str) {
-                                return '<a href="' + 'http://offline.order.audit.hotel.ctripcorp.com/Account-Vendor-SettlementWeb/TransitPage.aspx?type=cd&companyID=' + str + '&batchID=' + CommissionBatchId + '" target="_blank">' + str + '</a>';
-                            }
-                        },
-                        {
-                            index: [10],
-                            callback: function (str) {
-                                if (str != 0)
-                                    return '<span>' + str + '</span>';
-                                else {
-                                    return '<span>-</span>';
-                                }
-                            }
-                        }, {
-                        index: [13],
-                        callback: function (str) {
-                            return '<span>' + str + '</span>';
-                        }
-                    },
-
-                    ]));
-
-            })
-            if (pageVar.debttag_page == 0) {
-
-                pageVar.adjusttotal = ret["totalcounts"];
-                pageVar.adjusthotelcount = ret["hotelcounts"];
-            }
-            $('#adjusthotelcounts').html(pageVar.adjusthotelcount);
-            $('#adjustAcountTotal').html(pageVar.adjusttotal);
-            //$('#hotelcounts').html(pageVar.Get12Lenghotelcount_leave);
 
 
-            Ctrip.Pager('#adjustpager', { total: pageVar.adjusttotal, current: ret["pageno"], perpage: 20 }, function (p) {
-                self.initAdjustTable(p, pageVar.debtdescrow, pageVar.debtpx, pageVar.debttag_page);
-            })
-            $('#AdjustTable .loading').hide();
-            pageVar.debttag_page = 0;
-        }, function (data) {
-            new Tool().showStatus($('[id=AdjustTable]'), 'error');
-        })
-
-    },
-    ErrorTotal: function () {
-        var self = this,
-            $ = jQuery,
-            ret;
-        chart = new Chart();
-
-        $('#error_lasmonth').html("-");
-        $('#aveerror_thrmonth').html("-");
-        $('#errhotel_current').html("-");
-        //$('#errhotel_total').html("-");
-        self.request({ op: 'GetErrorTotal' }, function (data) {
-            ret = data.data;
-            var tagface = ret["当月误差率"] * 1.0;
-            if (tagface >= -0.4) {
-                $('#error_lasmonth').parent().find('i').removeClass().addClass('ico-good');
-            }
-            else {
-                $('#error_lasmonth').parent().find('i').removeClass().addClass('ico-bad');
-            }
-            $('#error_lasmonth').html(ret["当月误差率"]);
-            $('#aveerror_thrmonth').html(ret["3个月部门平均误差率"]);
-            $('#errhotel_current').html(ret["当月误差酒店数"]);
-            //$('#errhotel_total').html(ret["总家数"]);
-
-        }, function () {
-            new Tool().showStatus($('[id=Error_total]'), 'error');
-        });
-    },
 
     //加载误差酒店列表
-    initerrortabledate: function (a, b, c, d) {
-        var $ = jQuery,
-            self = this,
-            chart = new Chart(),
-            tool = new Tool(),
-            res;
-        $('#errorpager').empty();
-        //$('#hotelcounts').html("...");
 
-        if (b != undefined)
-            pageVar.errordescrow = b
-        if (c != undefined)
-            pageVar.errorpx = c
-        if (d != undefined)
-            pageVar.errortag_page = d
-        new Tool().showStatus($('[id=ErrorTable]'), 'loading');
-        self.request({ op: "GetErrorTable", pageno: a || 1, descrow: pageVar.errordescrow, px: pageVar.errorpx, tagpage: pageVar.errortag_page }, function (data) {
-            var ret = data.data;
-            if (!ret) return;
-            $('#ErrorTable').html('');
-            $.each(ret["tabledate"], function (k, v) {
-                $('#ErrorTable').append(tool.initTable(v,
-                    [{
-                        index: [1],
-                        callback: function (str) {
-                            return '<a js-click="cont-link" href="Web/html/Finance/FinanceSingleHotel.aspx" data-hotelid="' + str + '" data-needback="true" data-page="error">' + str + '</a>';
-                        }
-                    },
-                        {
-                            index: [2],
-                            callback: function (str) {
-                                return '<span style="display: block;overflow: hidden;text-align: left;text-overflow: ellipsis;white-space: nowrap;width: 200px;" title="' + str + '" >' + str + '</span>';
-                            }
-                        },
-                        {
-                            index: [10],
-                            callback: function (str) {
-                                if (str != 0)
-                                    return '<span>' + str + '</span>';
-                                else {
-                                    return '<span>-</span>';
-                                }
-                            }
-                        }]));
-
-            })
-            if (pageVar.errortag_page == 0) {
-                pageVar.errortotal = ret["totalcounts"];
-                pageVar.errorhotelcount = ret["hotelcounts"];
-            }
-            $('#errorhotelcounts').html(pageVar.errorhotelcount);
-            $('#errorAcountTotal').html(pageVar.errortotal);
-            //$('#hotelcounts').html(pageVar.Get12Lenghotelcount_leave);
-            Ctrip.Pager('#errorpager', { total: pageVar.errortotal, current: ret["pageno"], perpage: 20 }, function (p) {
-                self.initerrortabledate(p, pageVar.errordescrow, pageVar.errorpx, pageVar.errortag_page);
-            })
-            $('#ErrorTable .loading').hide();
-            pageVar.errortag_page = 0;
-        }, function (data) {
-            new Tool().showStatus($('[id=ErrorTable]'), 'error');
-        })
-    },
 
     initfollowtabledate: function (a, d) {
 
         var $ = jQuery,
             self = this,
-            chart = new Chart(),
-            tool = new Tool(),
+//            chart = new Chart(),
+//            tool = new Tool(),
             res;
+
         $('#followpager').empty();
         var enddate = self.getLastMonthLast();
 
         $('#followTitle').html($('td.followchoose').find("h4").text());
 
         var opname = "", linkurl = "";
-        if ($('td.followchoose').attr('id') == "OrderOutOfSystem")
-            linkurl = 'http://htlint.ctripcorp.com/OrderOperate/Order/OrderDetail/';
-        else if ($('td.followchoose').attr('id') == "HotelNoticeUnfinished")
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/AccHotelFG/Notice/HotelScheduledNotice.aspx?radarfinance=1&mrn=230&ms=W&stb=2014-01-01&cen={1}&ci={2}';
-        else if ($('td.followchoose').attr('id') == "CSPMessageUnRead")
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/Account-Vendor-SettlementWeb/EBooking/EBookingMessageBoard.aspx?TypeModel=S&PostSettlementProviderId={0}&SettlementProviderId={0}&MerchantID=6&SettlementItemID=602';
-        else if ($('td.followchoose').attr('id') == "RefundProcessingDetail") {
-            $('.off-tab').show();
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/settlementacchotelpp/bill/FailureAccBillHeadList.aspx?module=5234';
-        }
-        else if ($('td.followchoose').attr('id') == "HotelInvoiceChanges")
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/Account-Vendor-SettlementWeb/Provider/ProviderInvoiceTitle.aspx?SettlementProviderId={0}';
-        else if ($('td.followchoose').attr('id') == "OrderOutOfBatch")
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/Account-Vendor-SettlementWeb/TransitPage.aspx?type=cmo&companyid={2}';
-        else if ($('td.followchoose').attr('id') == "HotelBatchNotClosed")
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/Account-Vendor-SettlementWeb/Monitor/MonitorBatchList.aspx?MerchantID=6&OperateType=2&radarfinance=1&en={1}&begin=2000-01-01&end=' + enddate;
-        else if ($('td.followchoose').attr('id') == "HotelInvoiceNotSubmitted")
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/Account-Vendor-SettlementWeb/TransitPage.aspx?type=cd&companyID={0}&batchID={1}';
-        else if ($('td.followchoose').attr('id') == "HotelSystemUneven")
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/Account-Vendor-SettlementWeb/TransitPage.aspx?type=cd&companyID={0}&batchID={1}';
-        else if ($('td.followchoose').attr('id') == "HotelAmountUnclaimed")
-            linkurl = 'http://offline.order.audit.hotel.ctripcorp.com/Account-Vendor-SettlementWeb/Commission/CollectionBillList.aspx?radarfinance=1&ci={2}&rdbegin=2014-01-01';
-        else
-            linkurl = '';
-        opname = "Get" + $('td.followchoose').attr('id') + "Table";
 
+        opname = "Get" + $('td.followchoose').attr('id') + "Table";
+            opname="GetFollowTable"
         //$('#hotelcounts').html("...");
 
         if (d != undefined)
             pageVar.followtag_page = d
-        new Tool().showStatus($('[id=FollowTable]'), 'loading');
+
         self.request({ op: opname, pageno: a || 1, tagpage: pageVar.followtag_page }, function (data) {
-debugger;
-            var ret = data.result.hotelNoticeUnfinisheds;
+            debugger;
+            data=data.responseText;
+            var json=eval("("+data+")");
+
+            var ret = json.result;
             if (!ret) return;
             $('#FollowTable').html('');
-            var ret_hotelcount=data.result.hotelcounts;
-            var ret_totalcount=data.result.totalcounts;
-            var ret_pageno = data.pageIndex;
+            var ret_hotelcount=ret.total;
+            var ret_totalcount=ret.total;
+            var ret_pageno = ret.pageno;
             if (opname == 'GetCommissionBatchDetailTable') {
 
                 $.each(ret, function (k, v) {
@@ -626,81 +331,35 @@ debugger;
                 })
             } else {
                 // $.each(ret["tabledate"], function (k, v) {
-                $.each(ret, function (k, v) {
+                debugger;
+                $.each(ret.result, function (k, v) {
                     var SettlementProviderId, hotelid, UserName;
-                    if (v["hotelID"] != null && v["hotelID"].indexOf('|') != -1) {
+                    if (v.hotelId != null && v.hotelId.indexOf('|') != -1) {
                         var arr = [];
-                        arr = v["hotelID"].split('|');
+                        arr = v.hotelId.split('|');
                         hotelid = arr[0];
                         SettlementProviderId = arr[1]
                     } else {
-                        hotelid = v["hotelID"];
+                        hotelid = v.hotelId;
                         SettlementProviderId = "";
                     }
                     UserName = ret["username"];
-                    $('#FollowTable').append(tool.initTable(v,
-                        [{
-                            index: [1],
 
-                            callback: function (str) {
-                                if ($('td.followchoose').attr('id') == "HotelInvoiceNotSubmitted" || $('td.followchoose').attr('id') == "HotelSystemUneven" || linkurl == '') {
-                                    return '<span>' + hotelid + '</span>';
-                                } else if ($('td.followchoose').attr('id') == "OrderOutOfSystem") {
-                                    return '<a href="' + linkurl + str + '" target="_blank">' + str + '</a>';
-                                } else {
-                                    return '<a href="' + Ctrip.format(linkurl, SettlementProviderId, UserName, hotelid) + '" target="_blank">' + hotelid + '</a>';
-                                }
-                            }
-                        },
-                            {
-                                index: [2],
-                                callback: function (str) {
-                                    if ($('td.followchoose').attr('id') != "OrderOutOfSystem" && $('td.followchoose').attr('id') != "OrderOutOfBatch") {
-                                        return '<span style="display: block;overflow: hidden;text-align: left;text-overflow: ellipsis;white-space: nowrap;width: 300px;" title="' + str + '" >' + str + '</span>';
-                                    } else {
-                                        return str;
-                                    }
-                                }
-                            },
-                            {
-                                index: [3],
-                                callback: function (str) {
-                                    if ($('td.followchoose').attr('id') == "HotelAdvances") {
-                                        return '<a href="' + 'http://htlint.ctripcorp.com/OrderOperate/Order/OrderDetail/' + str + '" target="_blank">' + str + '</a>';
-                                    }
-                                    else if ($('td.followchoose').attr('id') == "HotelInvoiceNotSubmitted" || $('td.followchoose').attr('id') == "HotelSystemUneven") {
-                                        console.log(str);
-                                        return '<a href="' + Ctrip.format(linkurl, hotelid, str.substr(str.indexOf(",批次ID") + 5)) + '" target="_blank">' + str.substring(0, str.indexOf(",批次ID")) + '</a>';
-                                    } else if ($('td.followchoose').attr('id') == "OrderOutOfBatch") {
-                                        return "<span>" + str + "</span>";
-                                    } else {
-                                        return str;
-                                    }
-                                }
-                            },
-                            {
-                                index: [9],
-                                callback: function (str) {
-                                    if ($('td.followchoose').attr('id') == "OrderOutOfSystem") {
-                                        return '<a href="' + 'http://offline.order.audit.hotel.ctripcorp.com/AccHotelFG/Modify/AccFGAccModifyCost.aspx?flag=S&orderid=' + str + '" target="_blank">修改底价</a>';
-                                    } else if ($('td.followchoose').attr('id') == "OrderOutOfBatch") {
-                                        return "<span>" + str + "</span>";
-                                    } else {
-                                        return str;
-                                    }
-                                }
-                            },
-                            {
-                                index: [10],
-                                callback: function (str) {
-                                    if ($('td.followchoose').attr('id') == "OrderOutOfBatch") {
-                                        return "<span>" + str + "</span>";
-                                    } else {
-                                        return str;
-                                    }
-                                }
-                            }
-                        ]));
+
+ $("#FollowTable").append($('<tr/>')
+				.append($('<td/>').html(v.rownum))
+				.append($('<td/>').html(v.hotelId))
+			    .append($('<td/>').html(v.hotelName))
+			    .append($('<td/>').html(v.star))
+                .append($('<td/>').html(v.goodNum))
+                .append($('<td/>').html(v.normalNum))
+                .append($('<td/>').html(v.badNum))
+                .append($('<td/>').html(v.serviceScore))
+                .append($('<td/>').html(v.hotelRate))
+        );
+
+
+//  $('#FollowTable').append(rownum,hotelName);
 
                 })
             }
@@ -709,7 +368,8 @@ debugger;
 
             if (pageVar.followtag_page == 0) {
 
-                if (opname == "GetHotelSystemUnevenTable" || opname == "GetHotelInvoiceNotSubmittedTable" || opname == "GetHotelAdvancesTable") {
+                if (opname == "GetHotelSystemUnevenTable" ||
+                opname == "GetHotelInvoiceNotSubmittedTable" || opname == "GetHotelAdvancesTable") {
                     pageVar.followtotal = ret["totalcounts"];
 
                 }
@@ -738,19 +398,22 @@ debugger;
 
             //$('#hotelcounts').html(pageVar.Get12Lenghotelcount_leave);
             if (opname == 'GetCommissionBatchDetailTable') {
-                Ctrip.Pager('#followpager', { total: pageVar.followtotal, current: ret_pageno ,perpage: 20 }, function (p) {
+                Ctrip.Pager('#followpager', { total: pageVar.followtotal, current:  ret.pageno ,perpage: 20 }, function (p) {
                     self.initfollowtabledate(p, pageVar.followtag_page);
                 })
             } else {
-                Ctrip.Pager('#followpager', { total: pageVar.followtotal, current: ret["pageno"], perpage: 20 }, function (p) {
-                    self.initfollowtabledate(p, pageVar.followtag_page);
-                })
+//                Ctrip.Pager('#followpager', { total: pageVar.followtotal, current: ret_pageno, perpage: 20 }, function (p) {
+//                    self.initfollowtabledate(p, pageVar.followtag_page);
+//                })
+//   $('#followpager').html(, { total: pageVar.followtotal, current: ret_pageno, perpage: 20 }, function (p) {
+//                    self.initfollowtabledate(p, pageVar.followtag_page);
+//                })
             }
 
             $('#FollowTable .loading').hide();
             pageVar.followtag_page = 0;
         }, function (data) {
-            new Tool().showStatus($('[id=FollowTable]'), 'error');
+//            new Tool().showStatus($('[id=FollowTable]'), 'error');
         })
     },
 
@@ -774,46 +437,59 @@ debugger;
         $('#HotelAmountUnclaimed').find('p').html("129");
         $('#CommissionBatchDetail').find('p').html("789");
 
-        self.request({ op: 'GetFollowTotal' }, function (data) {
-        debugger;
-            ret = data.result[0];
-
-//            $('#OrderOutOfSystem').find('p').html(ret["orderOutOfSystem"]);
-                                                                                       //            $('#HotelNoticeUnfinished').find('p').html(ret["hotelNoticeUnfinished"]);
-                                                                                       //            $('#CSPMessageUnRead').find('p').html(ret["cspmessageUnRead"]);
-                                                                                       //            $('#RefundProcessingDetail').find('p').html(ret["refundProcessingDetail"]);
-                                                                                       //            $('#HotelInvoiceChanges').find('p').html(ret["hotelInvoiceChanges"]);
-                                                                                       //            $('#HotelAdvances').find('p').html(ret["hotelAdvances"]);
-                                                                                       //
-                                                                                       //            $('#OrderOutOfBatch').find('p').html(ret["orderOutOfBatch"]);
-                                                                                       //            $('#HotelBatchNotClosed').find('p').html(ret["hotelBatchNotClosed"]);
-                                                                                       //
-                                                                                       //            $('#HotelInvoiceNotSubmitted').find('p').html(ret["hotelInvoiceNotSubmitted"]);
-                                                                                       //            $('#HotelSystemUneven').find('p').html(ret["hotelSystemUneven"]);
-                                                                                       //            $('#HotelAmountUnclaimed').find('p').html(ret["hotelAmountUnclaimed"]);
-                                                                                       //            $('#CommissionBatchDetail').find('p').html(ret["commissionBatchDetail"]);
-
-
-$('#OrderOutOfSystem').find('p').html(5);
-            $('#HotelNoticeUnfinished').find('p').html(6);
-            $('#CSPMessageUnRead').find('p').html(24);
-            $('#RefundProcessingDetail').find('p').html(28);
-            $('#HotelInvoiceChanges').find('p').html(3306);
-            $('#HotelAdvances').find('p').html(259);
-
-            $('#OrderOutOfBatch').find('p').html(298);
-            $('#HotelBatchNotClosed').find('p').html(ret["hotelBatchNotClosed"]);
-
-            $('#HotelInvoiceNotSubmitted').find('p').html(ret["hotelInvoiceNotSubmitted"]);
-            $('#HotelSystemUneven').find('p').html(ret["hotelSystemUneven"]);
-            $('#HotelAmountUnclaimed').find('p').html(ret["hotelAmountUnclaimed"]);
-            $('#CommissionBatchDetail').find('p').html(ret["commissionBatchDetail"]);
-            //Ctrip.getWatermarkUrl($('#HotelNoticeUnfinished'), '', "#b2bcca", '实时', "30px 20px", "auto 300px");
-            //Ctrip.getWatermarkUrl($('#CSPMessageUnRead'), '', "#b2bcca", '实时', "30px 20px", "auto 300px");
-
-        }, function () {
-            new Tool().showStatus($('[id=Follow_total]'), 'error');
-        });
+//        self.request({ op: 'GetFollowTotal' }, function (data) {
+//        debugger;
+//            ret = data.result[0];
+//               $('#OrderOutOfSystem').find('p').html("1258");
+//                    $('#HotelNoticeUnfinished').find('p').html("259");
+//                    $('#CSPMessageUnRead').find('p').html("39");
+//                    $('#RefundProcessingDetail').find('p').html("258");
+//                    $('#HotelInvoiceChanges').find('p').html("589");
+//                    $('#HotelAdvances').find('p').html("240");
+//
+//                    $('#OrderOutOfBatch').find('p').html("5932");
+//                    $('#HotelBatchNotClosed').find('p').html("235");
+//                    $('#HotelInvoiceNotSubmitted').find('p').html("366");
+//                    $('#HotelSystemUneven').find('p').html("350");
+//                    $('#HotelAmountUnclaimed').find('p').html("129");
+//                    $('#CommissionBatchDetail').find('p').html("789");
+//
+////            $('#OrderOutOfSystem').find('p').html(ret["orderOutOfSystem"]);
+//                                                                                       //            $('#HotelNoticeUnfinished').find('p').html(ret["hotelNoticeUnfinished"]);
+//                                                                                       //            $('#CSPMessageUnRead').find('p').html(ret["cspmessageUnRead"]);
+//                                                                                       //            $('#RefundProcessingDetail').find('p').html(ret["refundProcessingDetail"]);
+//                                                                                       //            $('#HotelInvoiceChanges').find('p').html(ret["hotelInvoiceChanges"]);
+//                                                                                       //            $('#HotelAdvances').find('p').html(ret["hotelAdvances"]);
+//                                                                                       //
+//                                                                                       //            $('#OrderOutOfBatch').find('p').html(ret["orderOutOfBatch"]);
+//                                                                                       //            $('#HotelBatchNotClosed').find('p').html(ret["hotelBatchNotClosed"]);
+//                                                                                       //
+//                                                                                       //            $('#HotelInvoiceNotSubmitted').find('p').html(ret["hotelInvoiceNotSubmitted"]);
+//                                                                                       //            $('#HotelSystemUneven').find('p').html(ret["hotelSystemUneven"]);
+//                                                                                       //            $('#HotelAmountUnclaimed').find('p').html(ret["hotelAmountUnclaimed"]);
+//                                                                                       //            $('#CommissionBatchDetail').find('p').html(ret["commissionBatchDetail"]);
+//
+//
+//$('#OrderOutOfSystem').find('p').html(5);
+//            $('#HotelNoticeUnfinished').find('p').html(6);
+//            $('#CSPMessageUnRead').find('p').html(24);
+//            $('#RefundProcessingDetail').find('p').html(28);
+//            $('#HotelInvoiceChanges').find('p').html(3306);
+//            $('#HotelAdvances').find('p').html(259);
+//
+//            $('#OrderOutOfBatch').find('p').html(298);
+//            $('#HotelBatchNotClosed').find('p').html(ret["hotelBatchNotClosed"]);
+//
+//            $('#HotelInvoiceNotSubmitted').find('p').html(ret["hotelInvoiceNotSubmitted"]);
+//            $('#HotelSystemUneven').find('p').html(ret["hotelSystemUneven"]);
+//            $('#HotelAmountUnclaimed').find('p').html(ret["hotelAmountUnclaimed"]);
+//            $('#CommissionBatchDetail').find('p').html(ret["commissionBatchDetail"]);
+//            //Ctrip.getWatermarkUrl($('#HotelNoticeUnfinished'), '', "#b2bcca", '实时', "30px 20px", "auto 300px");
+//            //Ctrip.getWatermarkUrl($('#CSPMessageUnRead'), '', "#b2bcca", '实时', "30px 20px", "auto 300px");
+//
+//        }, function () {
+//            new Tool().showStatus($('[id=Follow_total]'), 'error');
+//        });
     },
 
     /**
@@ -873,15 +549,16 @@ $('#OrderOutOfSystem').find('p').html(5);
             console.log(data);
         }
 
-
         $.ajax({
             type: "post",
             dataType: "application/json;charset=UTF-8",
             url: '/finance/FinanceHtl/'+data.op,
             data: data,
             success: function (data) {
-debugger;
-                if (data.code == 'A0001') {
+console.log('ERR', data);
+
+console.log('Eres', responseText);
+                if (data.code == 'A0001' || responseText.code=="A0001") {
 
                     success && success(data);
                 } else {
@@ -896,7 +573,9 @@ debugger;
 
             },
             error: function (data) {
-                console.log('ERR----', data);
+
+                console.log('E', data);
+                success && success(data);
                 error && error(data);
             },
             complete: function () {
@@ -1072,6 +751,7 @@ jQuery(document).ready(function () {
     })
 
     $('#ajax-content table .sort').click(function () {
+    $('[js-click="changeTab"].current').data('id') =1
         if ($('[js-click="changeTab"].current').data('id') == "2") {
             var $target = $(this).find('i');
             $target.hasClass("sort-down") ? pageVar.inittabledate(1, $target.data('value'), 2, 1) : pageVar.inittabledate(1, $target.data('value'), 1, 1);
@@ -1113,9 +793,9 @@ jQuery(document).ready(function () {
     })
 
     $(function () {
-        new Tool().limitKeys({ target: '[name^=condtion_n]', type: 'number' }, setValue);
-        new Tool().limitKeys({ target: '[name^=condtion_p]', type: 'pocy', max: 100 }, setValue);
-        new Tool().limitKeys({ target: '[name^=condtion_t]', type: 'pocy', decimal: 2, max: Number.MAX_VALUE, min: -Number.MAX_VALUE }, setValue);
+//        new Tool().limitKeys({ target: '[name^=condtion_n]', type: 'number' }, setValue);
+//        new Tool().limitKeys({ target: '[name^=condtion_p]', type: 'pocy', max: 100 }, setValue);
+//        new Tool().limitKeys({ target: '[name^=condtion_t]', type: 'pocy', decimal: 2, max: Number.MAX_VALUE, min: -Number.MAX_VALUE }, setValue);
 
         function setValue() {
             var objs = $(this).parent().find('input[type="text"]'),

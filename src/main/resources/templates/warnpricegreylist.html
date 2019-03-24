@@ -17,18 +17,102 @@
     display: inline-block;
     padding-left: 50px;
 }
+      .more-condition {
+            padding: 8px 0;
+            text-align: left;
+        }
+
+        .more-condition span.input-msg {
+            margin-left: -80px;
+            right: auto;
+            top: -10px;
+        }
+
+        .more-condition .clearBtn {
+            color: #fff;
+        }
+
+        .adv-query {
+            background-color: #eaf0ff;
+            border: 1px solid #d7d7d7;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .adv-query > a {
+            color: #1984b6;
+            font-size: 14px;
+        }
+
+        .sort {
+            cursor: pointer;
+        }
+
+        .more-condition:hover .clearBtn {
+            color: #7c7c7c;
+        }
+
+        .row {
+            margin-bottom: 0;
+        }
+
+        .condition-box {
+            color: #1984b6;
+            margin: 0;
+            border: none;
+            background-color: #fff;
+            padding-bottom: 0;
+            padding-top: 6px;
+        }
+
+        .more-condition .title {
+            float: left;
+            width: 116px;
+            text-align: right;
+        }
+
+        td.followchoose {
+            /*display:block;*/
+            /*border-color:#6BC3FE;*/
+            background-color: #EAF3FF;
+        }
+
+        .radar-list td:hover {
+            background-color: #EAF3FF;
+        }
+
+        .shishiBtn {
+            border: 1px solid red;
+            border-radius: 4px;
+            color: red;
+            font-size: 12px;
+            font-weight: normal;
+            display: inline-block;
+            height: 16px;
+            line-height: 15px;
+            vertical-align: middle;
+        }
+
+        element.style {
+            display: block;
+            overflow: hidden;
+            text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
     </style>
 </head>
 <body>
+<link rel="stylesheet" href="../styles/base.css">
 <div class="row">
     <div class="box-header" style="height:auto;padding:5px;">
         <div class="box-name">
-            <i class="fa fa-usd"></i><span> 价格风控灰名单</span>
+            <i class="fa fa-usd"></i><span> 请根据用户ID，订单ID搜索</span>
         </div>
     </div>
     <div class="data-box" id="tab" style="min-height:400px;">
-        <div class="box-header" style="padding:5px;height:auto;">
+        <div class="box-header" style="padding-left:15px;height:auto;">
             <label style="display:inline-block;" for="J_UserNumber">搜索：</label><input
                 style="display:inline-block;width:200px;" type="search" class="form-control input-sm"
                 id="J_UserNumber"/>
@@ -37,17 +121,28 @@
                 确定
             </button>
         </div>
-        <div class="charts_box" style="overflow:auto;">
+        <div class="charts_box" style="margin-top: -1px;">
             <div class="box-content" style="height: auto;">
-                <table grid-manager="greyListModels" class="tb off-table-rank">
+                <table class="tb off-table-rank">
+                    <tr>
+                        <th>订单ID</th>
+                        <th>房型ID<i data-value="3"></i></th>
+                        <th>用户ID<i data-value="3"></i></th>
+                        <th >来源</th>
+                        <th>最低价格<i data-value="6"></i></th>
+                        <th >最高价格<i data-value="7"></i></th>
+                        <th >插入时间<i data-value="8"></i></th>
+                    </tr>
+                    <tbody id="DebtTable">
+                    </tbody>
                 </table>
             </div>
+            <div id="debtpager" style="float: right; height: 35px; margin-top: -8px;"></div>
         </div>
     </div>
 </div>
 <input type="hidden" id="txtSelectedUserID">
-<div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true">
-</div>
+
 <script type="template" id="J_template_editUser">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -106,8 +201,14 @@
     </div>
 </script>
 
-#parse("js.html")
 
+<script type="text/javascript" src="/scripts/main/jquery-3.3.1.min.js"></script>
+<!--<script type="text/javascript" src="/scripts/main/base/GridManager.js"></script>-->
+
+<script type="text/javascript" src="/scripts/main/base/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="/scripts/main/base/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="/scripts/main/base/jquery.ztree.exedit-3.5.js"></script>
+<script type="text/javascript" src="/scripts/main/base/bootstrap.min.js"></script>
 <script src="/scripts/main/site/warnpricegreylist.js"></script>
 
 

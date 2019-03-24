@@ -26,7 +26,7 @@ public class HotelController {
     private HotelService hotelService;
 
     @ApiOperation(value = "获得")
-    @RequestMapping(value = "/finance/FinanceHtl/FollowTable",method = RequestMethod.GET)
+    @RequestMapping(value = "/finance/FinanceHtl/GetFollowTable",method = RequestMethod.POST)
     public ApiResponse getHotelScore(@RequestParam(value = "pageno") String pageno){
 
         Map hotelScores = hotelService.getHotelScore(pageno);

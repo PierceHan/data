@@ -94,7 +94,7 @@
 <link rel="stylesheet" href="../styles/base.css">
 <div class="devoops_tabsa" id="tabsa">
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="1" _ping_back_="changeTab" _ping_back_time_btn_="需跟进" class="current">用户评价</a>-->
-    <a href="javascript: void(0);" js-click="changeTab" data-id="2" _ping_back_="changeTab" _ping_back_time_btn_="对账" class="current" >产量分析</a>
+    <a href="javascript: void(0);" js-click="changeTab" style="display:none;" data-id="2" _ping_back_="changeTab" _ping_back_time_btn_="对账" class="current" >产量分析</a>
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="3" _ping_back_="changeTab" _ping_back_time_btn_="误差">误差</a>-->
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="4" _ping_back_="changeTab" _ping_back_time_btn_="催款">催款</a>-->
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="5" _ping_back_="changeTab" _ping_back_time_btn_="应收调整">应收调整</a>-->
@@ -121,7 +121,7 @@
                                 <td>
                                     <div class="progress">
                                         <p>至今</p>
-                                        <p><strong id="now_date">03-26-</strong></p>
+                                        <p><strong id="now_date">03-26</strong></p>
                                     </div>
                                     <div class="progress">
                                         <p>结束</p>
@@ -136,7 +136,7 @@
                         <table>
                             <tbody>
                             <tr>
-                                <th colspan="2">历史对账进度 <span class="shishiBtn">实时</span></th>
+                                <th colspan="2">产量同比上月 <span class="shishiBtn">实时</span></th>
                             </tr>
                             <tr>
                                 <td>
@@ -147,11 +147,11 @@
                                 </td>
                                 <td>
                                     <div class="progress">
-                                        <p>完成家数</p>
-                                        <p><strong id="confirmcounts_last">5797</strong></p>
+                                        <p>本月总产量</p>
+                                        <p><strong id="confirmcounts_last">6797</strong></p>
                                     </div>
                                     <div class="progress">
-                                        <p>总家数</p>
+                                        <p>上月总产量</p>
                                         <p><strong id="totalcounts_last">7810</strong></p>
                                     </div>
                                 </td>
@@ -163,24 +163,24 @@
                         <table>
                             <tbody>
                             <tr>
-                                <th colspan="2">本月对账进度 <span class="shishiBtn">实时</span></th>
+                                <th colspan="2">本月平均售价同比 <span class="shishiBtn">实时</span></th>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="percentage" style="color: #d81e06;">
                                         <img src="../images/ico-bad.png" alt="">
 
-                                        <strong id="now_pre">87.43-</strong>%
+                                        <strong id="now_pre">87.43</strong>%
                                     </div>
                                 </td>
                                 <td>
                                     <div class="progress">
-                                        <p>完成家数</p>
-                                        <p><strong id="confirmcounts">5629</strong></p>
+                                        <p>本月平均售价</p>
+                                        <p><strong id="confirmcounts">629.9</strong></p>
                                     </div>
                                     <div class="progress">
-                                        <p>总家数</p>
-                                        <p><strong id="totalcounts">8937</strong></p>
+                                        <p>上月平均售价</p>
+                                        <p><strong id="totalcounts">678.43</strong></p>
                                     </div>
                                 </td>
                             </tr>
@@ -191,22 +191,22 @@
                         <table>
                             <tbody>
                             <tr>
-                                <th colspan="2">当月确认率</th>
+                                <th colspan="2">当月产量</th>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="percentage" style="color: #d81e06;">
-                                        <strong id="ebkTotal">45782</strong>%
+                                        <strong id="ebkTotal">6797</strong>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="progress">
-                                        <p>高星确认家数</p>
-                                        <p><strong id="ebkHighStar">34871</strong></p>
+                                        <p>高星产量</p>
+                                        <p><strong id="ebkHighStar">4583</strong></p>
                                     </div>
                                     <div class="progress">
-                                        <p>低星确认家数</p>
-                                        <p><strong id="ebkLowStar">17583</strong></p>
+                                        <p>低星产量</p>
+                                        <p><strong id="ebkLowStar">2214</strong></p>
                                     </div>
                                 </td>
                             </tr>
