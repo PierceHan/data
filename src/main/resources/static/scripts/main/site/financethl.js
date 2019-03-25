@@ -251,87 +251,9 @@ var pageVar = {
             var ret_totalcount=ret.total;
             var ret_pageno = ret.pageno;
             if (opname == 'GetCommissionBatchDetailTable') {
-
-                $.each(ret, function (k, v) {
-
-                    var SettlementProviderId, hotelid, UserName;
-                    if (v["companyid"] != null && (v["companyid"]+'').indexOf('|') != -1) {
-                        var arr = [];
-                        arr = v["companyid"].split('|');
-                        hotelid = arr[0];
-                        SettlementProviderId = arr[1]
-                    } else {
-                        hotelid = v["companyid"];
-                        SettlementProviderId = "";
-                    }
-                    UserName = ret["username"];
-                    $('#FollowTable').append(tool.initTable(v,
-                        [{
-                            index: [1],
-                            callback: function (str) {
-                                if ($('td.followchoose').attr('id') == "HotelInvoiceNotSubmitted" || $('td.followchoose').attr('id') == "HotelSystemUneven" || linkurl == '') {
-                                    return '<span>' + hotelid + '</span>';
-                                } else if ($('td.followchoose').attr('id') == "OrderOutOfSystem") {
-                                    return '<a href="' + linkurl + str + '" target="_blank">' + str + '</a>';
-                                } else {
-                                    return '<a href="' + Ctrip.format(linkurl, SettlementProviderId, UserName, hotelid) + '" target="_blank">' + hotelid + '</a>';
-                                }
-                            }
-                        },
-                            {
-                                index: [2],
-                                callback: function (str) {
-                                    if ($('td.followchoose').attr('id') != "OrderOutOfSystem" && $('td.followchoose').attr('id') != "OrderOutOfBatch") {
-                                        return '<span style="display: block;overflow: hidden;text-align: left;text-overflow: ellipsis;white-space: nowrap;width: 300px;" title="' + str + '" >' + str + '</span>';
-                                    } else {
-                                        return str;
-                                    }
-                                }
-                            },
-                            {
-                                index: [3],
-                                callback: function (str) {
-                                    if ($('td.followchoose').attr('id') == "HotelAdvances") {
-                                        return '<a href="' + 'http://htlint.ctripcorp.com/OrderOperate/Order/OrderDetail/' + str + '" target="_blank">' + str + '</a>';
-                                    }
-                                    else if ($('td.followchoose').attr('id') == "HotelInvoiceNotSubmitted" || $('td.followchoose').attr('id') == "HotelSystemUneven") {
-                                        console.log(str);
-                                        return '<a href="' + Ctrip.format(linkurl, hotelid, str.substr(str.indexOf(",批次ID") + 5)) + '" target="_blank">' + str.substring(0, str.indexOf(",批次ID")) + '</a>';
-                                    } else if ($('td.followchoose').attr('id') == "OrderOutOfBatch") {
-                                        return "<span>" + str + "</span>";
-                                    } else {
-                                        return str;
-                                    }
-                                }
-                            },
-                            {
-                                index: [9],
-                                callback: function (str) {
-                                    if ($('td.followchoose').attr('id') == "OrderOutOfSystem") {
-                                        return '<a href="' + 'http://offline.order.audit.hotel.ctripcorp.com/AccHotelFG/Modify/AccFGAccModifyCost.aspx?flag=S&orderid=' + str + '" target="_blank">修改底价</a>';
-                                    } else if ($('td.followchoose').attr('id') == "OrderOutOfBatch") {
-                                        return "<span>" + str + "</span>";
-                                    } else {
-                                        return str;
-                                    }
-                                }
-                            },
-                            {
-                                index: [10],
-                                callback: function (str) {
-                                    if ($('td.followchoose').attr('id') == "OrderOutOfBatch") {
-                                        return "<span>" + str + "</span>";
-                                    } else {
-                                        return str;
-                                    }
-                                }
-                            }
-                        ]));
-
-                })
             } else {
                 // $.each(ret["tabledate"], function (k, v) {
-                debugger;
+
                 $.each(ret.result, function (k, v) {
                     var SettlementProviderId, hotelid, UserName;
                     if (v.hotelId != null && v.hotelId.indexOf('|') != -1) {

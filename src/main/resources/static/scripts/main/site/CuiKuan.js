@@ -214,72 +214,37 @@ var pageVar = {
             var ret = json.result;
             if (!ret) return;
 
-
-
-            if (!ret) return;
             $('#DebtTable').html('');
-            if (ret.AbroadGroup == "True") {
-                $('.abroadGroup').show();
-            } else {
-                $('.abroadGroup').hide();
-            }
+
             $.each(ret.result, function (k, v) {
                       $('#DebtTable').html('');
+                      debugger;
                         var ret_hotelcount=ret.total;
                         var ret_totalcount=ret.total;
                         $("#DebtTable").append($('<tr/>')
-            				.append($('<td/>').html(v.rowNum))
+            				.append($('<td/>').html(v.rownum))
             				.append($('<td/>').html(v.hotelId))
             			    .append($('<td/>').html(v.hotelName))
             			    .append($('<td/>').html(v.commissionYearMonth))
                             .append($('<td/>').html(v.debt))
-                            .append($('<td/>').html(v.normalNum))
-                            .append($('<td/>').html(v.badNum))
-                            .append($('<td/>').html(v.serviceScore))
-                            .append($('<td/>').html(v.hotelRate))
+                            .append($('<td/>').html(v.notRecipients))
+                            .append($('<td/>').html(v.debtBatch))
+                            .append($('<td/>').html(v.deduction))
+                            .append($('<td/>').html(v.notRecipients))
+                            .append($('<td/>').html(v.recentFollow))
                    );
-//                $('#DebtTable').append(tool.initTable(v,
-//                    [{
-//                        index: [1],
-//                        callback: function (str) {
-//                            return '<span>' + str + '</span>';
-//                        }
-//                    },
-//                        {
-//                            index: [2],
-//                            callback: function (str) {
-//                                return '<span style="display: block;overflow: hidden;text-align: left;text-overflow: ellipsis;white-space: nowrap;width: 200px;" title="' + str + '" >' + str + '</span>';
-//                            }
-//                        },
-//                        {
-//                            index: [3],
-//                            callback: function (str) {
-//                                return '<span>' + str + '</span>';
-//                            }
-//                        },
-//                        {
-//                            index: [10],
-//                            callback: function (str) {
-//                                if (str != 0)
-//                                    return '<span>' + str + '</span>';
-//                                else {
-//                                    return '<span>-</span>';
-//                                }
-//                            }
-//                        }]));
-
             })
             if (pageVar.debttag_page == 0) {
-                pageVar.debttotal = ret["totalcounts"];
-                pageVar.debthotelcount = ret["hotelcounts"];
+                pageVar.debttotal = ret_hotelcount;
+                pageVar.debthotelcount = ret_hotelcount;
             }
-            $('#debthotelcounts').html(pageVar.debthotelcount);
-            $('#debtAcountTotal').html(pageVar.debttotal);
+            $('#debthotelcounts').html(ret_hotelcount);
+            $('#debtAcountTotal').html(ret_hotelcount);
             //$('#hotelcounts').html(pageVar.Get12Lenghotelcount_leave);
 //            Ctrip.Pager('#debtpager', { total: pageVar.debttotal, current: ret["pageno"], perpage: 20 }, function (p) {
 //                self.initdebttabledate(p, pageVar.debtdescrow, pageVar.debtpx, pageVar.debttag_page);
 //            })
-            $('#DebtTable .loading').hide();
+
             pageVar.debttag_page = 0;
         }, function (data) {
 //            new Tool().showStatus($('[id=DebtTable]'), 'error');
