@@ -215,9 +215,9 @@ var pageVar = {
             if (!ret) return;
 
             $('#DebtTable').html('');
-
+      $('#DebtTable').html('');
             $.each(ret.result, function (k, v) {
-                      $('#DebtTable').html('');
+
                       debugger;
                         var ret_hotelcount=ret.total;
                         var ret_totalcount=ret.total;
