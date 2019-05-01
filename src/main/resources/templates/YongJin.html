@@ -92,96 +92,39 @@
 <body>
 
 <link rel="stylesheet" href="../styles/base.css">
+<script type="text/javascript" src="/scripts/main/echarts.min.js"></script>
 <div class="devoops_tabsa" id="tabsa">
+
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="1" _ping_back_="changeTab" _ping_back_time_btn_="需跟进" class="current">用户评价</a>-->
-    <a href="javascript: void(0);" js-click="changeTab" data-id="2" _ping_back_="changeTab" _ping_back_time_btn_="对账" class="current" >产量分析</a>
+    <a href="javascript: void(0);" js-click="changeTab" data-id="2" style="display:none"_ping_back_="changeTab" _ping_back_time_btn_="对账" class="current" >产量分析</a>
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="3" _ping_back_="changeTab" _ping_back_time_btn_="误差">误差</a>-->
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="4" _ping_back_="changeTab" _ping_back_time_btn_="催款">催款</a>-->
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="5" _ping_back_="changeTab" _ping_back_time_btn_="应收调整">应收调整</a>-->
 </div>
 <div></div>
 
-<div js-text="tab2">
+<div js-text="tab3">
     <div class="data-box">
         <div style="padding: 10px;">
-            <table class="radar-list2" id="Acount_total">
+            <table class="radar-list2" id="Error_total" style="width: 90%">
                 <tbody>
                 <tr>
                     <td>
                         <table>
                             <tbody>
                             <tr>
-                                <th colspan="2">时间进度</th>
+                                <th colspan="2">本月佣金额</th>
                             </tr>
                             <tr>
                                 <td>
-                                    <!--<div class="percentage"><i class="ico-time"></i><strong id="day_pre">-</strong>%</div>-->
-                                    <div class="percentage"><img src="../images/ico-time.png" alt=""><strong id="day_pre">89</strong>%</div>
+                                    <div class="percentage"><i class="ico-good"></i><strong id="error_lasmonth">762535.6</strong></div>
                                 </td>
                                 <td>
                                     <div class="progress">
-                                        <p>至今</p>
-                                        <p><strong id="now_date">03-26-</strong></p>
+                                        <p>本月佣金率</p>
+                                        <p><strong id="aveerror_thrmonth">3.3%</strong></p>
                                     </div>
-                                    <div class="progress">
-                                        <p>结束</p>
-                                        <p><strong id="end_date">03-31</strong></p>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <th colspan="2">历史对账进度 <span class="shishiBtn">实时</span></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="percentage" style="color: #00b588;">
-                                        <img src="../images/ico-good.png" alt="">
-                                        <strong id="last_pre">92</strong>%
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="progress">
-                                        <p>完成家数</p>
-                                        <p><strong id="confirmcounts_last">5797</strong></p>
-                                    </div>
-                                    <div class="progress">
-                                        <p>总家数</p>
-                                        <p><strong id="totalcounts_last">7810</strong></p>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <th colspan="2">本月对账进度 <span class="shishiBtn">实时</span></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="percentage" style="color: #d81e06;">
-                                        <img src="../images/ico-bad.png" alt="">
 
-                                        <strong id="now_pre">87.43-</strong>%
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="progress">
-                                        <p>完成家数</p>
-                                        <p><strong id="confirmcounts">5629</strong></p>
-                                    </div>
-                                    <div class="progress">
-                                        <p>总家数</p>
-                                        <p><strong id="totalcounts">8937</strong></p>
-                                    </div>
                                 </td>
                             </tr>
                             </tbody>
@@ -191,23 +134,18 @@
                         <table>
                             <tbody>
                             <tr>
-                                <th colspan="2">当月确认率</th>
+                                <th colspan="2">近三个月平均佣金额</th>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="percentage" style="color: #d81e06;">
-                                        <strong id="ebkTotal">45782</strong>%
-                                    </div>
+                                    <div class="percentage"><i class="ico-good"></i><strong id="errhotel_current">562424</strong></div>
                                 </td>
                                 <td>
                                     <div class="progress">
-                                        <p>高星确认家数</p>
-                                        <p><strong id="ebkHighStar">34871</strong></p>
+                                        <p>近三个月平均佣金率</p>
+                                        <p><strong id="aveerror_thrmonth2">3.43%</strong></p>
                                     </div>
-                                    <div class="progress">
-                                        <p>低星确认家数</p>
-                                        <p><strong id="ebkLowStar">17583</strong></p>
-                                    </div>
+
                                 </td>
                             </tr>
                             </tbody>
@@ -217,118 +155,91 @@
                 </tbody>
             </table>
         </div>
-        <div class="adv-query">
-            <a js-click="showAdvancedOpts" href="javascript:;" class="up">高级筛选</a>
-            <div class="charts_box condition-box">
-                <div>
-                    <div class="one-part" style="width: 33%">
-                        <div class="more-condition">
-                            <label class="title" style="width: 186px;">
-                                <e js-t="tabMoreTitle">财务确认佣金（人民币）</e>
-                                ：
-                            </label>
-                            <input type="text" name="condtion_ta_commission" />
-                            -
-                            <input type="text" name="condtion_tb_commission" />
-                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
-                        </div>
-                    </div>
-                    <div class="one-part" style="width: 33%">
-                        <div class="more-condition">
-                            <label class="title">
-                                <e js-t="tabMoreTitle">平均对账周期</e>
-                                ：
-                            </label>
-                            <input type="text" name="condtion_na_reconciliation" />
-                            -
-                            <input type="text" name="condtion_nb_reconciliation" />
-                            &nbsp; &nbsp; <a js-click="clear" class="clearBtn">清除</a>
-                        </div>
-                    </div>
-                    <div class="one-part" style="width: 33%">
-                        <div class="more-condition">
-                            <label class="title">
-                                <e js-t="tabMoreTitle">平均汇款周期</e>
-                                ：
-                            </label>
-                            <input type="text" name="condtion_na_remittancecycle" />
-                            -
-                            <input type="text" name="condtion_nb_remittancecycle" />
-                            <a js-click="clear" class="clearBtn">清除</a>
-                        </div>
-                    </div>
-                    <div class="one-part" style="width: 66%">
-                        <div class="more-condition">
-                            <label class="title">
-                                <e js-t="tabMoreTitle">EBK核对进度</e>
-                                ：
-                            </label>
-                            <label style="width: 60px; cursor: pointer;">
-                                <input type="checkbox" name="bookingbatchauditstatus" value="账单生成中" checked="checked" />账单生成中</label>
-                            <label style="width: 60px; cursor: pointer;">
-                                <input type="checkbox" name="bookingbatchauditstatus" value="携程拒绝" checked="checked" />携程拒绝</label>
-                            <label style="width: 60px; cursor: pointer;">
-                                <input type="checkbox" name="bookingbatchauditstatus" value="携程待确认" checked="checked" />携程待确认</label>
-                            <label style="width: 60px; cursor: pointer;">
-                                <input type="checkbox" name="bookingbatchauditstatus" value="供应商待确认" checked="checked" />供应商待确认</label>
 
-
-                        </div>
-                    </div>
-                    <div class="one-part" style="width: 33%">
-                        <div class="more-condition">
-                            <label class="title">
-                                <e js-t="tabMoreTitle">合作状态</e>
-                                ：
-                            </label>
-                            <label style="width: 60px; cursor: pointer;">
-                                <input type="checkbox" name="isbookable" value="T" checked="checked" />合作</label>
-                            <label style="width: 60px; cursor: pointer;">
-                                <input type="checkbox" name="isbookable" value="F" checked="checked" />非合作</label>
-                        </div>
-                    </div>
-                </div>
-                <div style="clear: both;"></div>
-                <div class="more-condition" style="padding: 0px;"></div>
-                <div class="more-condition" style="text-align: center;">
-                    <span class="btn" js-click="conditionOk" style="width: 50px; line-height: 22px;" _ping_back_="serachBtn" _ping_back_time_btn_="">确定</span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div style="float: left; margin-bottom: -1px; border: 0px solid #afc4ff; font-size: 16px; color: black; font-weight: 600; border-radius: 3px 3px 0px 0px; padding: 0px 20px;">
-                <span>共 <span id="hotelcounts" style="font-size: 19px;">-</span>家酒店<span>，<span style="font-size: 19px;" id="AcountTotal">-</span>条数据</span></span>
-            </div>
-            <div class="divcolor" style="position: relative; bottom: -5px;">
-                <a class="func-point-d" style="float: right;" href="javascript:;" title="下载" js-click="pdfBtn2" _ping_back_="download" _ping_back_time_btn_="">
-                    <i class="ico-download-d"></i><span>下载</span>
-                </a>
-            </div>
-        </div>
-        <div class="charts_box" style="margin-top: -1px;">
-            <div class="box-content" style="height: auto;">
-                <table class="tb off-table-rank">
-                    <tr>
-                        <th>序号</th>
-                        <th>酒店ID</th>
-                        <th style="width: 150px">酒店名称</th>
-                        <th class="sort">佣金年月<i data-value="1"></i></th>
-                        <th class="sort">财务确认间夜<i data-value="3"></i></th>
-                        <th class="sort">财务确认佣金（人民币）<i class="sort-up sort-down" data-value="4"></i></th>
-                        <th class="sort abroadGroup">财务确认佣金（原币）<i data-value="7"></i></th>
-                        <th class="sort abroadGroup">币种</th>
-                        <th class="sort">平均对账周期<i data-value="5"></i></th>
-                        <th class="sort">平均汇款周期<i data-value="6"></i></th>
-                    </tr>
-                    <tbody id="ReconciliationTable">
-                    </tbody>
-                </table>
-            </div>
-            <div id="pager" style="float: right; height: 35px; margin-top: -8px;"></div>
-        </div>
     </div>
 </div>
 
+</div>
+<div id="chart" style="width:1000px; height: 600px;"></div>
+<script type="text/javascript">
+
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            crossStyle: {
+                color: '#999'
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        data:['卖价金额','佣金金额','佣金率']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['2018-05','2018-06','2018-07','2018-08','2018-09','2018-10','2018-11','2019-01','2019-02','2019-03'],
+            axisPointer: {
+                type: 'shadow'
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            name: '万',
+            min: 0,
+            max: 250,
+            interval: 50,
+            axisLabel: {
+                formatter: '{value} w'
+            }
+        },
+        {
+            type: 'value',
+            name: '佣金率',
+            min: 0,
+            max: 20,
+            interval: 5,
+            axisLabel: {
+                formatter: '{value} °C'
+            }
+        }
+    ],
+    series: [
+        {
+            name:'卖价金额',
+            type:'bar',
+            data:[201, 198, 231, 213.2, 205.6, 176.7, 135.6, 162.2, 232.6, 200.0]
+        },
+        {
+            name:'佣金金额',
+            type:'bar',
+            data:[16, 19, 10.0, 23.4, 30.7, 17.7, 17.6, 18.2, 16.7, 18.8]
+        },
+        {
+            name:'佣金率',
+            type:'line',
+            yAxisIndex: 1,
+            data:[2.0, 2.2, 3.3, 4.5, 6.3, 3.2, 3.3, 4.2, 5.5, 3.5]
+        }
+    ]
+};
+var myChart = echarts.init(document.getElementById('chart'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+    </script>
 <script type="text/javascript" src="/scripts/main/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/scripts/main/C.Chart.js"></script>
 <script type="text/javascript" src="/scripts/main/C.base.js"></script>

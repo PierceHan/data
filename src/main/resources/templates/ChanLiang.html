@@ -92,6 +92,7 @@
 <body>
 
 <link rel="stylesheet" href="../styles/base.css">
+<script type="text/javascript" src="/scripts/main/echarts.min.js"></script>
 <div class="devoops_tabsa" id="tabsa">
     <!--<a href="javascript: void(0);" js-click="changeTab" data-id="1" _ping_back_="changeTab" _ping_back_time_btn_="需跟进" class="current">用户评价</a>-->
     <a href="javascript: void(0);" js-click="changeTab" style="display:none;" data-id="2" _ping_back_="changeTab" _ping_back_time_btn_="对账" class="current" >产量分析</a>
@@ -219,7 +220,101 @@
         </div>
     </div>
 </div>
+<div id="main" style="width:100%;">
 
+    <div id="chartmain" style="width:600px; height: 400px;float:left margin-right:10px"></div>
+    <div id="chartmain2" style="width:600px; height: 400px;float:left"></div>
+    <!--<div id="chartmain2" style="width:75%;float:left;"></div>-->
+
+</div>
+<script type="text/javascript">
+    option = {
+    title : {
+        text: '按酒店评级',
+
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['A级','B级','C级','D级','E级']
+    },
+    series : [
+        {
+            name: '访问来源',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:340, name:'A级'},
+                {value:178, name:'B级'},
+                {value:345, name:'C级'},
+                {value:127, name:'D级'},
+                {value:240, name:'E级'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+var myChart = echarts.init(document.getElementById('chartmain2'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+</script>
+<script type="text/javascript">
+        //指定图标的配置和数据
+       option = {
+    title : {
+        text: '按星级占比',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['五星','四星','三星','二星','一星']
+    },
+    series : [
+        {
+            name: '星级占比',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:335, name:'五星'},
+                {value:310, name:'四星'},
+                {value:234, name:'三星'},
+                {value:135, name:'二星'},
+                {value:1548, name:'一星'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+var myChart = echarts.init(document.getElementById('chartmain'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+    </script>
 <script type="text/javascript" src="/scripts/main/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/scripts/main/C.Chart.js"></script>
 <script type="text/javascript" src="/scripts/main/C.base.js"></script>

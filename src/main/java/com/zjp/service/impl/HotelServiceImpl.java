@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by hanguoan on 2019/3/23.
+ * Created by zjp on 2019/3/23.
  */
 @Service
 public class HotelServiceImpl implements HotelService {

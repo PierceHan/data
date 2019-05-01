@@ -2,6 +2,7 @@ package com.zjp.mapper;
 
 import com.zjp.model.GeryPrice;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface PriceMapper {
 
     int countGeryListDynamic( );
 
-    List<GeryPrice> getGeryListDynamic(String id);
+    List<GeryPrice> getGeryListDynamic(@Param(value = "id") String id);
 }
