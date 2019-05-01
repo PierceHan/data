@@ -1,5 +1,7 @@
 package com.zjp.service;
 
+import com.zjp.model.HotelBasicInfo;
+
 import java.util.Map;
 
 /**
@@ -9,4 +11,6 @@ public interface HotelService {
     Map getHotelScore(String pageno);
 
     Map getCommissionScore(String descrow, String outstandingamount, String outstandingbatchenum);
+
+    HotelBasicInfo createHotel(HotelBasicInfo hotelBasicInfo);
 }

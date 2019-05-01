@@ -4,6 +4,7 @@ import com.alibaba.druid.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.zjp.mapper.HotelMapper;
 import com.zjp.model.Commission;
+import com.zjp.model.HotelBasicInfo;
 import com.zjp.model.HotelScore;
 import com.zjp.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,12 @@ public class HotelServiceImpl implements HotelService {
         result.put("total",total);
         result.put("result",commissions);
         return result;
+    }
+
+    @Override
+    public HotelBasicInfo createHotel(HotelBasicInfo hotelBasicInfo) {
+
+        return null;
     }
 
 }

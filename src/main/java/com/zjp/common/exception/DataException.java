@@ -9,7 +9,7 @@ public class DataException extends RuntimeException {
 
     public enum ExceptionName {
 
-        InvalidParams(406), CallLimit(401);
+        InvalidParams(406), CallLimit(401), NoData(400);
         private int code;
 
         ExceptionName(int code) {

@@ -1,5 +1,6 @@
 package com.zjp.controller;
 
+import com.zjp.model.HotelBasicInfo;
 import com.zjp.model.HotelScore;
 import com.zjp.model.en.CodeEnum;
 import com.zjp.model.web.ApiResponse;
@@ -8,10 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -47,6 +45,17 @@ public class HotelController {
         apiResponse.setCode(CodeEnum.A0001.getCode());
         apiResponse.setMsg("success");
         apiResponse.setResult(hotelScores);
+        return apiResponse;
+    }
+
+    @ApiOperation(value = "获得佣金数据")
+    @RequestMapping(value = "/hotels",method = RequestMethod.POST)
+    public ApiResponse createHotel(@RequestBody HotelBasicInfo hotelBasicInfo){
+        HotelBasicInfo result = hotelService.createHotel(hotelBasicInfo);
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setCode(CodeEnum.A0001.getCode());
+        apiResponse.setMsg("success");
+        apiResponse.setResult(result);
         return apiResponse;
     }
 
