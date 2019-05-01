@@ -38,8 +38,19 @@ public class PriceServiceImpl implements PriceService {
         apiResponse.setMsg("success");
         Map<String,Object> map = new HashMap();
         List<GeryPrice> geryPrices = priceMapper.getGeryListDynamic(id_search);
-        map.put("GetFollowTotal",geryPrices);
         Random random = new Random();
+        int i=0;
+        //生产异常价格
+        for (GeryPrice geryPrice : geryPrices) {
+            int min = Integer.parseInt(geryPrice.getMinPrice());
+            int max = Integer.parseInt(geryPrice.getMaxPrice());
+            if (i/2==0){
+                geryPrice.setExceptionPrice(random.nextInt(min)+"");
+            }else {
+                geryPrice.setExceptionPrice(max+random.nextInt(max)+"");
+            }
+        }
+        map.put("GetFollowTotal",geryPrices);
         map.put("total",priceMapper.countGeryListDynamic());
         apiResponse.setResult(map);
         return apiResponse;
