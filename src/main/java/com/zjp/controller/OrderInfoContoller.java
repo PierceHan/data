@@ -6,6 +6,7 @@ import com.zjp.model.en.CodeEnum;
 import com.zjp.model.web.ApiData;
 import com.zjp.model.web.ApiResponse;
 import com.zjp.service.OrderInfoService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.Map;
 /**
  * Created by hanguoan on 2019/4/13.
  */
+@Api(tags = "订单接口")
 @RestController
 public class OrderInfoContoller {
 
