@@ -2,17 +2,14 @@
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script type="text/javascript" src="/scripts/main/jquery-3.3.1.min.js"></script>
-    <link href="/scripts/main/table/GridManager.min.css" rel="stylesheet" />
-    <link  href="/scripts/main/bootstrap/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link href="/scripts/main/table/GridManager.min.css" rel="stylesheet"/>
+    <link href="/scripts/main/bootstrap/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/scripts/main/zTree/zTreeStyle.css">
 
     <!--<script src="/scripts/main/zTree/jquery-2.1.0.min.js"></script>-->
-    <link rel="stylesheet" href="/scripts/main/table/default.css" />
-
-
-
+    <link rel="stylesheet" href="/scripts/main/table/default.css"/>
 
 
     <title></title>
@@ -50,23 +47,37 @@
             padding: 5px;
             vertical-align: top;
         }
+        .table-wrap .table-div table[grid-manager] th .th-wrap .th-text {
+    display: block;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #428bca;
+}
+
     </style>
 </head>
 <body>
 <div class="row">
     <div class="box-header" style="height:auto;padding:5px;">
         <div class="box-name">
-            <i class="fa fa-usd"></i><span>页面描述</span>
-            <button type="button" class="btn btn-primary btn-label-left" data-toggle="modal" data-target="#compose-modal" id="J_addPage">
-                新增描述
+            <i class="fa fa-usd"></i><span>酒店基础信息管理</span>
+            <button type="button" class="btn btn-primary btn-label-left" data-toggle="modal"
+                    data-target="#compose-modal" id="J_addPage">
+                新增酒店
             </button>
         </div>
     </div>
     <div class="data-box" id="tab" style="min-height:400px;">
         <div class="box-header" style="padding:5px;height:auto;">
-            <label style="display:inline-block;" for="J_UserNumber">搜索：</label><input style="display:inline-block;width:200px;" type="search" class="form-control input-sm" id="J_UserNumber" />
-            <button type="button" class="btn btn-primary btn-label-left" data-toggle="modal" js-click="searchBtn"  id="searchBtn">
-                确定
+            <label style="display:inline-block;" for="J_UserNumber">搜索：</label><input
+                style="display:inline-block;width:200px;" type="search" class="form-control input-sm"
+                id="J_UserNumber"/>
+            <button type="button" class="btn btn-primary btn-label-left" data-toggle="modal" js-click="searchBtn"
+                    id="searchBtn">
+                确定u
             </button>
         </div>
 
@@ -90,36 +101,67 @@
                     &times;
                 </button>
                 <h4 class="modal-title">
-                    <i class="fa fa-envelope-o"></i>页面描述
+                    <i class="fa fa-envelope-o"></i>酒店基础信息
                     <span id="infos" style="color:red"></span>
                 </h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px" >页面名称</span>
-                        <input type="text" id="txtpagename" class="form-control" style="width:450px"placeholder="页面名称" />
+                        <span class="input-group-addon" style="width:75px">酒店ID</span>
+                        <input type="text" id="txtID" class="form-control" style="width:450px"
+                               placeholder="酒店ID"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">页面URL</span>
-                        <input type="text" id="txtURL" class="form-control" style="width:450px" placeholder="请粘贴页面URL" />
+                        <span class="input-group-addon" style="width:75px">酒店名称</span>
+                        <input type="text" id="txtName" class="form-control" style="width:450px" placeholder="酒店名称"/>
                         &nbsp; &nbsp;<span id="lblEid" style="color:#7ccf75; font-size:12px;"></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">TP</span>
-                        <input type="text" id="txtTP" class="form-control" style="width:150px "  name="show" value="0"/>
+                        <span class="input-group-addon" style="width:75px">酒店商圈</span>
+                        <input type="text" id="txtzone" class="form-control" style="width:150px " name="show" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon">描述</span>
-                        <textarea id="txtpagedesc" name="contentzjp" style="width:100%;height:300px;"></textarea>
+                        <span class="input-group-addon" style="width:75px">酒店星级</span>
+                        <input type="text" id="txtstar" class="form-control" style="width:150px " name="show" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px">酒店排名</span>
+                        <input type="text" id="txtRank" class="form-control" style="width:150px " name="show" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px">酒店联系人</span>
+                        <input type="text" id="txtPerson" class="form-control" style="width:150px " name="show" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px">联系人方式</span>
+                        <input type="text" id="txtPhone" class="form-control" style="width:150px " name="show" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px">开始合作时间</span>
+                        <input type="text" id="txtTime" class="form-control" style="width:150px " name="show" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">备注</span>
+                        <textarea id="txtpagedesc" name="contentzjp" style="width:100%;height:100px;"></textarea>
                     </div>
                 </div>
             </div>
@@ -136,9 +178,8 @@
 </script>
 
 
-
-<script charset="utf-8"  src="/scripts/main/table/kindeditor-min.js"></script>
-<script  charset="utf-8"  src="/scripts/main/table/zh_CN.js"></script>
+<script charset="utf-8" src="/scripts/main/table/kindeditor-min.js"></script>
+<script charset="utf-8" src="/scripts/main/table/zh_CN.js"></script>
 <script type="text/javascript">
     var editor;
     KindEditor.ready(function(K) {
@@ -153,13 +194,14 @@
         });
     });
 
+
 </script>
 
-<script  type="text/javascript" src="/scripts/main/table/GridManager.js"></script>
-<script  type="text/javascript" src="/scripts/main/zTree/jquery.ztree.core-3.5.js"></script>
-<script  type="text/javascript"  src="/scripts/main/zTree/jquery.ztree.excheck-3.5.js"></script>
-<script  type="text/javascript"  src="/scripts/main/zTree/jquery.ztree.exedit-3.5.js"></script>
-<script  type="text/javascript"  src="/scripts/main/bootstrap/bootstrap.min.js"></script>
-<script  type="text/javascript"  src="/scripts/main/site/Hotel.js"></script>
+<script type="text/javascript" src="/scripts/main/table/GridManager.js"></script>
+<script type="text/javascript" src="/scripts/main/zTree/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="/scripts/main/zTree/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="/scripts/main/zTree/jquery.ztree.exedit-3.5.js"></script>
+<script type="text/javascript" src="/scripts/main/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="/scripts/main/site/Hotel.js"></script>
 </body>
 </html>
