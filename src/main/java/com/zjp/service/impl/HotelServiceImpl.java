@@ -52,8 +52,23 @@ public class HotelServiceImpl implements HotelService {
         }else {
             sort = "recent_follow";
         }
-        int total = hotelMapper.countCommissionScore(sort,outstandingamount,outstandingbatchenum);
-        List<Commission> commissions = hotelMapper.getCommissionScore(sort,outstandingamount,outstandingbatchenum);
+        int minosdm = 0,maxosdm=0,minosdb=0,maxosdb=0;
+        if (outstandingamount!=null){
+            String[] strings = outstandingamount.split(",");
+            minosdm = Integer.parseInt(strings[0]);
+            if (strings.length>1){
+                maxosdm = Integer.parseInt(strings[1]);
+            }
+        }
+        if (outstandingbatchenum!=null){
+            String[] strings = outstandingbatchenum.split(",");
+            minosdb = Integer.parseInt(strings[0]);
+            if (strings.length>1){
+                maxosdb = Integer.parseInt(strings[1]);
+            }
+        }
+        int total = hotelMapper.countCommissionScore(sort,minosdm,maxosdm,minosdb,maxosdb);
+        List<Commission> commissions = hotelMapper.getCommissionScore(sort,minosdm,maxosdm,minosdb,maxosdb);
         int i = 1;
         for (Commission hotelScore : commissions) {
             hotelScore.setRownum(String.valueOf(i));
