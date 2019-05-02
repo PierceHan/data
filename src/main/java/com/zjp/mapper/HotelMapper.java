@@ -14,11 +14,23 @@ public interface HotelMapper {
 
     int countHotelScore();
 
+//    int countCommissionScore(@Param(value = "sort") String sort,
+//                             @Param(value = "amount") String amount,
+//                             @Param(value = "num") String num);
+//
+//    List<Commission> getCommissionScore(@Param(value = "sort") String sort,
+//                                        @Param(value = "amount") String amount,
+//                                        @Param(value = "num") String num);
+
     int countCommissionScore(@Param(value = "sort") String sort,
-                             @Param(value = "amount") String amount,
-                             @Param(value = "num") String num);
+                             @Param(value = "min1")int minosdm,
+                             @Param(value = "max1") int maxosdm,
+                             @Param(value = "min2") int minosdb,
+                             @Param(value = "max2") int maxosdb);
 
     List<Commission> getCommissionScore(@Param(value = "sort") String sort,
-                                        @Param(value = "amount") String amount,
-                                        @Param(value = "num") String num);
+                                        @Param(value = "min1")int minosdm,
+                                        @Param(value = "max1") int maxosdm,
+                                        @Param(value = "min2") int minosdb,
+                                        @Param(value = "max2") int maxosdb);
 }

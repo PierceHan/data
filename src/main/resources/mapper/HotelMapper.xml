@@ -16,8 +16,10 @@
     <select id="getCommissionScore" resultType="com.zjp.model.Commission">
         SELECT * FROM commission_follow
         <where>
-            <if test="amount!=null and amount!=''">not_recipients = #{amount}</if>
-            <if test="num!=null and num!=''">and debt_batch = #{num}</if>
+            <if test="min1!=null and min1!=''">not_recipients &gt;= #{min1}</if>
+            <if test="max1!=null and max1!=''">and not_recipients &lt;= #{max1}</if>
+            <if test="min2!=null and min2!=''">and debt_batch &gt;= #{min2}</if>
+            <if test="max2!=null and max2!=''">and debt_batch &lt;= #{max2}</if>
         </where>
         ORDER BY <if test="sort!=null and sort!=''">#{sort}</if> DESC
     </select>
@@ -25,8 +27,11 @@
     <select id="countCommissionScore" resultType="java.lang.Integer">
         SELECT COUNT(0) FROM commission_follow
         <where>
-            <if test="amount!=null and amount!=''">not_recipients = #{amount}</if>
-            <if test="num!=null and num!=''">and debt_batch = #{num}</if>
+        <where>
+            <if test="min1!=null and min1!=''">not_recipients &gt;= #{min1}</if>
+            <if test="max1!=null and max1!=''">and not_recipients &lt;= #{max1}</if>
+            <if test="min2!=null and min2!=''">and debt_batch &gt;= #{min2}</if>
+            <if test="max2!=null and max2!=''">and debt_batch &lt;= #{max2}</if>
         </where>
     </select>
 
