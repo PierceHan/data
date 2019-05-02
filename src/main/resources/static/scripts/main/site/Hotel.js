@@ -38,33 +38,32 @@ var pageVar = {
                     key: 'id',
                     width: '80px',
                     align: 'center',
-                    text: 'id',
-                    type: 'hidden'
+                    text: '酒店ID'
                 }, {
-                    key: 'pagename',
+                    key: 'name',
                     width: '80px',
                     align: 'center',
-                    text: '页面描述'
+                    text: '酒店名称'
                 }, {
-                    key: 'createuser',
+                    key: 'cbd',
                     width: '80px',
                     align: 'center',
-                    text: '创建人'
+                    text: '商圈'
                 }, {
-                    key: 'createtime',
+                    key: 'city',
                     width: '80px',
                     align: 'center',
-                    text: '创建时间'
+                    text: '城市'
                 }, {
-                    key: 'updateuser',
+                    key: 'rank',
                     width: '80px',
                     align: 'center',
-                    text: '修改人'
+                    text: '酒店排名'
                 }, {
-                    key: 'datechangelasttime',
+                    key: 'star',
                     width: '80px',
                     align: 'center',
-                    text: '最后更新时间'
+                    text: '星级'
                 }, {
                     key: '',
                     width: '200px',
@@ -101,7 +100,7 @@ var pageVar = {
             pagename = $("#J_UserNumber").val() || '',
             container = $("#ajax-content .charts_box");
 
-        new Tool().showStatus(container, 'loading');
+//        new Tool().showStatus(container, 'loading');
         self.request("list", {
             pagename: pagename,
             PageIndex: page || 1,
@@ -111,10 +110,10 @@ var pageVar = {
             // debugger
             if (pageVar.tablefirst) {
                 pageVar.tablefirst = false;
-                pageVar.initTableDate({"data": ret["data"], "totals": ret["recordsTotal"]});
+                pageVar.initTableDate({"data": ret, "totals":100});
             } else {
                 var table = document.querySelector('table[grid-manager="UserList"]');
-                table.GM('setAjaxData', {"data": ret["data"], "totals": ret["recordsTotal"]});
+                table.GM('setAjaxData', {"data": ret, "totals": 100});
             }
 
             $('#ajax-content .box-content button').click(function () {
@@ -153,13 +152,20 @@ var pageVar = {
     loadSingleUserByID: function (userID) {
         var self = this;
         self.request("single", {
-            UserID: userID
+            id: userID
         }, function (data) {
             var ret = data.result.data[0];
             if (!ret) return;
-            $('#txtpagename').val(ret.pagename);
-            $('#txtURL').val(ret.URL);
-            $('#txtURL').attr('disabled',true)
+            $('#txtID').val(ret.pagename);
+            $('#txtName').val(ret.URL);
+            $('#txtzone').val(ret.pagename);
+            $('#txtstar').val(ret.URL);
+            $('#txtRank').val(ret.pagename);
+            $('#txtPerson').val(ret.URL);
+            $('#txtPhone').val(ret.pagename);
+            $('#txtTime').val(ret.URL);
+            $('#txtpagedesc').val(ret.URL);
+            $('#txtpagedesc').attr('disabled',true)
             // var editor;
             pageVar.editor = KindEditor.create('textarea[name="contentzjp"]', {
                 resizeType : 1,
@@ -182,9 +188,15 @@ var pageVar = {
         var self = this;
 
         self.request("edit", {
-            pagename: $('#txtpagename').val(),
-            URL: $('#txtURL').val(),
-            TP: $('#txtTP').val(),
+            ID: $('#txtID').val(),
+            Name: $('#txtName').val(),
+            zone: $('#txtzone').val(),
+            star: $('#txtstar').val(),
+            Rank: $('#txtRank').val(),
+            Person: $('#txtPerson').val(),
+            Phone: $('#txtPhone').val(),
+            Time: $('#txtTime').val(),
+
              pagedesc: pageVar.editor.html(),
             // pagedesc:editor.val()
         }, function (data) {
@@ -251,7 +263,8 @@ var pageVar = {
         $.ajax({
             type: "post",
             dataType: "json",
-            url: '/powerManagement/pageDetail/' + action,
+            //url: '/select/hotels' + action,
+            url: '/basichotel/'+action,
             data: data,
             success: function (data) {
                 if (data.code == 'A0001' || data.code == 'B0001') {

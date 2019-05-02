@@ -3,7 +3,6 @@ package com.zjp.service.impl;
 import com.zjp.common.exception.DataException;
 import com.zjp.mapper.HotelInfoMapper;
 import com.zjp.model.HotelBasicInfo;
-import com.zjp.model.OrderInfo;
 import com.zjp.model.web.ApiData;
 import com.zjp.service.HotelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +58,11 @@ public class HotelInfoServiceImpl implements HotelInfoService {
         apiData.setResult(orderInfos);
         apiData.setTotal(String.valueOf(count));
         return apiData;
+    }
+
+    @Override
+    public List<HotelBasicInfo> selectHotelAll() {
+        return hotelInfoMapper.selectAll();
     }
 
 }

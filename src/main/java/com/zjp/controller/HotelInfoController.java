@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,30 +34,37 @@ public class HotelInfoController {
     }
 
     @ApiOperation(value = "创建酒店基础信息")
-    @RequestMapping(value = "/create/hotels",method = RequestMethod.POST)
+    @RequestMapping(value = "/basichotel/create",method = RequestMethod.POST)
     public ApiResponse createOrder(@RequestBody HotelBasicInfo hotelBasicInfo){
         HotelBasicInfo result = hotelInfoService.createOrder(hotelBasicInfo);
         return createResult(result);
     }
 
     @ApiOperation(value = "删除酒店信息")
-    @RequestMapping(value = "/hotels/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/basichotel/{id}",method = RequestMethod.DELETE)
     public ApiResponse deleteOrder(@PathVariable String id){
         Map result = hotelInfoService.deleteOrder(id);
         return createResult(result);
     }
 
     @ApiOperation(value = "修改酒店信息")
-    @RequestMapping(value = "/hotels",method = RequestMethod.PUT)
+    @RequestMapping(value = "/basichotel/edit",method = RequestMethod.PUT)
     public ApiResponse updateOrder(@RequestBody HotelBasicInfo hotelBasicInfo){
         HotelBasicInfo result = hotelInfoService.updateOrder(hotelBasicInfo);
         return createResult(result);
     }
 
     @ApiOperation(value = "查找酒店信息")
-    @RequestMapping(value = "/select/hotels",method = RequestMethod.POST)
+    @RequestMapping(value = "/basichotel/hotels",method = RequestMethod.POST)
     public ApiResponse selectOrder(@RequestBody HotelBasicInfo hotelBasicInfo){
         ApiData result = hotelInfoService.selectOrder(hotelBasicInfo);
+        return createResult(result);
+    }
+
+    @ApiOperation(value = "加载所有酒店信息")
+    @RequestMapping(value = "/basichotel/list",method = RequestMethod.POST)
+    public ApiResponse selectHotelAll(){
+        List<HotelBasicInfo> result = hotelInfoService.selectHotelAll();
         return createResult(result);
     }
 
