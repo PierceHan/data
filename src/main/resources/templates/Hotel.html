@@ -59,7 +59,7 @@
 
     </style>
 </head>
-<body>
+<body style="padding-left: 20px;">
 <div class="row">
     <div class="box-header" style="height:auto;padding:5px;">
         <div class="box-name">
@@ -72,12 +72,12 @@
     </div>
     <div class="data-box" id="tab" style="min-height:400px;">
         <div class="box-header" style="padding:5px;height:auto;">
-            <label style="display:inline-block;" for="J_UserNumber">搜索：</label><input
+            <label style="display:inline-block; " for="J_UserNumber">搜索：</label><input
                 style="display:inline-block;width:200px;" type="search" class="form-control input-sm"
                 id="J_UserNumber"/>
             <button type="button" class="btn btn-primary btn-label-left" data-toggle="modal" js-click="searchBtn"
                     id="searchBtn">
-                确定u
+                确定
             </button>
         </div>
 
@@ -106,55 +106,59 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">酒店ID</span>
-                        <input type="text" id="txtID" class="form-control" style="width:450px"
-                               placeholder="酒店ID"/>
-                    </div>
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<div class="input-group">-->
+                        <!--<span class="input-group-addon" style="width:110px">酒店ID</span>-->
+                        <!--<input type="text" id="txtID" class="form-control" style="width:450px"-->
+                               <!--placeholder="酒店ID"/>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">酒店名称</span>
-                        <input type="text" id="txtName" class="form-control" style="width:450px" placeholder="酒店名称"/>
-                        &nbsp; &nbsp;<span id="lblEid" style="color:#7ccf75; font-size:12px;"></span>
+                        <span class="input-group-addon" style="width:110px">酒店名称</span>
+                        <input type="text" id="txtName" class="form-control" style="width:150px " name="show" />
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">酒店商圈</span>
+                        <span class="input-group-addon" style="width:110px">城市</span>
+                        <input type="text" id="txtCity" class="form-control" style="width:150px " name="show" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:110px">酒店商圈</span>
                         <input type="text" id="txtzone" class="form-control" style="width:150px " name="show" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">酒店星级</span>
+                        <span class="input-group-addon" style="width:110px">酒店星级</span>
                         <input type="text" id="txtstar" class="form-control" style="width:150px " name="show" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">酒店排名</span>
+                        <span class="input-group-addon" style="width:110px">酒店排名</span>
                         <input type="text" id="txtRank" class="form-control" style="width:150px " name="show" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">酒店联系人</span>
+                        <span class="input-group-addon" style="width:110px">酒店联系人</span>
                         <input type="text" id="txtPerson" class="form-control" style="width:150px " name="show" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">联系人方式</span>
+                        <span class="input-group-addon" style="width:110px">联系人方式</span>
                         <input type="text" id="txtPhone" class="form-control" style="width:150px " name="show" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">开始合作时间</span>
+                        <span class="input-group-addon" style="width:110px">开始合作时间</span>
                         <input type="text" id="txtTime" class="form-control" style="width:150px " name="show" />
                     </div>
                 </div>

@@ -53,14 +53,14 @@ public class HotelServiceImpl implements HotelService {
             sort = "recent_follow";
         }
         int minosdm = 0,maxosdm=0,minosdb=0,maxosdb=0;
-        if (outstandingamount!=null){
+        if (!StringUtils.isEmpty(outstandingamount)){
             String[] strings = outstandingamount.split(",");
             minosdm = Integer.parseInt(strings[0]);
             if (strings.length>1){
                 maxosdm = Integer.parseInt(strings[1]);
             }
         }
-        if (outstandingbatchenum!=null){
+        if (!StringUtils.isEmpty(outstandingbatchenum)){
             String[] strings = outstandingbatchenum.split(",");
             minosdb = Integer.parseInt(strings[0]);
             if (strings.length>1){

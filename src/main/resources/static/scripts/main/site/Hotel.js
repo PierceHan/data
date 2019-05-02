@@ -1,4 +1,4 @@
-//@ sourceURL=script/apps/pages/permission/user.js
+
 var pageVar = {
     tablefirst: 1,
     tableRolefirst: 1,
@@ -64,7 +64,24 @@ var pageVar = {
                     width: '80px',
                     align: 'center',
                     text: '星级'
-                }, {
+                },
+                , {
+                     key: 'person',
+                     width: '80px',
+                     align: 'center',
+                     text: '酒店联系人'
+                 }, {
+                     key: 'phone',
+                     width: '80px',
+                     align: 'center',
+                     text: '联系人方式'
+                 }, {
+                     key: 'time',
+                     width: '80px',
+                     align: 'center',
+                     text: '开始合作时间'
+                  },
+                  {
                     key: '',
                     width: '200px',
                     align: 'center',
@@ -102,7 +119,7 @@ var pageVar = {
 
 //        new Tool().showStatus(container, 'loading');
         self.request("list", {
-            pagename: pagename,
+            id: pagename,
             PageIndex: page || 1,
         }, function (data) {
             var ret = data.result;
@@ -151,20 +168,20 @@ var pageVar = {
 
     loadSingleUserByID: function (userID) {
         var self = this;
-        self.request("single", {
+        self.request("hotels", {
             id: userID
         }, function (data) {
             var ret = data.result.data[0];
             if (!ret) return;
-            $('#txtID').val(ret.pagename);
-            $('#txtName').val(ret.URL);
-            $('#txtzone').val(ret.pagename);
-            $('#txtstar').val(ret.URL);
-            $('#txtRank').val(ret.pagename);
-            $('#txtPerson').val(ret.URL);
-            $('#txtPhone').val(ret.pagename);
-            $('#txtTime').val(ret.URL);
-            $('#txtpagedesc').val(ret.URL);
+            $('#txtID').val(ret.ID);
+            $('#txtName').val(ret.Name);
+            $('#txtzone').val(ret.Zone);
+            $('#txtstar').val(ret.Star);
+            $('#txtRank').val(ret.Rank);
+            $('#txtPerson').val(ret.Person);
+            $('#txtPhone').val(ret.Phone);
+            $('#txtTime').val(ret.Time);
+            $('#txtpagedesc').val(ret.Pagedesc);
             $('#txtpagedesc').attr('disabled',true)
             // var editor;
             pageVar.editor = KindEditor.create('textarea[name="contentzjp"]', {
@@ -188,69 +205,79 @@ var pageVar = {
         var self = this;
 
         self.request("edit", {
-            ID: $('#txtID').val(),
             Name: $('#txtName').val(),
-            zone: $('#txtzone').val(),
-            star: $('#txtstar').val(),
+            City: $('#txtCity').val(),
+            Zone: $('#txtzone').val(),
+            Star: $('#txtstar').val(),
             Rank: $('#txtRank').val(),
             Person: $('#txtPerson').val(),
             Phone: $('#txtPhone').val(),
             Time: $('#txtTime').val(),
-
-             pagedesc: pageVar.editor.html(),
+            pagedesc: pageVar.editor.html(),
             // pagedesc:editor.val()
         }, function (data) {
             var ret = data.result;
             if (ret) {
-                Ctrip.ShowMessage(data.msg);
+             alert("保存成功");
                 $('#compose-modal').html($('#J_template_editUser').text());
                 pageVar.loadData();
             } else {
-                Ctrip.ShowMessage("保存失败");
+            alert("保存失败");
+
             }
             setTimeout(function () { $('.btn-danger').trigger('click'); }, 1000);
         }, function (data) {
-            Ctrip.ShowMessage("保存失败");
+            alert("保存失败");
         });
     },
     updatePage: function (pageid) {
         var self = this;
-        self.request("updatePage", {
-            pagename: $('#txtpagename').val(),
-            URL: $('#txtURL').val(),
-            TP: $('#txtTP').val(),
+        self.request("update", {
+//            pagename: $('#txtpagename').val(),
+//            URL: $('#txtURL').val(),
+//            TP: $('#txtTP').val(),
+//            pagedesc: pageVar.editor.html(),
+//            pageid: pageid
+
+            Name: $('#txtName').val(),
+            City: $('#txtCity').val(),
+            Zone: $('#txtzone').val(),
+            Star: $('#txtstar').val(),
+            Rank: $('#txtRank').val(),
+            Person: $('#txtPerson').val(),
+            Phone: $('#txtPhone').val(),
+            Time: $('#txtTime').val(),
             pagedesc: pageVar.editor.html(),
-            pageid: pageid
         }, function (data) {
             var ret = data.result;
             if (ret) {
                 $('#compose-modal').html($(''));
-                Ctrip.ShowMessage(data.msg);
+                 alert("保存成功");
                 $('#compose-modal').html($('#J_template_editUser').text());
                 setTimeout(function () { $('.btn-danger').trigger('click'); }, 1000);
                 pageVar.loadData();
             } else {
-                Ctrip.ShowMessage("保存失败");
+                  alert("保存失败");
             }
         }, function (data) {
-            Ctrip.ShowMessage("保存失败");
+             alert("保存失败");
         });
 
     },
     deletePage: function (pageid) {
         var self = this;
         self.request("deletePage", {
-            pageid: pageid
+            ID: pageid
         }, function (data) {
             var ret = data.result;
             if (ret) {
-                Ctrip.ShowMessage(data.msg);
+                 alert("删除成功");
                 pageVar.loadData();
             } else {
-                Ctrip.ShowMessage("删除失败");
+                 alert("删除失败");
             }
         }, function (data) {
-            Ctrip.ShowMessage("删除失败");
+             alert("删除失败");
         });
     },
     /**
@@ -344,20 +371,11 @@ $(function () {
         // });
         debugger
         $('#J_SaveUser').click(function () {
+            if (!$('#txtName').val()) {
+               alert("酒店名称不可为空")
 
-            if (!$('#txtpagename').val()) {
-                Ctrip.ShowMessage("酒店ID不可为空");
-            } else if (!$('#txtURL').val()) {
-                Ctrip.ShowMessage("酒店名称不可为空");
             } else {
-                // debugger
-                if(pageVar.confirmNum==1){
-                    pageVar.saveUser();
-                    pageVar.confirmNum=0
-                }else{
-                    Ctrip.ShowMessage("URL保存后不可修改，请确认URL正确！");
-                    pageVar.confirmNum++
-                }
+                pageVar.saveUser();
             }
 
 

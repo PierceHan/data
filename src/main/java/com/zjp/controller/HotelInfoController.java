@@ -34,21 +34,21 @@ public class HotelInfoController {
     }
 
     @ApiOperation(value = "创建酒店基础信息")
-    @RequestMapping(value = "/basichotel/create",method = RequestMethod.POST)
+    @RequestMapping(value = "/basichotel/edit",method = RequestMethod.POST)
     public ApiResponse createOrder(@RequestBody HotelBasicInfo hotelBasicInfo){
         HotelBasicInfo result = hotelInfoService.createOrder(hotelBasicInfo);
         return createResult(result);
     }
 
     @ApiOperation(value = "删除酒店信息")
-    @RequestMapping(value = "/basichotel/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/basichotel/delete",method = RequestMethod.DELETE)
     public ApiResponse deleteOrder(@PathVariable String id){
         Map result = hotelInfoService.deleteOrder(id);
         return createResult(result);
     }
 
     @ApiOperation(value = "修改酒店信息")
-    @RequestMapping(value = "/basichotel/edit",method = RequestMethod.PUT)
+    @RequestMapping(value = "/basichotel/update",method = RequestMethod.PUT)
     public ApiResponse updateOrder(@RequestBody HotelBasicInfo hotelBasicInfo){
         HotelBasicInfo result = hotelInfoService.updateOrder(hotelBasicInfo);
         return createResult(result);
