@@ -23,11 +23,11 @@ public class HotelInfoServiceImpl implements HotelInfoService {
     private HotelInfoMapper hotelInfoMapper;
 
     @Override
-    public HotelBasicInfo createOrder(HotelBasicInfo hotelBasicInfo) {
+    public int createOrder(HotelBasicInfo hotelBasicInfo) {
         String id = UUID.randomUUID().toString().replaceAll("-", "");
         hotelBasicInfo.setID(id);
-        hotelInfoMapper.insert(hotelBasicInfo);
-        return hotelInfoMapper.selectByPrimaryKey(id);
+        int result = hotelInfoMapper.insert(hotelBasicInfo);
+        return result;
     }
 
     @Override

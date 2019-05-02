@@ -60,8 +60,11 @@ public class HotelInfoController {
         if (Time!=null){
             hotelBasicInfo.setTime(simpleDateFormat.parse(Time));
         }
-        HotelBasicInfo result = hotelInfoService.createOrder(hotelBasicInfo);
-        return createResult(result);
+        int result = hotelInfoService.createOrder(hotelBasicInfo);
+        if (result==1){
+            return createResult(result);
+        }
+        return createResult(null);
     }
 
     @ApiOperation(value = "删除酒店信息")

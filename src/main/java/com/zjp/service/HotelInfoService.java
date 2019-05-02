@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by hanguoan on 2019/5/1.
  */
 public interface HotelInfoService {
-    HotelBasicInfo createOrder(HotelBasicInfo hotelBasicInfo);
+    int createOrder(HotelBasicInfo hotelBasicInfo);
 
     Map deleteOrder(String id);
 
