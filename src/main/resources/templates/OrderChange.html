@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="/scripts/main/jquery-3.3.1.min.js"></script>
+    <link href="/scripts/main/table/GridManager.min.css" rel="stylesheet" />
+    <link  href="/scripts/main/bootstrap/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+
+    <!--<script src="/scripts/main/zTree/jquery-2.1.0.min.js"></script>-->
+    <link rel="stylesheet" href="/scripts/main/table/default.css" />
+
+
+
+
+
+    <title></title>
+    <style>
+        #treeUserPermission select{
+            height:20px!important;
+        }
+        .table-wrap .table-div table[grid-manager] th[align][align="center"], .table-wrap .table-div table[grid-manager] td[align][align="center"] {
+            text-align: center;
+            vertical-align: middle;
+        }
+        body {
+            font: 14px/1.5 arial, Helvetica,'Hiragino Sans GB',"microsoft yahei",simsun,serif;
+        }
+        .table-wrap *, .grid-menu * {
+            box-sizing: border-box !important;
+            font-size: 14px;
+            color: white;
+            line-height: 18px;
+            margin: 0;
+        }
+        .table-wrap .table-div table[grid-manager] tbody tr td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #3d3d3d;
+            padding: 4px;
+            vertical-align: top;
+        }
+        .table-wrap .table-div table[grid-manager] tbody tr td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #3d3d3d;
+            padding: 5px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="box-header" style="height:auto;padding:5px;">
+        <div class="box-name">
+            <i class="fa fa-usd"></i><span>页面描述</span>
+            <button type="button" class="btn btn-primary btn-label-left" data-toggle="modal" data-target="#compose-modal" id="J_addPage">
+                新增描述
+            </button>
+        </div>
+    </div>
+    <div class="data-box" id="tab" style="min-height:400px;">
+        <div class="box-header" style="padding:5px;height:auto;">
+            <label style="display:inline-block;" for="J_UserNumber">搜索：</label><input style="display:inline-block;width:200px;" type="search" class="form-control input-sm" id="J_UserNumber" />
+            <button type="button" class="btn btn-primary btn-label-left" data-toggle="modal" js-click="searchBtn"  id="searchBtn">
+                确定
+            </button>
+        </div>
+
+        <div class="charts_box" style="overflow:auto;">
+            <div class="box-content" style="height: auto;">
+                <table grid-manager="UserList" class="tb off-table-rank">
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="txtSelectedUserID">
+<div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true">
+</div>
+<script type="template" id="J_template_editUser">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-envelope-o"></i>页面描述
+                    <span id="infos" style="color:red"></span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px" >页面名称</span>
+                        <input type="text" id="txtpagename" class="form-control" style="width:450px"placeholder="页面名称" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px">页面URL</span>
+                        <input type="text" id="txtURL" class="form-control" style="width:450px" placeholder="请粘贴页面URL" />
+                        &nbsp; &nbsp;<span id="lblEid" style="color:#7ccf75; font-size:12px;"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px">TP</span>
+                        <input type="text" id="txtTP" class="form-control" style="width:150px "  name="show" value="0"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">描述</span>
+                        <textarea id="txtpagedesc" name="contentzjp" style="width:100%;height:300px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    取消
+                </button>
+                <button type="submit" class="btn btn-primary pull-left" id="J_SaveUser">
+                    保存
+                </button>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+
+<script charset="utf-8"  src="/scripts/main/table/kindeditor-min.js"></script>
+<script  charset="utf-8"  src="/scripts/main/table/zh_CN.js"></script>
+<script type="text/javascript">
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('textarea[name="contentzjp"]', {
+            resizeType : 1,
+            allowPreviewEmoticons : false,
+            allowImageUpload : false,
+            items : [
+                'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+        });
+    });
+
+</script>
+
+<script  type="text/javascript" src="/scripts/main/table/GridManager.js"></script>
+<script  type="text/javascript" src="/scripts/main/zTree/jquery.ztree.core-3.5.js"></script>
+<script  type="text/javascript"  src="/scripts/main/zTree/jquery.ztree.excheck-3.5.js"></script>
+<script  type="text/javascript"  src="/scripts/main/zTree/jquery.ztree.exedit-3.5.js"></script>
+<script  type="text/javascript"  src="/scripts/main/bootstrap/bootstrap.min.js"></script>
+<script  type="text/javascript"  src="/scripts/main/site/OrderChange.js"></script>
+</body>
+</html>

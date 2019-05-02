@@ -60,4 +60,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         return apiData;
     }
 
+    @Override
+    public List<OrderInfo> selectOrderAll() {
+        return orderInfoMapper.selectAll();
+    }
+
 }

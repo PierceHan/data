@@ -3,6 +3,7 @@ package com.zjp.service;
 import com.zjp.model.OrderInfo;
 import com.zjp.model.web.ApiData;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,4 +17,6 @@ public interface OrderInfoService {
     OrderInfo updateOrder(OrderInfo orderInfo);
 
     ApiData selectOrder(OrderInfo orderInfo);
+
+    List<OrderInfo> selectOrderAll();
 }

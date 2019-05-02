@@ -8,7 +8,6 @@ var pageVar = {
             self = this,
 
             res;
-            debugger;
             id_search = $("#J_UserNumber").val() || '',
         $('#debtpager').empty();
 
@@ -31,9 +30,10 @@ var pageVar = {
                    				.append($('<td/>').html(v.userID))
                    			    .append($('<td/>').html(v.roomID))
                    			    .append($('<td/>').html(v.source))
-                                   .append($('<td/>').html(v.maxPrice))
-                                   .append($('<td/>').html(v.minPrice))
-                                   .append($('<td/>').html(v.updateDate))
+                                 .append($('<td/>').html(v.maxPrice))
+                                 .append($('<td/>').html(v.minPrice))
+                                 .append($('<td/>').html(v.exceptionPrice))
+                                 .append($('<td/>').html(v.updateDate))
 
                            );
 
@@ -130,5 +130,7 @@ $(function () {
     $('[js-click="searchBtn"]').click(function () {
         pageVar.initdebttabledate();
     })
+
+
 
 });

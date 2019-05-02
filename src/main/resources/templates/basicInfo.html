@@ -2,15 +2,63 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>CellEdit 单元格编辑 </title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link href="../demo.css" rel="stylesheet" type="text/css" />
+    <style>
+        body
+{
+    padding-left:10px;
+    font-size:13px;
+}
+h1
+{
+    font-size:20px;
+    font-family:Verdana;
+}
+h4
+{
+    font-size:16px;
+    margin-top:25px;
+    margin-bottom:10px;
+}
 
-    <script src="../../scripts/boot.js" type="text/javascript"></script>
+.description
+{
+    padding-bottom:30px;
+    font-family:Verdana;
+}
+.description h3
+{
+    color:#CC0000;
+    font-size:16px;
+    margin:0 30px 10px 0px;
+    padding:45px 0 8px;
+    /*background:url(titleback.png) no-repeat scroll left bottom transparent*/
+    border-bottom:solid 1px #888;
+}
+<!--table {-->
+    <!--display: table;-->
+    <!--border-collapse: separate;-->
+    <!--border-spacing: 2px;-->
+    <!--border-color: rgb(51, 78, 95);-->
+<!--}-->
 
+
+    </style>
 </head>
 <body>
-<h1>CellEdit 单元格编辑</h1>
+<h1>酒店基础信息管理</h1>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/scripts/main/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="../styles/demo.css">
+<link rel="stylesheet" href="../styles/miniui.css">
+<link rel="stylesheet" href="../styles/common.css">
+<link rel="stylesheet" href="../styles/icons.css">
+<!--<link rel="stylesheet" href="../styles/skin.css">-->
+<link rel="stylesheet" href="../styles/medium-mode.css">
+<link rel="stylesheet" href="../styles/large-mode.css">
+<script type="text/javascript" src="../scripts/Boot2.js"></script>
+<script type="text/javascript" src="../scripts/miniui.js"></script>
+<script type="text/javascript" src="../scripts/common.js"></script>
+
 
 
 <div style="width:800px;">
@@ -31,42 +79,48 @@
         </table>
     </div>
 </div>
-<div id="datagrid1" class="mini-datagrid" style="width:800px;height:280px;"
-     url="../data/AjaxService.jsp?method=SearchEmployees" idField="id"
+        <div id="datagrid1" class="mini-datagrid" style="width:800px;height:280px;"
+     url="/AjaxService.jsp?method=SearchEmployees" idField="id"
      allowResize="true" pageSize="20"
      allowCellEdit="true" allowCellSelect="true" multiSelect="true"
-     editNextOnEnterKey="true"  editNextRowCell="true"
->
+     editNextOnEnterKey="true"  editNextRowCell="true">
     <div property="columns">
         <div type="indexcolumn"></div>
         <div type="checkcolumn"></div>
-        <div name="LoginName"  field="loginname" headerAlign="center" allowSort="true" width="150" >员工帐号
+        <div name="LoginName"  field="loginname" headerAlign="center" allowSort="true" width="150" >酒店ID
             <input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" />
         </div>
-        <div field="age" width="100" allowSort="true" >年龄
+        <div field="age" width="100" allowSort="true" >酒店名称
             <input property="editor" class="mini-spinner"  minValue="0" maxValue="200" value="25" style="width:100%;"/>
         </div>
-        <div name="birthday" field="birthday" width="100" allowSort="true" dateFormat="yyyy-MM-dd">出生日期
-            <input property="editor" class="mini-datepicker" style="width:100%;"/>
+        <div field="age" width="100" allowSort="true" >酒店城市
+            <input property="editor" class="mini-spinner"  minValue="0" maxValue="200" value="25" style="width:100%;"/>
         </div>
-        <div field="remarks" width="120" headerAlign="center" allowSort="true">备注
+        <!--<div name="birthday" field="birthday" width="100" allowSort="true" dateFormat="yyyy-MM-dd">出生日期-->
+            <!--<input property="editor" class="mini-datepicker" style="width:100%;"/>-->
+        <!--</div>-->
+        <div field="remarks" width="120" headerAlign="center" allowSort="true">酒店商圈
             <input property="editor" class="mini-textarea" style="width:200px;" minWidth="200" minHeight="50"/>
         </div>
         <!--ComboBox：本地数据-->
-        <div type="comboboxcolumn" autoShowPopup="true" name="gender" field="gender" width="100" allowSort="true"  align="center" headerAlign="center">性别
-            <input property="editor" class="mini-combobox" style="width:100%;" data="Genders" />
-        </div>
+        <!--<div type="comboboxcolumn" autoShowPopup="true" name="gender" field="gender" width="100" allowSort="true"  align="center" headerAlign="center">酒店星级-->
+            <!--<input property="editor" class="mini-combobox" style="width:100%;" data="Genders" />-->
+        <!--</div>-->
         <!--ComboBox：远程数据-->
-        <div type="comboboxcolumn" field="country" width="100" headerAlign="center" >国家
-            <input property="editor" class="mini-combobox" style="width:100%;" url="../data/countrys.txt" />
+        <!--<div type="comboboxcolumn" field="country" width="100" headerAlign="center" >国家-->
+            <!--<input property="editor" class="mini-combobox" style="width:100%;" data="country" />-->
+        <!--</div>-->
+        <div field="remarks" width="120" headerAlign="center" allowSort="true">酒店排名
+            <input property="editor" class="mini-textarea" style="width:200px;" minWidth="200" minHeight="50"/>
         </div>
-        <div type="checkboxcolumn" field="married" trueValue="1" falseValue="0" width="60" headerAlign="center">婚否</div>
+        <!--<div type="checkboxcolumn" field="married" trueValue="1" falseValue="0" width="60" headerAlign="center">婚否</div>-->
     </div>
 </div>
 <script type="text/javascript">
 
         var Genders = [{ id: 1, text: '男' }, { id: 2, text: '女'}];
-
+        var country = [{ id: 1, text: '北京' },{ id: 2, text: '上海'},{ id: 3, text: '深圳'}];
+debugger;
         mini.parse();
 
         var grid = mini.get("datagrid1");

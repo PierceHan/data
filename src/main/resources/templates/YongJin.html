@@ -161,9 +161,8 @@
 
 </div>
 <div id="chart" style="width:1000px; height: 600px;"></div>
+
 <script type="text/javascript">
-
-
 option = {
     tooltip: {
         trigger: 'axis',
@@ -174,6 +173,10 @@ option = {
             }
         }
     },
+     title : {
+        text: '佣金同比',
+        x:'center'
+    },
     toolbox: {
         feature: {
             dataView: {show: true, readOnly: false},
@@ -183,7 +186,8 @@ option = {
         }
     },
     legend: {
-        data:['卖价金额','佣金金额','佣金率']
+        data:['卖价金额','佣金金额','佣金率'],
+        bottom:'bottom'
     },
     xAxis: [
         {
@@ -240,6 +244,7 @@ var myChart = echarts.init(document.getElementById('chart'));
         //使用制定的配置项和数据显示图表
         myChart.setOption(option);
     </script>
+
 <script type="text/javascript" src="/scripts/main/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/scripts/main/C.Chart.js"></script>
 <script type="text/javascript" src="/scripts/main/C.base.js"></script>

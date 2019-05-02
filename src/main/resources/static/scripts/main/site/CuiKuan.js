@@ -111,7 +111,7 @@ var pageVar = {
             pageVar.tag_page = d
         new Tool().showStatus($('[id=ReconciliationTable]'), 'loading');
         self.request({ op: "GetReconciliationTable", pageno: a || 1, descrow: pageVar.descrow, px: pageVar.px, tagpage: pageVar.tag_page }, function (data) {
-           debugger;
+
             var ret = data.result;
             if (!ret) return;
             $('#ReconciliationTable').html('');
@@ -194,7 +194,7 @@ var pageVar = {
 //            chart = new Chart(),
 //            tool = new Tool(),
             res;
-            debugger;
+
         $('#debtpager').empty();
         //$('#hotelcounts').html("...");
 
@@ -215,10 +215,8 @@ var pageVar = {
             if (!ret) return;
 
             $('#DebtTable').html('');
-      $('#DebtTable').html('');
+            $('#DebtTable').html('');
             $.each(ret.result, function (k, v) {
-
-                      debugger;
                         var ret_hotelcount=ret.total;
                         var ret_totalcount=ret.total;
                         $("#DebtTable").append($('<tr/>')
@@ -336,7 +334,7 @@ var pageVar = {
             },
             error: function (data) {
                 console.log('ERR----', data);
-                debugger;
+
                  success && success(data);
                 error && error(data);
             },
@@ -395,87 +393,7 @@ jQuery(document).ready(function () {
     var $ = jQuery;
     pageVar.init();
 
-    //下载
-    $('[js-click="pdfBtn2"]').click(function (e) {
-        var list_status = [],
-            list_bookable = [];
 
-        $('[name="bookingbatchauditstatus"]:checked').each(function () {
-            list_status.push($(this).val());
-        });
-        $('[name="isbookable"]:checked').each(function () {
-            list_bookable.push($(this).val());
-        });
-        if (isNaN($('[name="condtion_ta_commission"]').val()) || isNaN($('[name="condtion_tb_commission"]').val())) {
-            alert("请输入正确的金额");
-            $('.loading').hide();
-            return;
-        }
-
-        var commissiom = pageVar.getBothValue('[name="condtion_ta_commission"]', '[name="condtion_tb_commission"]'),
-            reconciliation = pageVar.getBothValue('[name="condtion_na_reconciliation"]', '[name="condtion_nb_reconciliation"]'),
-            remittancecycle = pageVar.getBothValue('[name="condtion_na_remittancecycle"]', '[name="condtion_nb_remittancecycle"]'),
-            bookingbatchauditstatus = list_status.join(','),
-            isbookable = list_bookable.join(',');
-        window.open("Services/Finance/Finance.ashx?op=DownLoadReconciliationTable&commissiom=" + commissiom + "&reconciliation=" + reconciliation + "&remittancecycle=" + remittancecycle + "&bookingbatchauditstatus=" + bookingbatchauditstatus + "&isbookable=" + isbookable);
-    });
-
-    $('[js-click="pdfBtn4"]').click(function (e) {
-        if (isNaN($('[name="condtion_ta_outstandingamount"]').val()) || isNaN($('[name="condtion_tb_outstandingamount"]').val())) {
-            alert("请输入正确的金额");
-            $('.loading').hide();
-            return;
-        }
-        var outstandingamount = pageVar.getBothValue('[name="condtion_ta_outstandingamount"]', '[name="condtion_tb_outstandingamount"]'),
-            outstandingbatchenum = pageVar.getBothValue('[name="condtion_na_outstandingbatchenum"]', '[name="condtion_nb_outstandingbatchenum"]')
-
-        window.open("Services/Finance/Finance.ashx?op=DownLoadDebtTable&outstandingamount=" + outstandingamount + "&outstandingbatchenum=" + outstandingbatchenum);
-    });
-    $('[js-click="pdfBtn5"]').click(function (e) {
-
-        var isdelete = [], adjustname = [], groupname = [], employeename = [], begindate = [], enddate = [];
-        $('[name="isdelete"]:checked').each(function () {
-            isdelete.push($(this).val());
-        });
-        $('[id="adjustname"]').each(function () {
-            adjustname.push($(this).val());
-        });
-        $('[id="groupname"]').each(function () {
-            groupname.push($(this).val());
-        });
-        $('[id="employeename"]').each(function () {
-
-            employeename.push($(this).val());
-        });
-        $('[id="begindate"]').each(function () {
-
-            begindate.push($(this).val());
-        });
-        $('[id="enddate"]').each(function () {
-            enddate.push($(this).val());
-        });
-
-
-
-
-
-        window.open("Services/Finance/Finance.ashx?op=DownLoadAdjusTable&isdelete=" + isdelete[0] + "&adjustname=" + adjustname + "&groupname=" + groupname + "&employeename=" + employeename + "&begindate=" + begindate + "&enddate=" + enddate);
-    });
-
-    $('[js-click="pdfBtn3"]').click(function (e) {
-
-        window.open("Services/Finance/Finance.ashx?op=DownLoadErrorTable");
-    });
-
-    $('[js-click="pdfBtn1"]').click(function (e) {
-        var tablename = $('td.followchoose').attr('id');
-        if (tablename == "RefundProcessingDetail") {
-            var update = $('.off-tab .cur').data("value");
-            window.open("Services/Finance/Finance.ashx?op=DownLoadFollowTable&tablename=" + tablename + "&update=" + update);
-        } else {
-            window.open("Services/Finance/Finance.ashx?op=DownLoadFollowTable&tablename=" + tablename);
-        }
-    });
 
 
     $('[js-click="showAdvancedOpts"]').click(function () {
@@ -489,27 +407,29 @@ jQuery(document).ready(function () {
         $(this).parent().find('input').val('');
     });
     $('[js-click="conditionOk"]').click(function (e) {
-        var flag = new Validate().checkNumber($('[name^=condtion_]'), "请输入正确数字", 3, true);
-        if (flag && !$(this).hasClass('btn-dis')) {
-            if ($('[js-click="changeTab"].current').data('id') == "2") {
-                pageVar.inittabledate();
-                $('.off-screen-cont').click();
-            }
-            else {
-                if ($('[js-click="changeTab"].current').data('id') == "4") {
-                    pageVar.initdebttabledate();
-                    $('.off-screen-cont').click();
-                }
-                if ($('[js-click="changeTab"].current').data('id') == "5") {
 
-                    pageVar.initAdjustTable();
-                    $('.off-screen-cont').click();
-                }
-            }
-
-        } else {
-            alertErr("输入正确的格式！");
-        }
+     pageVar.initdebttabledate();
+     $('.off-screen-cont').click();
+//        var flag = new Validate().checkNumber($('[name^=condtion_]'), "请输入正确数字", 3, true);
+//        if (flag && !$(this).hasClass('btn-dis')) {
+//            if ($('[js-click="changeTab"].current').data('id') == "2") {
+//                pageVar.inittabledate();
+//                $('.off-screen-cont').click();
+//            }
+//            else {
+//                if ($('[js-click="changeTab"].current').data('id') == "4") {
+//
+//                }
+//                if ($('[js-click="changeTab"].current').data('id') == "5") {
+//
+//                    pageVar.initAdjustTable();
+//                    $('.off-screen-cont').click();
+//                }
+//            }
+//
+//        } else {
+//            alertErr("输入正确的格式！");
+//        }
     })
 
     $('#ajax-content table .sort').click(function () {
