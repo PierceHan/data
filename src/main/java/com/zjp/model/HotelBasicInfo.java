@@ -31,8 +31,86 @@ public class HotelBasicInfo {
     private String Person;
     private String Phone;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date Time;
+    private String Time;
     private String pagedesc;
 
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public void setZone(String zone) {
+        Zone = zone;
+    }
+
+    public void setStar(String star) {
+        Star = star;
+    }
+
+    public void setRank(String rank) {
+        Rank = rank;
+    }
+
+    public void setPerson(String person) {
+        Person = person;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
+
+    public void setTime(String time) {
+        Time = time;
+    }
+
+    public void setPagedesc(String pagedesc) {
+        this.pagedesc = pagedesc;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public String getZone() {
+        return Zone;
+    }
+
+    public String getStar() {
+        return Star;
+    }
+
+    public String getRank() {
+        return Rank;
+    }
+
+    public String getPerson() {
+        return Person;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
+    public String getPagedesc() {
+        return pagedesc;
+    }
 }

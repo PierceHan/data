@@ -236,8 +236,7 @@ var pageVar = {
                 pageVar.debttotal = ret_hotelcount;
                 pageVar.debthotelcount = ret_hotelcount;
             }
-            $('#debthotelcounts').html(ret_hotelcount);
-            $('#debtAcountTotal').html(ret_hotelcount);
+
             //$('#hotelcounts').html(pageVar.Get12Lenghotelcount_leave);
 //            Ctrip.Pager('#debtpager', { total: pageVar.debttotal, current: ret["pageno"], perpage: 20 }, function (p) {
 //                self.initdebttabledate(p, pageVar.debtdescrow, pageVar.debtpx, pageVar.debttag_page);
