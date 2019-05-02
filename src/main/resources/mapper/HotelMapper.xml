@@ -27,7 +27,6 @@
     <select id="countCommissionScore" resultType="java.lang.Integer">
         SELECT COUNT(0) FROM commission_follow
         <where>
-        <where>
             <if test="min1!=null and min1!=''">not_recipients &gt;= #{min1}</if>
             <if test="max1!=null and max1!=''">and not_recipients &lt;= #{max1}</if>
             <if test="min2!=null and min2!=''">and debt_batch &gt;= #{min2}</if>

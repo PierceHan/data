@@ -26,7 +26,7 @@ public class HotelInfoServiceImpl implements HotelInfoService {
     @Override
     public HotelBasicInfo createOrder(HotelBasicInfo hotelBasicInfo) {
         String id = UUID.randomUUID().toString().replaceAll("-", "");
-        hotelBasicInfo.setId(id);
+        hotelBasicInfo.setID(id);
         hotelInfoMapper.insert(hotelBasicInfo);
         return hotelInfoMapper.selectByPrimaryKey(id);
     }
@@ -46,7 +46,7 @@ public class HotelInfoServiceImpl implements HotelInfoService {
     public HotelBasicInfo updateOrder(HotelBasicInfo hotelBasicInfo) {
         int result = hotelInfoMapper.updateByPrimaryKeySelective(hotelBasicInfo);
         if (result>0){
-            return hotelInfoMapper.selectByPrimaryKey(hotelBasicInfo.getId());
+            return hotelInfoMapper.selectByPrimaryKey(hotelBasicInfo.getID());
         }
         throw new DataException(String.format("更新失败,没有对应的数据,Data:%s",hotelBasicInfo), DataException.ExceptionName.NoData);
     }
