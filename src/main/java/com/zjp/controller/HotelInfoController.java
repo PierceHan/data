@@ -52,13 +52,15 @@ public class HotelInfoController {
         hotelBasicInfo.setName(Name);
         hotelBasicInfo.setZone(Zone);
         hotelBasicInfo.setStar(Star);
-        hotelBasicInfo.setPagedesc(Person);
+        hotelBasicInfo.setPerson(Person);
         hotelBasicInfo.setRank(Rank);
         hotelBasicInfo.setPhone(Phone);
         hotelBasicInfo.setTime(Time);
-
-        HotelBasicInfo result = hotelInfoService.createOrder(hotelBasicInfo);
-        return createResult(result);
+        int result = hotelInfoService.createOrder(hotelBasicInfo);
+        if (result==1){
+            return createResult(result);
+        }
+        return createResult(null);
     }
 
     @ApiOperation(value = "删除酒店信息")
@@ -86,7 +88,7 @@ public class HotelInfoController {
         hotelBasicInfo.setName(Name);
         hotelBasicInfo.setZone(Zone);
         hotelBasicInfo.setStar(Star);
-        hotelBasicInfo.setPagedesc(Person);
+        hotelBasicInfo.setPerson(Person);
         hotelBasicInfo.setRank(Rank);
         hotelBasicInfo.setPhone(Phone);
         hotelBasicInfo.setTime(Time);
@@ -96,27 +98,11 @@ public class HotelInfoController {
 
     @ApiOperation(value = "查找酒店信息")
     @RequestMapping(value = "/basichotel/hotels",method = RequestMethod.POST)
-    public ApiResponse selectOrder(@RequestParam(required = false) String Name,
-                                   @RequestParam(required = false) String ID,
-                                   @RequestParam(required = false) String City,
-                                   @RequestParam(required = false) String Zone,
-                                   @RequestParam(required = false) String Star,
-                                   @RequestParam(required = false) String Rank,
-                                   @RequestParam(required = false) String Person,
-                                   @RequestParam(required = false) String Phone,
-                                   @RequestParam(required = false) String Time,
-                                   @RequestParam(required = false) String pagedesc) throws ParseException {
+    public ApiResponse selectOrder(
+                                   @RequestParam(required = false) String ID
+                                  ) throws ParseException {
         HotelBasicInfo hotelBasicInfo = new HotelBasicInfo();
         hotelBasicInfo.setID(ID);
-        hotelBasicInfo.setCity(City);
-        hotelBasicInfo.setName(Name);
-        hotelBasicInfo.setZone(Zone);
-        hotelBasicInfo.setStar(Star);
-        hotelBasicInfo.setPagedesc(Person);
-        hotelBasicInfo.setRank(Rank);
-        hotelBasicInfo.setPhone(Phone);
-        hotelBasicInfo.setTime(Time);
-
         ApiData result = hotelInfoService.selectOrder(hotelBasicInfo);
         return createResult(result);
     }

@@ -1,4 +1,4 @@
-
+//@ sourceURL=script/apps/pages/permission/user.js
 var pageVar = {
     tablefirst: 1,
     tableRolefirst: 1,
@@ -35,60 +35,44 @@ var pageVar = {
             , pageSize: 20
             , columnData: [
                 {
-                    key: 'id',
-                    width: '80px',
-                    align: 'center',
-                    text: '酒店ID'
-                }, {
                     key: 'name',
                     width: '80px',
                     align: 'center',
-                    text: '酒店名称'
+                    text: '用户名'
+
                 }, {
-                    key: 'zone',
+                    key: 'pass',
                     width: '80px',
                     align: 'center',
-                    text: '商圈'
+                    text: '用户密码'
                 }, {
-                    key: 'city',
+                    key: 'realName',
                     width: '80px',
                     align: 'center',
-                    text: '城市'
+                    text: '用户姓名'
                 }, {
-                    key: 'rank',
+                    key: 'email',
                     width: '80px',
                     align: 'center',
-                    text: '酒店排名'
+                    text: '用户邮箱'
                 }, {
-                    key: 'star',
+                    key: 'permission',
                     width: '80px',
                     align: 'center',
-                    text: '星级'
-                },
-                , {
-                     key: 'person',
-                     width: '80px',
-                     align: 'center',
-                     text: '酒店联系人'
-                 }, {
-                     key: 'phone',
-                     width: '80px',
-                     align: 'center',
-                     text: '联系人方式'
-                 }, {
-                     key: 'time',
-                     width: '80px',
-                     align: 'center',
-                     text: '开始合作时间'
-                  },
-                  {
+                    text: '用户权限'
+                }, {
+                    key: 'dept',
+                    width: '80px',
+                    align: 'center',
+                    text: '部门'
+                }, {
                     key: '',
-                    width: '200px',
+                    width: '150px',
                     align: 'center',
                     text: '编辑',
                     template: function (operation, rowObject) {  //operation:当前key所对应的单条数据；rowObject：单个一行完整数据
-                        return '<button style=" margin-left:10px;" data-userid="' + rowObject.id + '" data-operation="editPage" type="button" class="btn btn-primary" id="BUTTONEDIT" data-toggle="modal" data-target="#compose-modal"><span>修改</span></button>' +
-                            '<button style=" margin-left:10px;" data-userid="' + rowObject.id + '" data-operation="deletePage" type="button" class="btn btn-primary" id="ButtonDel"><span>删除</span></button>'
+                        return '<button style=" margin-left:10px;" data-userid="' + rowObject.id + '" data-operation="editPage" type="button" class="btn btn-primary" data-toggle="modal" data-target="#compose-modal"><span>修改</span></button>' +
+                            '<button style=" margin-left:10px;" data-userid="' + rowObject.id + '" data-operation="deletePage" type="button" class="btn btn-primary"><span>删除</span></button>'
                     },
                 }]
             , pagingBefore: function (query) {
@@ -114,12 +98,11 @@ var pageVar = {
     loadData: function (page) {
         var self = this,
             obj = $('table[grid-manager]'),
-            pagename = $("#J_UserNumber").val() || '',
+            idSer= $("#J_UserNumber").val() || '',
             container = $("#ajax-content .charts_box");
 
-//        new Tool().showStatus(container, 'loading');
         self.request("list", {
-            id: pagename,
+            id: idSer,
             PageIndex: page || 1,
         }, function (data) {
             var ret = data.result;
@@ -127,20 +110,22 @@ var pageVar = {
             // debugger
             if (pageVar.tablefirst) {
                 pageVar.tablefirst = false;
-                pageVar.initTableDate({"data": ret, "totals":100});
+                pageVar.initTableDate({"data": ret["data"], "totals": ret["recordsTotal"]});
             } else {
                 var table = document.querySelector('table[grid-manager="UserList"]');
-                table.GM('setAjaxData', {"data": ret, "totals": 100});
+                table.GM('setAjaxData', {"data": ret["data"], "totals": ret["recordsTotal"]});
             }
 
-                $('[js-click="BUTTONEDIT"]').click(function (){
-//            $('#ajax-content .box-content button').click(function () {
+            $('#ajax-content .box-content button').click(function () {
                 var pageId = $(this).attr('data-userid');
-              debugger
                 $('#txtSelectedUserID').val(pageId);
                 if ($(this).data('operation') == 'editPage') {
 
                     $('#compose-modal').html($('#J_template_editUser').text());
+
+
+                    // $('#txtURL').html('<input type="text" id="txtURL" class="form-control" style="width:450px" readonly />');
+
 
                     $('#J_SaveUser').click(function () {
                         self.updatePage(pageId);
@@ -166,34 +151,19 @@ var pageVar = {
 
     loadSingleUserByID: function (userID) {
         var self = this;
-        self.request("hotels", {
-            id: userID
+        self.request("single", {
+            UserID: userID
         }, function (data) {
-            var ret = data.result;
+            var ret = data.result.data[0];
             if (!ret) return;
-            $('#txtID').val(ret.ID);
-            $('#txtName').val(ret.Name);
-            $('#txtzone').val(ret.Zone);
-            $('#txtstar').val(ret.Star);
-            $('#txtRank').val(ret.Rank);
-            $('#txtPerson').val(ret.Person);
-            $('#txtPhone').val(ret.Phone);
-            $('#txtTime').val(ret.Time);
-            $('#txtpagedesc').val(ret.Pagedesc);
-            $('#txtpagedesc').attr('disabled',true)
-            // var editor;
-            pageVar.editor = KindEditor.create('textarea[name="contentzjp"]', {
-                resizeType : 1,
-                allowPreviewEmoticons : false,
-                allowImageUpload : false,
-                items : [
-                    'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-                    'insertunorderedlist', '|', 'emoticons', 'image', 'link']
-            });
-            pageVar.editor.html(ret.pagedesc);
-            // $('#txtpagedesc').html(ret.pagedesc);
-            $('#txtTP').val(ret.TP);
+            $('#txtName').val(ret.name);
+            $('#txtPass').val(ret.pass);
+            $('#txtRealName').val(ret.realName);
+            $('#txtEmail').val(ret.email);
+            $('#txtPermission').val(ret.permission);
+            $('#txtDept').val(ret.dept);
+//            $('#txtRealName').attr('disabled',true)
+
         }, function (data) {
 
         });
@@ -203,79 +173,66 @@ var pageVar = {
         var self = this;
 
         self.request("edit", {
-            Name: $('#txtName').val(),
-            City: $('#txtCity').val(),
-            Zone: $('#txtzone').val(),
-            Star: $('#txtstar').val(),
-            Rank: $('#txtRank').val(),
-            Person: $('#txtPerson').val(),
-            Phone: $('#txtPhone').val(),
-            Time: $('#txtTime').val(),
-            pagedesc: pageVar.editor.html(),
-            // pagedesc:editor.val()
+            name: $('#txtName').val(),
+            pass: $('#txtPass').val(),
+            realName: $('#txtRealName').val(),
+             email: $('#txtEmail').val(),
+             permisson: $('#txtPermission').val(),
+             dept: $('#txtDept').val(),
         }, function (data) {
             var ret = data.result;
             if (ret) {
-             alert("保存成功");
+                alert("保存成功")；
                 $('#compose-modal').html($('#J_template_editUser').text());
                 pageVar.loadData();
             } else {
-            alert("保存失败");
-
+                 alert("保存成功")；
             }
             setTimeout(function () { $('.btn-danger').trigger('click'); }, 1000);
         }, function (data) {
-            alert("保存失败");
+              alert("保存成功")；
         });
     },
     updatePage: function (pageid) {
         var self = this;
-        self.request("update", {
-//            pagename: $('#txtpagename').val(),
-//            URL: $('#txtURL').val(),
-//            TP: $('#txtTP').val(),
-//            pagedesc: pageVar.editor.html(),
-//            pageid: pageid
+        self.request("updatePage", {
+             name: $('#txtName').val(),
+                        pass: $('#txtPass').val(),
+                        realName: $('#txtRealName').val(),
+                         email: $('#txtEmail').val(),
+                         permisson: $('#txtPermission').val(),
+                         dept: $('#txtDept').val()
 
-            Name: $('#txtName').val(),
-            City: $('#txtCity').val(),
-            Zone: $('#txtzone').val(),
-            Star: $('#txtstar').val(),
-            Rank: $('#txtRank').val(),
-            Person: $('#txtPerson').val(),
-            Phone: $('#txtPhone').val(),
-            Time: $('#txtTime').val(),
-            pagedesc: pageVar.editor.html(),
         }, function (data) {
             var ret = data.result;
             if (ret) {
                 $('#compose-modal').html($(''));
-                 alert("保存成功");
+                  alert("保存成功")；
                 $('#compose-modal').html($('#J_template_editUser').text());
                 setTimeout(function () { $('.btn-danger').trigger('click'); }, 1000);
                 pageVar.loadData();
             } else {
-                  alert("保存失败");
+                alert("保存失败")
             }
         }, function (data) {
-             alert("保存失败");
+            alert("保存失败")
         });
 
     },
     deletePage: function (pageid) {
         var self = this;
         self.request("deletePage", {
-            ID: pageid
+            pageid: pageid
         }, function (data) {
             var ret = data.result;
             if (ret) {
-                 alert("删除成功");
+                Ctrip.ShowMessage(data.msg);
                 pageVar.loadData();
             } else {
-                 alert("删除失败");
+                Ctrip.ShowMessage("删除失败");
             }
         }, function (data) {
-             alert("删除失败");
+            Ctrip.ShowMessage("删除失败");
         });
     },
     /**
@@ -288,8 +245,7 @@ var pageVar = {
         $.ajax({
             type: "post",
             dataType: "json",
-            //url: '/select/hotels' + action,
-            url: '/basichotel/'+action,
+            url: '/person/' + action,
             data: data,
             success: function (data) {
                 if (data.code == 'A0001' || data.code == 'B0001') {
@@ -319,7 +275,7 @@ var pageVar = {
             dataType: "json",
             processData: false,
             contentType: "application/json; charset=utf-8",
-            url: '/powerManagement/pageDetail/' + action,
+            url: '/person/' + action,
             data: JSON.stringify(data),
             success: function (data) {
                 if (data.code == 'A0001' || data.code == 'B0001') {
@@ -369,11 +325,13 @@ $(function () {
         // });
         debugger
         $('#J_SaveUser').click(function () {
-            if (!$('#txtName').val()) {
-               alert("酒店名称不可为空")
 
+            if (!$('#txtName').val()) {
+               alert("用户名不可为空")
+            } else if (!$('#txtPass').val()) {
+                Ctrip.ShowMessage("用户密码不可为空");
             } else {
-                pageVar.saveUser();
+                    pageVar.saveUser();
             }
 
 

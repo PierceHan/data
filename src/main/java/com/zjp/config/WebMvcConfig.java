@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.annotation.Resource;
 
 /**
- * Created by hanguoan on 2019/3/17.
+ * Created by junpingzhang on 2019/3/17.
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {

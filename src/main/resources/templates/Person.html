@@ -56,9 +56,9 @@
 <div class="row">
     <div class="box-header" style="height:auto;padding:5px;">
         <div class="box-name">
-            <i class="fa fa-usd"></i><span>页面描述</span>
+            <i class="fa fa-usd"></i><span>用户管理</span>
             <button type="button" class="btn btn-primary btn-label-left" data-toggle="modal" data-target="#compose-modal" id="J_addPage">
-                新增描述
+                新增用户
             </button>
         </div>
     </div>
@@ -90,36 +90,47 @@
                     &times;
                 </button>
                 <h4 class="modal-title">
-                    <i class="fa fa-envelope-o"></i>订单信息
+                    <i class="fa fa-envelope-o"></i>用户信息
                     <span id="infos" style="color:red"></span>
                 </h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px" >订单</span>
-                        <input type="text" id="txtpagename" class="form-control" style="width:450px"placeholder="酒店ID" />
+                        <span class="input-group-addon" style="width:75px" >用户名</span>
+                        <input type="text" id="txtName" class="form-control" style="width:450px"placeholder="用户名" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">页面URL</span>
-                        <input type="text" id="txtURL" class="form-control" style="width:450px" placeholder="请粘贴页面URL" />
-                        &nbsp; &nbsp;<span id="lblEid" style="color:#7ccf75; font-size:12px;"></span>
+                        <span class="input-group-addon" style="width:75px">用户密码</span>
+                        <input type="text" id="txtPass" class="form-control" style="width:450px" placeholder="用户密码" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon" style="width:75px">TP</span>
-                        <input type="text" id="txtTP" class="form-control" style="width:150px "  name="show" value="0"/>
+                        <span class="input-group-addon" style="width:75px">用户姓名</span>
+                        <input type="text" id="txtRealName" class="form-control" style="width:150px "  name="show"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon">描述</span>
-                        <textarea id="txtpagedesc" name="contentzjp" style="width:100%;height:300px;"></textarea>
+                        <span class="input-group-addon" style="width:75px">用户邮箱</span>
+                        <input type="text" id="txtEmail" class="form-control" style="width:150px "  name="show" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px">用户权限</span>
+                        <input type="text" id="txtPermission" class="form-control" style="width:150px "  name="show" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:75px">部门</span>
+                        <input type="text" id="txtDept" class="form-control" style="width:150px "  name="show" />
                     </div>
                 </div>
             </div>
@@ -137,29 +148,29 @@
 
 
 
-<script charset="utf-8"  src="/scripts/main/table/kindeditor-min.js"></script>
-<script  charset="utf-8"  src="/scripts/main/table/zh_CN.js"></script>
-<script type="text/javascript">
-    var editor;
-    KindEditor.ready(function(K) {
-        editor = K.create('textarea[name="contentzjp"]', {
-            resizeType : 1,
-            allowPreviewEmoticons : false,
-            allowImageUpload : false,
-            items : [
-                'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-                'insertunorderedlist', '|', 'emoticons', 'image', 'link']
-        });
-    });
+<!--<script charset="utf-8"  src="/scripts/main/table/kindeditor-min.js"></script>-->
+<!--<script  charset="utf-8"  src="/scripts/main/table/zh_CN.js"></script>-->
+<!--<script type="text/javascript">-->
+    <!--var editor;-->
+    <!--KindEditor.ready(function(K) {-->
+        <!--editor = K.create('textarea[name="contentzjp"]', {-->
+            <!--resizeType : 1,-->
+            <!--allowPreviewEmoticons : false,-->
+            <!--allowImageUpload : false,-->
+            <!--items : [-->
+                <!--'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',-->
+                <!--'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',-->
+                <!--'insertunorderedlist', '|', 'emoticons', 'image', 'link']-->
+        <!--});-->
+    <!--});-->
 
-</script>
+<!--</script>-->
 
 <script  type="text/javascript" src="/scripts/main/table/GridManager.js"></script>
 <script  type="text/javascript" src="/scripts/main/zTree/jquery.ztree.core-3.5.js"></script>
 <script  type="text/javascript"  src="/scripts/main/zTree/jquery.ztree.excheck-3.5.js"></script>
 <script  type="text/javascript"  src="/scripts/main/zTree/jquery.ztree.exedit-3.5.js"></script>
 <script  type="text/javascript"  src="/scripts/main/bootstrap/bootstrap.min.js"></script>
-<script  type="text/javascript"  src="/scripts/main/site/OrderChange.js"></script>
+<script  type="text/javascript"  src="/scripts/main/site/Person.js"></script>
 </body>
 </html>

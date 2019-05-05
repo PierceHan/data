@@ -3,6 +3,7 @@ package com.zjp.service.impl;
 import com.zjp.common.exception.DataException;
 import com.zjp.mapper.HotelInfoMapper;
 import com.zjp.model.HotelBasicInfo;
+import com.zjp.model.PersonEntity;
 import com.zjp.model.web.ApiData;
 import com.zjp.service.HotelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,11 @@ public class HotelInfoServiceImpl implements HotelInfoService {
     private HotelInfoMapper hotelInfoMapper;
 
     @Override
-    public HotelBasicInfo createOrder(HotelBasicInfo hotelBasicInfo) {
+    public int createOrder(HotelBasicInfo hotelBasicInfo) {
         String id = UUID.randomUUID().toString().replaceAll("-", "");
         hotelBasicInfo.setID(id);
-        hotelInfoMapper.insert(hotelBasicInfo);
-        return hotelInfoMapper.selectByPrimaryKey(id);
+        int result = hotelInfoMapper.insert(hotelBasicInfo);
+        return result;
     }
 
     @Override
@@ -63,6 +64,33 @@ public class HotelInfoServiceImpl implements HotelInfoService {
     @Override
     public List<HotelBasicInfo> selectHotelAll() {
         return hotelInfoMapper.selectAll();
+    }
+
+    @Override
+    public int createPerson(PersonEntity personEntity) {
+//        int result = hotelInfoMapper.insert(personEntity);
+//        return result;
+        return 0;
+    }
+
+    @Override
+    public int deletePerson(String id) {
+        return 0;
+    }
+
+    @Override
+    public int updatePerson(PersonEntity personEntity) {
+        return 0;
+    }
+
+    @Override
+    public List<PersonEntity> selectSinglePerson(String ID) {
+        return null;
+    }
+
+    @Override
+    public List<PersonEntity> selectPersonAll(String id) {
+        return null;
     }
 
 }

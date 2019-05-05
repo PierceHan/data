@@ -172,16 +172,7 @@ var pageVar = {
         $('#debthotelcounts').html("3450");
         $('#debtAcountTotal').html("4532");
 
-//        self.request({ op: 'GetDebtTotal' }, function (data) {
-//            ret = data.data;
-//            $('#last_debt').html(Ctrip.parseNumber(ret["当月欠款金额"] * 1.0));
-//            $('#hist_debt').html(Ctrip.parseNumber(ret["历史欠款金额"] * 1.0));
-//
-//            $('#three_debt').html(Ctrip.parseNumber(ret["3个月内欠款金额"] * 1.0));
-//
-//        }, function () {
-//            new Tool().showStatus($('[id=Debt_total]'), 'error');
-//        });
+
     },
 
 
@@ -206,7 +197,10 @@ var pageVar = {
             pageVar.debttag_page = d
 //        new Tool().showStatus($('[id=DebtTable]'), 'loading');
 
-        self.request({ op: "GetDebtTable", pageno: a || 1, descrow: pageVar.debtdescrow, px: pageVar.debtpx, tagpage: pageVar.debttag_page }, function (data) {
+        self.request({ op: "GetDebtTable", pageno: a || 1,
+        descrow: pageVar.debtdescrow, px: pageVar.debtpx, tagpage: pageVar.debttag_page }, function (data) {
+
+
 
             data=data.responseText;
             var json=eval("("+data+")");
@@ -214,7 +208,6 @@ var pageVar = {
             var ret = json.result;
             if (!ret) return;
 
-            $('#DebtTable').html('');
             $('#DebtTable').html('');
             $.each(ret.result, function (k, v) {
                         var ret_hotelcount=ret.total;
@@ -526,17 +519,17 @@ jQuery(document).ready(function () {
         $('#follow_charts_box').find('tr').empty();
 
         //十二个需跟进表格表头
-        var OrderOutOfSystemHeader = '<th>序号</th><th>订单号</th><th>入住时间</th><th>离店时间</th><th>面价</th><th>底价</th><th>佣金</th><th>间夜量</th><th>单位佣金</th><th>操作</th>';//'<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>系统外订单</th>'
+        var OrderOutOfSystemHeader = '<th>序号</th><th>订单号</th><th>酒店名称</th><th>间夜量</th><th>佣金</th><th>底价</th><th>面价</th><th>单位佣金</th><th>酒店评级</th>';//'<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>系统外订单</th>'
         var HotelNoticeUnfinishedHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>预订通知未完成条数</th>';
-        var CSPMessageUnReadHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>EBK留言处理未完成条数</th>';
+        var CSPMessageUnReadHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>本月到店前涨价次数</th><th>上月累计到店前涨价次数</th><th>今年到店前涨价数</th><th>酒店服务质量分</th><th>酒店评级</th>';
         var RefundProcessingDetailHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>付款单号数</th><th>进入时间</th>';
         var HotelInvoiceChangesHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>发票修改申请数</th>';
         var HotelAdvancesHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>订单号</th><th>垫款合计金额</th><th>垫款最早进入时间</th>';
 
         var OrderOutOfBatchHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>订单号</th><th>入住时间</th><th>离店时间</th><th>佣金结算周期</th><th>按月</th><th>订单进入批次外时间</th><th>结算员</th><th>组别</th><th>集团</th><th>省份</th><th>城市</th>';//'<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>现付批次外订单数</th>';
         var HotelBatchNotClosedHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th>';
-        var HotelInvoiceNotSubmittedHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>批次名称</th>';
-        var HotelSystemUnevenHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>批次名称</th>';
+        var HotelInvoiceNotSubmittedHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>本月到店后涨价次数</th><th>上月累计到店涨价次数</th><th>今年到店涨价数</th><th>酒店服务质量分</th><th>酒店评级</th>';
+        var HotelSystemUnevenHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>本月到店满房次数</th><th>上月累计满房次数</th><th>今年到店满房数</th><th>酒店服务质量分</th><th>酒店评级</th>';
         var HotelAmountUnclaimedHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>明款未领用金额</th>';
         var CommissionBatchDetailHeader = '<th>序号</th><th>酒店ID</th><th style="width: 150px">酒店名称</th><th>批量发送方式</th><th>现付对账邮箱</th><th>现付对账传真</th><th>发送状态</th><th>失败原因</th>';
 
@@ -544,21 +537,21 @@ jQuery(document).ready(function () {
         if ($(this).attr("id") == "OrderOutOfSystem") {
             $("#isShowTotal").removeClass("false");
             $("#isShowTotal").show();
-            $("#followMeasureWords").html("单，");
+            $("#followMeasureWords").html("34单，");
             $('#follow_charts_box').find('tr').html(OrderOutOfSystemHeader);
         }
 
         if ($(this).attr("id") == "HotelNoticeUnfinished") {
             $("#isShowTotal").removeClass("false");
             $("#isShowTotal").show();
-            $("#followMeasureWords").html("条，");
+            $("#followMeasureWords").html("234条，");
             $('#follow_charts_box').find('tr').html(HotelNoticeUnfinishedHeader);
         }
 
         if ($(this).attr("id") == "CSPMessageUnRead") {
             $("#isShowTotal").removeClass("false");
             $("#isShowTotal").show();
-            $("#followMeasureWords").html("条，");
+            $("#followMeasureWords").html("364条，");
             $('#follow_charts_box').find('tr').html(CSPMessageUnReadHeader);
         }
 
@@ -572,7 +565,7 @@ jQuery(document).ready(function () {
         if ($(this).attr("id") == "HotelInvoiceChanges") {
             $("#isShowTotal").removeClass("false");
             $("#isShowTotal").show();
-            $("#followMeasureWords").html("条，");
+            $("#followMeasureWords").html("345条，");
             $('#follow_charts_box').find('tr').html(HotelInvoiceChangesHeader);
         }
 
@@ -588,7 +581,7 @@ jQuery(document).ready(function () {
 
             $("#isShowTotal").removeClass("false");
             $("#isShowTotal").show();
-            $("#followMeasureWords").html("单，");
+            $("#followMeasureWords").html("342单，");
             $('#follow_charts_box').find('tr').html(OrderOutOfBatchHeader);
         }
 

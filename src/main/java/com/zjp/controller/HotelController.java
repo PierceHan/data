@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by hanguoan on 2019/3/23.
+ * Created by zjp on 2019/3/23.
  */
 @RestController
 public class HotelController {
@@ -35,7 +35,7 @@ public class HotelController {
         return apiResponse;
     }
 
-    @ApiOperation(value = "获得佣金数据")
+    @ApiOperation(value = "获得催款数据")
     @RequestMapping(value = "/finance/FinanceHtl/GetDebtTable",method = RequestMethod.POST)
     public ApiResponse getCommissionScore(@RequestParam(value = "descrow",required = false) String descrow,
                                           @RequestParam(value = "outstandingamount",required = false) String outstandingamount,

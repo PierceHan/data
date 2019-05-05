@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+
+<div id="container" style="height: 800px"></div>
+<div id="container2" style="height: 500px;    padding-top: 20px"></div>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<!--<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>-->
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+setTimeout(function () {
+
+    option = {
+     title:{
+         text:'用户搜索UV年龄占比和趋势图(按月)',
+         x:'center'
+     },
+        legend: {
+            bottom:'bottom'
+        },
+        tooltip: {
+            trigger: 'axis',
+            showContent: false
+        },
+        dataset: {
+            source: [
+                ['product', '2018-12','2019-01', '2019-02', '2019-03', '2019-04', '2019-05'],
+                ['18-25岁', 41432, 30626, 62345, 52343, 82342, 92348],
+                ['25-35岁', 86143, 96262, 87595, 83453, 77253, 55145],
+                ['35-45岁', 28644, 62417, 73459, 86806, 63455, 87682],
+                ['45岁以上', 53435, 62427, 63429, 73662, 53352, 32349]
+            ]
+        },
+        xAxis: {type: 'category'},
+        yAxis: {gridIndex: 0},
+        grid: {top: '55%'},
+        series: [
+            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+            {
+                type: 'pie',
+                id: 'pie',
+                radius: '30%',
+                center: ['50%', '25%'],
+                label: {
+                    formatter: '{b}: {@2018-12} ({d}%)'
+                },
+                encode: {
+                    itemName: 'product',
+                    value: '2018-12',
+                    tooltip: '2018-12'
+                }
+            }
+        ]
+    };
+
+    myChart.on('updateAxisPointer', function (event) {
+        var xAxisInfo = event.axesInfo[0];
+        if (xAxisInfo) {
+            var dimension = xAxisInfo.value + 1;
+            myChart.setOption({
+                series: {
+                    id: 'pie',
+                    label: {
+                        formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                    },
+                    encode: {
+                        value: dimension,
+                        tooltip: dimension
+                    }
+                }
+            });
+        }
+    });
+
+    myChart.setOption(option);
+
+});;
+
+       </script>
+<script type="text/javascript">
+
+
+var colors = ['#5793f3', '#d14a61', '#675bba'];
+
+option2 = {
+    title:{
+        text:'浏览维度PVUV按月趋势图',
+        x:'center'
+
+    },
+    color: colors,
+
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    grid: {
+        right: '20%'
+    },
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        data:['PV','UV','CR'],
+        bottom:'bottom'
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            data: ['2018-06','2018-07','2018-08','2018-09','2018-10','2018-11','2018-12','2019-01','2019-02','2019-03','2019-04','2019-05']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            name: 'PV',
+            min: 0,
+            max: 2500,
+            position: 'right',
+            axisLine: {
+                lineStyle: {
+                    color: colors[0]
+                }
+            },
+            axisLabel: {
+                formatter: '{value} W'
+            }
+        },
+        {
+            type: 'value',
+            name: 'UV',
+            min: 0,
+            max: 1000,
+            position: 'right',
+            offset: 80,
+            axisLine: {
+                lineStyle: {
+                    color: colors[1]
+                }
+            },
+            axisLabel: {
+                formatter: '{value} W'
+            }
+        },
+        {
+            type: 'value',
+            name: 'CR',
+            min: 0,
+            max: 10,
+            position: 'left',
+            axisLine: {
+                lineStyle: {
+                    color: colors[2]
+                }
+            },
+            axisLabel: {
+                formatter: '{value} %'
+            }
+        }
+    ],
+    series: [
+        {
+            name:'PV',
+            type:'bar',
+            data:[2349, 1267, 2016, 2098, 1899, 1906, 2086, 2201, 2219, 2080, 1856, 2319]
+        },
+        {
+            name:'UV',
+            type:'bar',
+            yAxisIndex: 1,
+            data:[106, 59, 90, 64, 87, 70, 75, 82, 87, 88, 60, 83]
+        },
+        {
+            name:'CR',
+            type:'line',
+            yAxisIndex: 2,
+            data:[3.79, 2.29, 3.39, 3.44, 3.35, 3.27, 3.32, 3.43, 3.02, 4.11, 3.02, 3.29]
+        }
+    ]
+};
+
+           var myChart2 = echarts.init(document.getElementById('container2'));
+
+        //使用制定的配置项和数据显示图表
+        myChart2.setOption(option2);
+
+</script>
+</body>
+</html>
