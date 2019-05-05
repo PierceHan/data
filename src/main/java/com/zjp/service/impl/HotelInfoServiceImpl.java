@@ -2,17 +2,16 @@ package com.zjp.service.impl;
 
 import com.zjp.common.exception.DataException;
 import com.zjp.mapper.HotelInfoMapper;
+import com.zjp.mapper.UserMapper;
 import com.zjp.model.HotelBasicInfo;
 import com.zjp.model.PersonEntity;
 import com.zjp.model.web.ApiData;
 import com.zjp.service.HotelInfoService;
+import org.apache.solr.common.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by hanguoan on 2019/5/1.
@@ -22,6 +21,8 @@ public class HotelInfoServiceImpl implements HotelInfoService {
 
     @Autowired
     private HotelInfoMapper hotelInfoMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public int createOrder(HotelBasicInfo hotelBasicInfo) {
@@ -68,29 +69,33 @@ public class HotelInfoServiceImpl implements HotelInfoService {
 
     @Override
     public int createPerson(PersonEntity personEntity) {
-//        int result = hotelInfoMapper.insert(personEntity);
-//        return result;
-        return 0;
+        return userMapper.insert(personEntity);
     }
 
     @Override
     public int deletePerson(String id) {
-        return 0;
+        return userMapper.deleteByName(id);
     }
 
     @Override
     public int updatePerson(PersonEntity personEntity) {
-        return 0;
+        return userMapper.updatePerson(personEntity);
     }
 
     @Override
-    public List<PersonEntity> selectSinglePerson(String ID) {
-        return null;
+    public PersonEntity selectSinglePerson(String id) {
+        return userMapper.selectSinglePerson(id);
     }
 
     @Override
     public List<PersonEntity> selectPersonAll(String id) {
-        return null;
+        if (StringUtils.isEmpty(id)){
+            return userMapper.selectAll();
+        }
+        List<PersonEntity> personEntities = new ArrayList<>();
+        PersonEntity personEntity = userMapper.selectSinglePerson(id);
+        personEntities.add(personEntity);
+        return personEntities;
     }
 
 }

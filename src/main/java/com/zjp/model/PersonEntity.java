@@ -1,8 +1,14 @@
 package com.zjp.model;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+@Table(name = "t_user")
 public class PersonEntity {
+    @Column(name = "id")
     private String name;
     private String pass;
+    @Column(name = "realName")
     private String realName;
     private String email;
     private String permission;

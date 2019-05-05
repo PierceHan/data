@@ -28,7 +28,7 @@ public interface HotelInfoService {
 
     int updatePerson(PersonEntity personEntity);
 
-    List<PersonEntity>  selectSinglePerson(String  ID);
+    PersonEntity selectSinglePerson(String  ID);
     List<PersonEntity> selectPersonAll(String id);
 
 

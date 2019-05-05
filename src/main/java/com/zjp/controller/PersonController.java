@@ -60,7 +60,7 @@ public class PersonController {
     }
 
     @ApiOperation(value = "删除用户信息")
-    @RequestMapping(value = "/person/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/person/delete/{id}", method = RequestMethod.POST)
     public ApiResponse deletePerson(@PathVariable String id) {
         int result = hotelInfoService.deletePerson(id);
         if (result == 1) {
@@ -92,17 +92,17 @@ public class PersonController {
         return createResult(null);
     }
 
-    @ApiOperation(value = "查找酒店信息")
+    @ApiOperation(value = "查找用户信息")
     @RequestMapping(value = "/person/single", method = RequestMethod.POST)
     public ApiResponse selectSinglePerson(
             @RequestParam(required = false) String ID
     ) throws ParseException {
 
-        List<PersonEntity> result = hotelInfoService.selectSinglePerson(ID);
+        PersonEntity result = hotelInfoService.selectSinglePerson(ID);
         return createResult(result);
     }
 
-    @ApiOperation(value = "加载所有酒店信息")
+    @ApiOperation(value = "加载所有用户信息")
     @RequestMapping(value = "/person/list", method = RequestMethod.POST)
     public ApiResponse selectPersonAll(  @RequestParam(required = false) String ID) {
         List<PersonEntity> result = hotelInfoService.selectPersonAll(ID);
